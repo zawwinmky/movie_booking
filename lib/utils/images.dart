@@ -1,0 +1,1 @@
+const String kCinemas="assets/images/";

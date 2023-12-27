@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/utils/colors.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: kBackgroundColor,
       body: Center(
-        child: Text("Home Page",style: TextStyle(
-          color: Colors.white
+        child: Text("Profile",style: TextStyle(
+          color: Colors.white,
         ),),
       ),
     );

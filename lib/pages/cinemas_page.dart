@@ -11,7 +11,8 @@ class CinemasPage extends StatefulWidget {
 class _CinemasPageState extends State<CinemasPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  const Scaffold(
+
       backgroundColor: kBackgroundColor,
       body: Center(
         child: Text("Cinemas",style: TextStyle(

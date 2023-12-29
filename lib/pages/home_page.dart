@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/list_items/movie_list_item_view.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
+import 'package:movie_booking/utils/strings.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      ///App Bar View
       appBar: AppBar(
         backgroundColor: kBackgroundColor,
         centerTitle: false,
@@ -70,22 +73,72 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       backgroundColor: kBackgroundColor,
+
+      ///Body View
       body: const HomePageScreenBodyView(),
     );
   }
 }
 
-class HomePageScreenBodyView extends StatelessWidget {
+class HomePageScreenBodyView extends StatefulWidget {
   const HomePageScreenBodyView({super.key});
+
+  @override
+  State<HomePageScreenBodyView> createState() => _HomePageScreenBodyViewState();
+}
+
+class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
+  String selectedText = kNowShowingLabel;
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        //Banner View
+        ///Banner View
         SliverToBoxAdapter(
           child: BannerSectionView(),
         ),
+
+        ///Spacing
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: kMargin30,
+          ),
+        ),
+
+        ///NowShowingAndComingSoonTabBar
+        SliverToBoxAdapter(
+          child: NowShowingAndComingSoonTabBar(
+            selectedText: this.selectedText,
+            onTapNowShowingAndComingSoon: (text) {
+              setState(() {
+                selectedText = text;
+              });
+            },
+          ),
+        ),
+
+        ///Spacing
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: kMargin30,
+          ),
+        ),
+
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: kMarginLarge),
+          sliver: SliverGrid(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return MovieListItemView(
+                  isComingSoonSelected: selectedText == kComingSoonLabel,
+                );
+              }, childCount: 10),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: kMarginMedium3,
+                  mainAxisSpacing: kMarginMedium3,
+                  crossAxisCount: 2,
+                  mainAxisExtent: kMovieListItemHeight)),
+        )
       ],
     );
   }
@@ -146,6 +199,91 @@ class BannerSectionView extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class NowShowingAndComingSoonTabBar extends StatelessWidget {
+  final String selectedText;
+  final Function(String) onTapNowShowingAndComingSoon;
+
+  const NowShowingAndComingSoonTabBar(
+      {super.key,
+      required this.selectedText,
+      required this.onTapNowShowingAndComingSoon});
+
+  @override
+  Widget build(BuildContext context) {
+    ///Now Showing And Coming Soon Tab Bar
+    return Container(
+      height: kNowPlayingAndComingSoonTabBarHeight,
+      margin: const EdgeInsets.symmetric(horizontal: kMarginLarge),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kMargin5),
+        gradient: const RadialGradient(colors: [
+          kNowAndComingGradientStartColor,
+          kNowAndComingGradientEndColor
+        ], radius: 7.5, center: Alignment(0, -0.02)),
+      ),
+      child: Row(
+        children: [
+          ///NowShowingButton
+          Expanded(
+              child: NowShowingAndComingSoonButtonView(
+                  onTapButton: () {
+                    onTapNowShowingAndComingSoon(kNowShowingLabel);
+                  },
+                  isSelected: selectedText == kNowShowingLabel,
+                  label: kNowShowingLabel)),
+
+          ///Coming Soon Button
+          Expanded(
+              child: NowShowingAndComingSoonButtonView(
+                  onTapButton: () {
+                    onTapNowShowingAndComingSoon(kComingSoonLabel);
+                  },
+                  isSelected: selectedText == kComingSoonLabel,
+                  label: kComingSoonLabel)),
+        ],
+      ),
+    );
+  }
+}
+
+class NowShowingAndComingSoonButtonView extends StatelessWidget {
+  final bool isSelected;
+  final String label;
+  final Function onTapButton;
+  const NowShowingAndComingSoonButtonView(
+      {super.key,
+      required this.isSelected,
+      required this.label,
+      required this.onTapButton});
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        onTapButton();
+      },
+      child: Container(
+        margin: const EdgeInsets.all(kMarginMedium),
+        decoration: BoxDecoration(
+          color: (isSelected) ? kPrimaryColor : null,
+          borderRadius: BorderRadius.circular(kMarginSmall),
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              color: (isSelected)
+                  ? kNowAndComingSelectedTextColor
+                  : kNowAndComingUnselectedTextColor,
+              fontSize: kTextRegular2X,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

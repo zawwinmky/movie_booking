@@ -1,6 +1,7 @@
 //Generic Dimensions
 
 const double kMarginSmall=4;
+const double kMargin5=5;
 const double kMarginMedium=8;
 const double kMarginCardMedium2=12.0;
 const double kMarginMedium2=16;
@@ -29,4 +30,5 @@ const double kLocationIconSize=30;
 
 const double kBannerHeight=170;
 const double kNowPlayingAndComingSoonTabBarHeight=55;
-
+const double kMovieListItemHeight=280;
+const double kMoviePosterHeight=212;

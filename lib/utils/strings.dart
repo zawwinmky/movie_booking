@@ -6,3 +6,5 @@ const String kProfileLabel="Profile";
 
 const String kNowShowingLabel="Now Showing";
 const String kComingSoonLabel="Coming Soon";
+
+const String kMovieBookingButtonLabel="Booking";

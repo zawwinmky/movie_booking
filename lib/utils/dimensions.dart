@@ -32,3 +32,15 @@ const double kBannerHeight=170;
 const double kNowPlayingAndComingSoonTabBarHeight=55;
 const double kMovieListItemHeight=280;
 const double kMoviePosterHeight=212;
+const double kMovieDetailsImageHeight=375;
+const double kMovieDetailsLargeImageHeight=200;
+
+
+const double kImdbHeight=28;
+const double kImdbWidth=43;
+
+const double kMovieDetailSmallImageWidth=160;
+const double kMovieDetailSmallImageHeight=185;
+const double kMovieDetailsBottomContainerHeight=128;
+
+const double kMovieDetailsBookingButtonHeight=60;

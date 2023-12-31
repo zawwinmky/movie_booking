@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/pages/main_page.dart';
+import 'package:movie_booking/pages/movie_details_page.dart';
 import 'package:movie_booking/utils/fonts.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MovieBooking extends StatelessWidget {
         fontFamily: kInter,
       ),
       home: const MainPage(),
+      // home: const MovieDetailsPage(),
     );
   }
 }

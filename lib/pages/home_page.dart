@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/list_items/movie_list_item_view.dart';
+import 'package:movie_booking/pages/movie_details_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
@@ -125,12 +126,20 @@ class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
           ),
         ),
 
+        ///Movie Grid View
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: kMarginLarge),
           sliver: SliverGrid(
               delegate: SliverChildBuilderDelegate((context, index) {
-                return MovieListItemView(
-                  isComingSoonSelected: selectedText == kComingSoonLabel,
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                      return const MovieDetailsPage();
+                    }));
+                  },
+                  child: MovieListItemView(
+                    isComingSoonSelected: selectedText == kComingSoonLabel,
+                  ),
                 );
               }, childCount: 10),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -207,8 +216,8 @@ class NowShowingAndComingSoonTabBar extends StatelessWidget {
   final String selectedText;
   final Function(String) onTapNowShowingAndComingSoon;
 
-  const NowShowingAndComingSoonTabBar(
-      {super.key,
+  const NowShowingAndComingSoonTabBar({
+      super.key,
       required this.selectedText,
       required this.onTapNowShowingAndComingSoon});
 

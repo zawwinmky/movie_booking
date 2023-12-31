@@ -13,3 +13,6 @@ const Color kNowAndComingSelectedTextColor=Color(0xFF888888);
 const Color kNowAndComingUnselectedTextColor=Color(0xFF555555);
 
 const Color kCircleColor=Color(0xFFD9D9D9);
+
+const Color kMovieDetailsCensorStartColor=Color.fromRGBO(34,34,34,0.8);
+const Color kMovieDetailsCensorEndColor=Color.fromRGBO(17,17,17,0.8);

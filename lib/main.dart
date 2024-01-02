@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/models/test.dart';
+import 'package:movie_booking/pages/choose_region_page.dart';
+import 'package:movie_booking/pages/cinema_selection_page.dart';
+import 'package:movie_booking/pages/grab_a_bite_page.dart';
+import 'package:movie_booking/pages/login_page.dart';
 import 'package:movie_booking/pages/main_page.dart';
 import 'package:movie_booking/pages/movie_details_page.dart';
+import 'package:movie_booking/pages/splash_screen.dart';
+import 'package:movie_booking/test.dart';
 import 'package:movie_booking/utils/fonts.dart';
 
 void main() {
   runApp(const MovieBooking());
 }
-
 
 class MovieBooking extends StatelessWidget {
   const MovieBooking({super.key});
@@ -18,7 +24,8 @@ class MovieBooking extends StatelessWidget {
       theme: ThemeData(
         fontFamily: kInter,
       ),
-      home: const MainPage(),
+      home: const SplashScreen(),
+      // home:  GrabABite(),
       // home: const MovieDetailsPage(),
     );
   }

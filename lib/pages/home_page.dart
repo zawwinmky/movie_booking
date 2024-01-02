@@ -17,66 +17,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       ///App Bar View
-      appBar: AppBar(
-        backgroundColor: kBackgroundColor,
-        centerTitle: false,
-        title: const Row(
-          children: [
-            SizedBox(
-              width: kMarginMedium2,
-            ),
-            Icon(
-              Icons.location_on,
-              color: Colors.white,
-            ),
-            SizedBox(
-              width: kMarginMedium2,
-            ),
-            Text(
-              "Yangon",
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontSize: kTextRegular2X,
-                fontFamily: kInter,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        actions: const [
-          Icon(
-            Icons.search,
-            size: kMarginLarge,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: kMarginXLarge,
-          ),
-          Icon(
-            Icons.notifications,
-            size: kMarginLarge,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: kMarginXLarge,
-          ),
-          Icon(
-            Icons.qr_code_scanner,
-            size: kMarginLarge,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: kHomeScreenAppbarRMargin,
-          ),
-        ],
-      ),
       backgroundColor: kBackgroundColor,
 
       ///Body View
-      body: const HomePageScreenBodyView(),
+      body: HomePageScreenBodyView(),
     );
   }
 }
@@ -131,15 +77,8 @@ class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
           padding: const EdgeInsets.symmetric(horizontal: kMarginLarge),
           sliver: SliverGrid(
               delegate: SliverChildBuilderDelegate((context, index) {
-                return GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                      return const MovieDetailsPage();
-                    }));
-                  },
-                  child: MovieListItemView(
-                    isComingSoonSelected: selectedText == kComingSoonLabel,
-                  ),
+                return MovieListItemView(
+                  isComingSoonSelected: selectedText == kComingSoonLabel,
                 );
               }, childCount: 10),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

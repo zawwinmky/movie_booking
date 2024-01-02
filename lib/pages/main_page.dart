@@ -7,6 +7,8 @@ import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/strings.dart';
 
+import '../utils/fonts.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -26,6 +28,59 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: kBackgroundColor,
+        centerTitle: false,
+        title:  Row(
+          children: [
+            const SizedBox(
+              width: kMarginMedium2,
+            ),
+            Image.asset(kArrow,width:kMargin22 ,height:kMargin22 ,),
+            const SizedBox(
+              width: kMarginMedium2,
+            ),
+            const Text(
+              "Yangon",
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: kTextRegular2X,
+                fontFamily: kInter,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          const Icon(
+            Icons.search,
+            size: kMarginLarge,
+            color: Colors.white,
+          ),
+          const SizedBox(
+            width: kMarginXLarge,
+          ),
+          const Icon(
+            Icons.notifications,
+            size: kMarginLarge,
+            color: Colors.white,
+          ),
+          const SizedBox(
+            width: kMarginXLarge,
+          ),
+          Image.asset(
+            kScanIcon,
+            width: kMarginXXLarge,
+            fit: BoxFit.fill,
+            color: Colors.white,
+          ),
+          const SizedBox(
+            width: kMarginMedium3,
+          ),
+        ],
+      ),
       body: homeScreenWidgets[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: _getBottomNavigationBarItems(),
@@ -48,28 +103,56 @@ class _MainPageState extends State<MainPage> {
 
   List<BottomNavigationBarItem> _getBottomNavigationBarItems() {
     return [
-      const BottomNavigationBarItem(
-          icon: Icon(
-            Icons.movie,
-            size: kMarginXLarge,
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            kMovieIcon,
+            height: kMarginXLarge,
+            width: kMargin30,
+          ),
+          activeIcon: Image.asset(
+            kMovieIcon,
+            color: kPrimaryColor,
+            height: kMarginXLarge,
+            width: kMargin30,
           ),
           label: kMovieLabel),
-      const BottomNavigationBarItem(
-          icon: Icon(
-            Icons.airplane_ticket,
-            size: kMarginXLarge,
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            kCinemaIcon,
+            height: kMarginXLarge,
+            width: kMargin30,
+          ),
+          activeIcon: Image.asset(
+            kCinemaIcon,
+            color: kPrimaryColor,
+            height: kMarginXLarge,
+            width: kMargin30,
           ),
           label: kCinemasLabel),
-      const BottomNavigationBarItem(
-          icon: Icon(
-            Icons.camera_indoor_outlined,
-            size: kMarginXLarge,
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            kTicketIcon,
+            height: kMarginXLarge,
+            width: kMargin30,
+          ),
+          activeIcon: Image.asset(
+            kTicketIcon,
+            color: kPrimaryColor,
+            height: kMarginXLarge,
+            width: kMargin30,
           ),
           label: kTicketsLabel),
-      const BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-            size: kMarginXLarge,
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            kProfileIcon,
+            height: kMarginXLarge,
+            width: kMargin30,
+          ),
+          activeIcon: Image.asset(
+            kProfileIcon,
+            color: kPrimaryColor,
+            height: kMarginXLarge,
+            width: kMargin30,
           ),
           label: kProfileLabel),
     ];

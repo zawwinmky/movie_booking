@@ -96,3 +96,7 @@ flutter:
     - family: Inter
       fonts:
         - asset:  fonts/inter.ttf
+
+    - family: DmSans
+      fonts:
+        - asset:  fonts/dmSan.ttf

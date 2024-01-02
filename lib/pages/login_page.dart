@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie_booking/pages/main_page.dart';
+import 'package:movie_booking/pages/verify_sms_code_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                     kCodeSmsLabel,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontFamily: kDmSan,
                       fontWeight: FontWeight.w400,
                       fontSize: kTextSmall,
                       color: kNowAndComingSelectedTextColor,
@@ -124,11 +126,13 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: kMargin50,
                 ),
+
+                ///Verify Phone Number Button
                 InkWell(
                   onTap: () {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return const MainPage();
+                      return const VerifySmsCode();
                     }));
                   },
                   child: Container(
@@ -149,6 +153,69 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                ),
+
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: kMargin22),
+                  child: Center(
+                    child: Text(
+                      "Or",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: kTextRegular2X,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+
+                ///Google Button
+                InkWell(
+                  onTap: () {
+                    ///Later
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 51,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white),
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            kGoogleLogo,
+                            width: 25,
+                            height: 25,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                            kGoogleButtonLabel,
+                            style: TextStyle(
+                              fontSize: kTextRegular2X,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 94,
+                ),
+                const Text(
+                  kTermsAndConditions,
+                  style: TextStyle(
+                      fontFamily: kDmSan,
+                      fontWeight: FontWeight.w400,
+                      fontSize: kTextSmall,
+                      color: kNowAndComingSelectedTextColor),
                 ),
               ],
             ),

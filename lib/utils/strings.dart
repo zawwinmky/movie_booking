@@ -31,6 +31,7 @@ const String kSingleSeat = "assets/images/singleSeat.png";
 const String kCoupleSeat = "assets/images/coupleSeat.png";
 const String kScreen = "assets/images/Screen.png";
 const String kLoginLogo = "assets/images/loginLogo.png";
+const String kGoogleLogo = "assets/images/google.png";
 
 const String kPickRegion = "Pick Region";
 const String kPickRegionHintText = "Search your location";
@@ -38,6 +39,9 @@ const String kCityText = "Cities";
 const String kVerifyPhoneLabel = "Verify Your Phone Number";
 const String kCodeSmsLabel =
     "We will send 6-digit sms code to verify your phone number";
+
+const String kTermsAndConditions =
+    "By clicking, I accept the Terms & Conditions & Privacy Plolicy";
 
 const String kGetNotifyButtonLabel =
     "Get notify as soon as movie\nbooking opens up in your city!";
@@ -51,3 +55,4 @@ const String kBeverageTabLabel = "Beverage";
 const String kGrabABiteLabel = "Grab a bite!";
 const String kSkipButtonLabel = "skip";
 const String kFoodAddLabel = "ADD";
+const String kGoogleButtonLabel = "Continue with Google";

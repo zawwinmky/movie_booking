@@ -220,7 +220,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                 ),
               ),
             ),
-            SliverToBoxAdapter()
+            const SliverToBoxAdapter()
           ],
         ),
       ),

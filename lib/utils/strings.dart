@@ -56,3 +56,6 @@ const String kGrabABiteLabel = "Grab a bite!";
 const String kSkipButtonLabel = "skip";
 const String kFoodAddLabel = "ADD";
 const String kGoogleButtonLabel = "Continue with Google";
+
+const String kSentOTPCodeText =
+    "Please enter 6-digit OTP code that sent to your phone number.";

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:movie_booking/utils/all_enum.dart';
-import 'package:movie_booking/utils/colors.dart';
-import 'package:movie_booking/utils/strings.dart';
-import 'package:movie_booking/utils/text_style.dart';
-
-import 'models/seat_model.dart';
+// import 'package:flutter/material.dart';
+// import 'package:movie_booking/utils/all_enum.dart';
+// import 'package:movie_booking/utils/colors.dart';
+// import 'package:movie_booking/utils/strings.dart';
+// import 'package:movie_booking/utils/text_style.dart';
+//
+// import 'models/seat_model.dart';
 //
 // class Test extends StatefulWidget {
 //   const Test({super.key});
@@ -12,7 +12,7 @@ import 'models/seat_model.dart';
 //   @override
 //   // State<Test> createState() => _TestState();
 // }
-
+//
 // class _TestState extends State<Test> {
 //   List<SeatModel> seatList = [
 //     SeatModel(seatType: EnumSeatView.text, value: "A"),

@@ -16,5 +16,7 @@
 class SeatVO {
   String type = "";
   String text = "";
-  SeatVO({required this.type, required this.text});
+  bool isSelected = false;
+
+  SeatVO({required this.type, required this.text, this.isSelected = false});
 }

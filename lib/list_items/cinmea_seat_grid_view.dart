@@ -5,7 +5,9 @@ import '../utils/strings.dart';
 import '../utils/text_style.dart';
 
 class CinemaSeatGridView extends StatefulWidget {
-  const CinemaSeatGridView({super.key});
+  CinemaSeatGridView({super.key, required this.onSeatSelection});
+
+  Function(int) onSeatSelection;
 
   @override
   State<CinemaSeatGridView> createState() => _CinemaSeatGridViewState();
@@ -17,7 +19,7 @@ class _CinemaSeatGridViewState extends State<CinemaSeatGridView> {
     SeatVO(type: "seat", text: "taken"),
     SeatVO(type: "seat", text: "taken"),
     SeatVO(type: "seat", text: "taken"),
-    SeatVO(type: "seat", text: "stock"),
+    SeatVO(type: "seat", text: "stock", isSelected: true),
     SeatVO(type: "", text: ""),
     SeatVO(type: "", text: ""),
     SeatVO(type: "seat", text: "taken"),
@@ -29,6 +31,12 @@ class _CinemaSeatGridViewState extends State<CinemaSeatGridView> {
 
   @override
   Widget build(BuildContext context) {
+    int selectionSeat = allSeatList
+        .where((element) =>
+            element.type.toString().toUpperCase() == "SEAT" &&
+            element.text.toString().toUpperCase() == "SELECTED")
+        .length;
+
     return GridView.builder(
         itemCount: allSeatList.length,
         gridDelegate:
@@ -55,6 +63,7 @@ class _CinemaSeatGridViewState extends State<CinemaSeatGridView> {
                           onTap: () {
                             setState(() {
                               allSeatList[index].text = "selected";
+                              widget.onSeatSelection(selectionSeat);
                             });
                           },
                           child: Image.asset(
@@ -79,6 +88,7 @@ class _CinemaSeatGridViewState extends State<CinemaSeatGridView> {
                               onTap: () {
                                 setState(() {
                                   allSeatList[index].text = "STOCK";
+                                  widget.onSeatSelection(selectionSeat);
                                 });
                               },
                               child: Image.asset(

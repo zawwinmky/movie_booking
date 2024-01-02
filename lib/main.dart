@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/list_items/cinmea_seat_grid_view.dart';
 import 'package:movie_booking/models/test.dart';
 import 'package:movie_booking/pages/choose_region_page.dart';
 import 'package:movie_booking/pages/cinema_selection_page.dart';
@@ -30,3 +31,5 @@ class MovieBooking extends StatelessWidget {
     );
   }
 }
+
+// flutter clean;flutter pub get;cd ios;pod install;pod update;cd ..;

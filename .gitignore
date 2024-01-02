@@ -31,7 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-lib/padc_test.dart
+lib/test_widget_build.dart
 
 
 # Symbolication related

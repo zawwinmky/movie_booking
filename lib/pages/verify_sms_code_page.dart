@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_booking/pages/main_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
+import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
+import 'package:movie_booking/widgets_view/otp_code_pinput_view_widget.dart';
 
 class VerifySmsCode extends StatefulWidget {
   const VerifySmsCode({super.key});
@@ -28,7 +29,7 @@ class _VerifySmsCodeState extends State<VerifySmsCode> {
                   onTap: () {
                     Navigator.of(context).pop();
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back_ios_new_rounded,
                     color: Colors.white,
                   ),
@@ -39,29 +40,46 @@ class _VerifySmsCodeState extends State<VerifySmsCode> {
                 width: 124,
                 fit: BoxFit.fitWidth,
               ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const MainPage();
-                    }));
-                  },
-                  child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                          child: const Text(
-                        "Confirm OTP",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      )))),
+              const SizedBox(
+                height: 80,
+              ),
+              const Text(
+                "We've sent OTP Code",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontFamily: kDmSan,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 80),
+                child: Text(
+                  kSentOTPCodeText,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: kDmSan,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: kNowAndComingSelectedTextColor),
+                ),
+              ),
+              const SizedBox(height: 60),
+              const OTPCodePinPutView(),
+              const SizedBox(
+                height: 150,
+              ),
+              const Text(
+                kTermsAndConditions,
+                style: TextStyle(
+                    fontFamily: kDmSan,
+                    fontWeight: FontWeight.w400,
+                    fontSize: kTextSmall,
+                    color: kNowAndComingSelectedTextColor),
+              )
             ],
           ),
         ),

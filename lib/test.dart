@@ -259,3 +259,41 @@
 //     return tempAmout;
 //   }
 // }
+
+import 'package:flutter/material.dart';
+
+class TestPage extends StatefulWidget {
+  const TestPage({super.key});
+
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  var dateMonth = DateTime.now().month;
+  var dateDay = DateTime.now().day;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                  text: dateMonth == 1 ? "Jan" : "Other ",
+                  style: TextStyle(fontSize: 18, color: Colors.black)),
+              TextSpan(
+                  text: " , $dateDay ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                  )),
+            ])),
+          ),
+        ),
+      ),
+    );
+  }
+}

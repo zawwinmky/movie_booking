@@ -17,6 +17,11 @@ class CinemaOverViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      collapsedShape: LinearBorder.bottom(
+          side: BorderSide(
+        width: 1,
+        color: kNowAndComingSelectedTextColor,
+      )),
       backgroundColor: kBackgroundColor,
       initiallyExpanded: isExpanded,
       trailing: Padding(

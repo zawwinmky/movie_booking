@@ -13,10 +13,15 @@ class CinemaDetailsPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: kBackgroundColor,
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.white,
-          size: 25,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.white,
+            size: 25,
+          ),
         ),
         centerTitle: true,
         title: const Text(

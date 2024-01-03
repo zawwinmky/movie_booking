@@ -50,7 +50,7 @@ class MovieDetailsPage extends StatelessWidget {
                 CastView(),
 
                 SizedBox(
-                  height: kMargin60,
+                  height: 1000,
                 ),
               ],
             ),

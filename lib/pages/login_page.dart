@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:movie_booking/pages/verify_sms_code_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
@@ -14,6 +15,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController phoneTEC = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,16 +95,20 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Expanded(
+                        Expanded(
                             child: TextField(
+                          controller: phoneTEC,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
                           keyboardType: TextInputType.number,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: kTextRegular2X,
                             fontWeight: FontWeight.w700,
                           ),
                           textAlignVertical: TextAlignVertical.bottom,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             // contentPadding: EdgeInsets.only(left: ),
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -127,11 +134,70 @@ class _LoginPageState extends State<LoginPage> {
 
                 ///Verify Phone Number Button
                 InkWell(
+                  // onTap: phoneTEC.text.isEmpty
+                  //     ? () {
+                  //         showDialog(
+                  //             barrierDismissible: true,
+                  //             context: context,
+                  //             builder: (context) {
+                  //               return AlertDialog(
+                  //                 shape: RoundedRectangleBorder(
+                  //                     borderRadius: BorderRadius.circular(2)),
+                  //                 titlePadding: EdgeInsets.all(10),
+                  //                 shadowColor: Colors.transparent,
+                  //                 surfaceTintColor: kPrimaryColor,
+                  //                 backgroundColor: Colors.transparent,
+                  //                 title: Center(
+                  //                   child: Text(
+                  //                     "Enter your phone number to continue!",
+                  //                     style: TextStyle(
+                  //                       fontWeight: FontWeight.w600,
+                  //                       fontSize: 16,
+                  //                       color: Colors.red,
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //               );
+                  //             });
+                  //       }
+                  //     : () {
+                  //         Navigator.of(context)
+                  //             .push(MaterialPageRoute(builder: (context) {
+                  //           return const VerifySmsCode();
+                  //         }));
+                  //       },
+
                   onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const VerifySmsCode();
-                    }));
+                    setState(() {
+                      phoneTEC.text.isNotEmpty
+                          ? Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                              return const VerifySmsCode();
+                            }))
+                          : showDialog(
+                              barrierDismissible: true,
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(2)),
+                                  titlePadding: const EdgeInsets.all(10),
+                                  shadowColor: Colors.transparent,
+                                  surfaceTintColor: kPrimaryColor,
+                                  backgroundColor: Colors.transparent,
+                                  title: const Center(
+                                    child: Text(
+                                      "Enter your phone number to continue!",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                    });
                   },
                   child: Container(
                     height: 50,

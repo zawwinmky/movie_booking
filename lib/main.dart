@@ -26,6 +26,7 @@ class MovieBooking extends StatelessWidget {
         fontFamily: kInter,
       ),
       home: const SplashScreen(),
+      // home: TestPage(),
       // home:  GrabABite(),
       // home: const MovieDetailsPage(),
     );

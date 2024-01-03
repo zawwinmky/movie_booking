@@ -10,8 +10,7 @@ class BackButtonAndShareButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: kMarginLarge, vertical: kMarginMedium),
+      padding: const EdgeInsets.only(left: 5, right: 15, top: kMarginMedium),
       child: Row(
         children: [
           GestureDetector(

@@ -14,10 +14,8 @@ class OTPCodePinPutView extends StatefulWidget {
 }
 
 class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
-  final dummyCode = "111111";
   final pinController = TextEditingController();
   final focusNode = FocusNode();
-  bool isValid = false;
 
   @override
   void dispose() {
@@ -29,7 +27,7 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
   @override
   Widget build(BuildContext context) {
     const focusedBorderColor = Colors.green;
-    const borderColor = Colors.grey;
+    const borderColor = Colors.white;
 
     final defaultPinTheme = PinTheme(
       width: 56,
@@ -58,21 +56,21 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
             fontSize: kTextRegular,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Pinput(
           length: 6,
-          onChanged: (input) {
-            if (input.length > 5) {
-              if (input == dummyCode) {
-                isValid = true;
-              } else {
-                isValid = false;
-              }
-            }
-            setState(() {});
-          },
+          // onChanged: (input) {
+          //   if (input.length > 5) {
+          //     if (input == dummyCode) {
+          //       isValid = true;
+          //     } else {
+          //       isValid = false;
+          //     }
+          //   }
+          //   setState(() {});
+          // },
           controller: pinController,
           focusNode: focusNode,
           defaultPinTheme: defaultPinTheme,
@@ -92,8 +90,8 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
           useNativeKeyboard: true,
           focusedPinTheme: defaultPinTheme.copyWith(
             decoration: defaultPinTheme.decoration!.copyWith(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(4),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(width: 2, color: focusedBorderColor),
             ),
           ),
@@ -112,14 +110,14 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
             border: Border.all(color: Colors.redAccent),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Don't receive OTP?",
               style: TextStyle(
                 fontSize: kTextRegular,
@@ -130,7 +128,7 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
             ),
             TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   "Resend Code",
                   style: TextStyle(
                     fontSize: kTextRegular2X,
@@ -140,28 +138,25 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
                 )),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         InkWell(
-            onTap: !isValid
-                ? null
-                : () {
-                    focusNode.unfocus();
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const MainPage();
-                    }));
-                  },
+            onTap: () {
+              focusNode.unfocus();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const MainPage();
+              }));
+            },
             child: Container(
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: isValid ? kPrimaryColor : Colors.grey,
+                  color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Center(
-                    child: const Text(
+                child: const Center(
+                    child: Text(
                   "Confirm OTP",
                   style: TextStyle(
                     fontSize: 16,

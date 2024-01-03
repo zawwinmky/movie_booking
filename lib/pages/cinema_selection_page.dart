@@ -78,54 +78,9 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 115,
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, int) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      padding: const EdgeInsets.only(top: 6),
-                      margin: const EdgeInsets.only(left: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 22,
-                            height: 5,
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(5)),
-                          ),
-                          const SizedBox(
-                            height: 9,
-                            width: 70,
-                          ),
-                          Text(
-                            "Toady",
-                            style: normalTextStyle,
-                          ),
-                          const SizedBox(
-                            height: 7,
-                          ),
-                          Text(
-                            "May",
-                            style: normalTextStyle,
-                          ),
-                          const SizedBox(
-                            height: 7,
-                          ),
-                          Text(
-                            "8",
-                            style: normalTextStyle,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: 14,
+                child: DateShower(
+                  dateDay: DateTime.now().day,
+                  dateMonth: DateTime.now().month,
                 ),
               ),
             ),
@@ -142,7 +97,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                   children: [
                     MovieTypeView(label: "2D"),
                     MovieTypeView(label: "3D"),
-                    MovieTypeView(label: "3D IMAx"),
+                    MovieTypeView(label: "3D IMAX"),
                     MovieTypeView(label: "3D DBOX"),
                   ],
                 ),
@@ -266,6 +221,92 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class DateShower extends StatelessWidget {
+  const DateShower({super.key, required this.dateDay, required this.dateMonth});
+
+  final int dateDay;
+  final int dateMonth;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, int) {
+        return Container(
+          decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.only(top: 6),
+          margin: const EdgeInsets.only(left: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 22,
+                height: 5,
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(5)),
+              ),
+              const SizedBox(
+                height: 9,
+                width: 70,
+              ),
+              Text(
+                "Today",
+                style: normalTextStyle,
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Text(
+                dateMonth == 1
+                    ? "Jan"
+                    : dateMonth == 2
+                        ? "Feb"
+                        : dateMonth == 3
+                            ? "March"
+                            : dateMonth == 4
+                                ? "April"
+                                : dateMonth == 5
+                                    ? "May"
+                                    : dateMonth == 6
+                                        ? "June"
+                                        : dateMonth == 7
+                                            ? "July"
+                                            : dateMonth == 8
+                                                ? "Aug"
+                                                : dateMonth == 9
+                                                    ? "Sep"
+                                                    : dateMonth == 10
+                                                        ? "Oct"
+                                                        : dateMonth == 11
+                                                            ? "Nov"
+                                                            : dateMonth == 12
+                                                                ? "Dec"
+                                                                : "N/A",
+                style: normalTextStyle,
+              ),
+              const SizedBox(
+                height: 7,
+              ),
+              Text(
+                dateDay.toString(),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+        );
+      },
+      itemCount: 14,
     );
   }
 }

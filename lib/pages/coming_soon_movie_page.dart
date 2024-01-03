@@ -121,6 +121,7 @@ class ReleasingInComingDaysAndSetNotiButton extends StatelessWidget {
                   height: kMarginMedium3,
                 ),
                 InkWell(
+                  splashColor: kPrimaryColor,
                   onTap: () {
                     ///DO Something
                   },

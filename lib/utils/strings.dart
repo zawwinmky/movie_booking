@@ -13,12 +13,18 @@ const String kCinemaIcon = "assets/images/cinema.png";
 const String kTicketIcon = "assets/images/ticket.png";
 const String kProfileIcon = "assets/images/profile.png";
 const String kLogo = "assets/images/logo.png";
-const String kArrow = "assets/images/arrow.png";
+const String kArrow = "assets/images/arrowOne.png";
 const String kCity = "assets/images/city.png";
 const String kBookingButton = 'assets/images/bookingbutton.png';
 const String kPlayButton = 'assets/images/playbutton.png';
 const String kNotiGirl = 'assets/images/notificationgirl.png';
-const String kCartIcon = "assets/images/cart.png";
+const String kCartIcon = "assets/images/foodcart1.png";
+const String kCinemas = "assets/images/cinemas.png";
+
+const String kParkingIcon = "assets/images/parking.png";
+const String kWheelChair = "assets/images/wheelChair.png";
+const String kCancelTicket = "assets/images/ticketCancel.png";
+
 const String kPotato = "assets/images/potato.png";
 const String kPizza = "assets/images/pizza.png";
 const String kCocaCola = "assets/images/cocacola.png";
@@ -59,3 +65,16 @@ const String kGoogleButtonLabel = "Continue with Google";
 
 const String kSentOTPCodeText =
     "Please enter 6-digit OTP code that sent to your phone number.";
+
+const kLabelInfoCinemaSelection =
+    "Long press on show timing to see seat class!";
+
+const String kPromo = "assets/images/promo.png";
+const String kUpi = "assets/images/upi.png";
+const String kGift = "assets/images/gift.png";
+const String kQuick = "assets/images/pay.png";
+const String kCredit = "assets/images/credit.png";
+const String kRedeem = "assets/images/redeem.png";
+const String kMobile = "assets/images/mobile.png";
+const String kBanking = "assets/images/banking.png";
+const String kSuccessful = "assets/images/successful.png";

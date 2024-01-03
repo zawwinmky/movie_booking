@@ -13,11 +13,7 @@ class ShowCountryCodeDropdownWidget extends StatefulWidget {
 class _ShowCountryCodeDropdownWidgetState
     extends State<ShowCountryCodeDropdownWidget> {
   String selectedCountryCode = "";
-  List<String> countryCodeList = [
-    '+95',
-    '+1',
-    '+66',
-  ];
+  List<String> countryCodeList = ['+95', '+1', '+855', '+65', '+66', "+81"];
 
   @override
   void initState() {

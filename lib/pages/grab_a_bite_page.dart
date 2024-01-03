@@ -425,6 +425,7 @@ class _GrabABitePageState extends State<GrabABitePage> {
                             children: [
                               Image.asset(
                                 kCartIcon,
+                                color: Colors.black,
                                 height: kMargin25,
                                 width: 27,
                               ),

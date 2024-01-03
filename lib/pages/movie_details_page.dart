@@ -62,24 +62,24 @@ class MovieDetailsPage extends StatelessWidget {
           ///Bottom Gradient And Booking Button
           Align(
             alignment: Alignment.bottomCenter,
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return const CinemaSelectionPage();
-                }));
-              },
-              child: Container(
-                width: double.infinity,
-                height: kMovieDetailsBottomContainerHeight,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Colors.transparent,
-                    kBackgroundColor,
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                ),
-                child: const Center(child: BookingButton()),
+            child: Container(
+              width: double.infinity,
+              height: kMovieDetailsBottomContainerHeight,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  Colors.transparent,
+                  kBackgroundColor,
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
               ),
+              child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return CinemaSelectionPage();
+                        }));
+                      },
+                      child: BookingButton())),
             ),
           ),
         ],

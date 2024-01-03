@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   List<Widget> homeScreenWidgets = [
     const HomePage(),
-    const CinemasPage(),
+    const CinemaPage(),
     const TicketsPage(),
     const ProfilePage()
   ];
@@ -32,14 +32,18 @@ class _MainPageState extends State<MainPage> {
         automaticallyImplyLeading: false,
         backgroundColor: kBackgroundColor,
         centerTitle: false,
-        title:  Row(
+        title: Row(
           children: [
             const SizedBox(
-              width: kMarginMedium2,
+              width: 5,
             ),
-            Image.asset(kArrow,width:kMargin22 ,height:kMargin22 ,),
+            Image.asset(
+              kArrow,
+              width: 30,
+              height: 30,
+            ),
             const SizedBox(
-              width: kMarginMedium2,
+              width: kMarginMedium,
             ),
             const Text(
               "Yangon",
@@ -68,16 +72,17 @@ class _MainPageState extends State<MainPage> {
             color: Colors.white,
           ),
           const SizedBox(
-            width: kMarginXLarge,
+            width: 20,
           ),
           Image.asset(
             kScanIcon,
-            width: kMarginXXLarge,
-            fit: BoxFit.fill,
+            height: 55,
+            width: 55,
+            fit: BoxFit.cover,
             color: Colors.white,
           ),
           const SizedBox(
-            width: kMarginMedium3,
+            width: 7,
           ),
         ],
       ),

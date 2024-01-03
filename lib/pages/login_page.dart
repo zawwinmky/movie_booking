@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:movie_booking/pages/main_page.dart';
 import 'package:movie_booking/pages/verify_sms_code_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
@@ -69,58 +67,58 @@ class _LoginPageState extends State<LoginPage> {
                   height: 80,
                 ),
 
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Country Code",
-                        style: TextStyle(
-                          color: kNowAndComingSelectedTextColor,
-                          fontSize: kTextSmall,
-                          fontWeight: FontWeight.w400,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Country Code",
+                      style: TextStyle(
+                        color: kNowAndComingSelectedTextColor,
+                        fontSize: kTextSmall,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            ))),
+                            child: const ShowCountryCodeDropdownWidget()),
+                        const SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ))),
-                              child: const ShowCountryCodeDropdownWidget()),
-                          const SizedBox(
-                            width: 10,
+                        const Expanded(
+                            child: TextField(
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: kTextRegular2X,
+                            fontWeight: FontWeight.w700,
                           ),
-                          const Expanded(
-                              child: TextField(
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: kTextRegular2X,
+                          textAlignVertical: TextAlignVertical.bottom,
+                          decoration: InputDecoration(
+                            // contentPadding: EdgeInsets.only(left: ),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: kPrimaryColor,
+                            )),
+                            focusColor: kPrimaryColor,
+                            hintText: "Mobile Number",
+                            hintStyle: TextStyle(
                               fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              color: kNowAndComingSelectedTextColor,
                             ),
-                            textAlignVertical: TextAlignVertical.bottom,
-                            decoration: InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                color: kPrimaryColor,
-                              )),
-                              focusColor: kPrimaryColor,
-                              hintText: "Mobile Number",
-                              hintStyle: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16,
-                                color: kNowAndComingSelectedTextColor,
-                              ),
-                            ),
-                          )),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ),
+                        )),
+                      ],
+                    ),
+                  ],
                 ),
 
                 const SizedBox(
@@ -223,19 +221,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-}
-
-class show extends StatefulWidget {
-  const show({super.key});
-
-  @override
-  State<show> createState() => _showState();
-}
-
-class _showState extends State<show> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

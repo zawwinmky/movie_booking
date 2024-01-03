@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:movie_booking/pages/grab_a_bite_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
+import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
 import 'package:movie_booking/utils/text_style.dart';
+
+import '../widgets_view/cinmea_over_view_widget_expandable.dart';
 
 class CinemaSelectionPage extends StatefulWidget {
   const CinemaSelectionPage({super.key});
@@ -30,25 +33,31 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                 color: Colors.white,
               ),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const GrabABitePage();
-                  }));
-                },
-                child: const Text("Go to Next")),
             const Spacer(),
-            Image.asset(kArrow),
-            Center(
-              child: Text(
-                "Yangon",
-                style: normalTextStyle,
+            Image.asset(
+              kArrow,
+              width: 28,
+              height: 28,
+            ),
+            const Text(
+              "Yangon",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
+                fontSize: kTextRegular2X,
               ),
+            ),
+            const SizedBox(
+              width: 25,
             ),
             const Icon(
               Icons.search_sharp,
               color: Colors.white,
+              size: 22,
+            ),
+            const SizedBox(
+              width: kMargin30,
             ),
             const Icon(
               Icons.filter_alt_rounded,
@@ -144,9 +153,11 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                 height: 30,
               ),
             ),
+
+            ///Available, Filling fast and Almost Full
             SliverToBoxAdapter(
               child: Container(
-                color: Color(0xFF222222),
+                color: const Color(0xFF222222),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                 child: Row(
@@ -161,7 +172,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                           decoration: const BoxDecoration(
                               color: kPrimaryColor, shape: BoxShape.circle),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         const Text(
@@ -172,7 +183,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                         )
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +194,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                           decoration: const BoxDecoration(
                               color: Color(0xFFFF7A00), shape: BoxShape.circle),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         const Text(
@@ -194,7 +205,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                         )
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -205,7 +216,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                           decoration: const BoxDecoration(
                               color: Color(0xFFFF00B8), shape: BoxShape.circle),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         const Text(
@@ -220,7 +231,38 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                 ),
               ),
             ),
-            const SliverToBoxAdapter()
+
+            ///Expandable cinema overview
+            const SliverToBoxAdapter(
+              child: CinemaOverViewWidget(
+                cinemaName: "JCGV: Junction City",
+                isExpanded: true,
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: CinemaOverViewWidget(
+                cinemaName: "JCGV: Junction Square",
+                isExpanded: false,
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: CinemaOverViewWidget(
+                cinemaName: "JCGV: Sein Gay Har",
+                isExpanded: false,
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: CinemaOverViewWidget(
+                cinemaName: "Mingala Cineplex",
+                isExpanded: false,
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: CinemaOverViewWidget(
+                cinemaName: "Mingala Diamond",
+                isExpanded: false,
+              ),
+            ),
           ],
         ),
       ),

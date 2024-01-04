@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/utils/colors.dart';
+import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 
 import '../utils/strings.dart';
+import '../widgets_view/ticket_confirmed_widget_view.dart';
 
 class TicketConfirmedPage extends StatefulWidget {
   const TicketConfirmedPage({super.key});
@@ -46,6 +48,13 @@ class _TicketConfirmedPageState extends State<TicketConfirmedPage> {
                   fontFamily: kDmSan,
                   fontSize: 20,
                 ),
+              ),
+              const SizedBox(
+                height: kMargin50,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: TicketConfirmedWidgetView(),
               ),
               Align(
                 alignment: Alignment.center,

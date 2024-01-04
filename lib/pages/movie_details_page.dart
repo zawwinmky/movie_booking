@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/list_items/cast_item_view.dart';
 import 'package:movie_booking/pages/cinema_selection_page.dart';
-import 'package:movie_booking/pages/grab_a_bite_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/strings.dart';

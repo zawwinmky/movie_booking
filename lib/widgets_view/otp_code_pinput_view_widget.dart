@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/choose_region_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
@@ -42,9 +43,9 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
       ),
     );
 
-    /// Optionally you can use form to validate the Pinput
+    /// Optionally you can use form to validate the pin put
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(

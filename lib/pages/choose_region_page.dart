@@ -109,7 +109,7 @@ class CitiesListView extends StatelessWidget {
       child: ListView.builder(
         itemCount: citiesList.length,
         itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return const LoginPage();

@@ -16,17 +16,25 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    delayFunction();
+    delayFunction(context);
 
     // TODO: implement initState
     super.initState();
   }
 
-  void delayFunction() async {
-    await Future.delayed(const Duration(milliseconds: 2000));
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-      return const LoginPage();
-    }), (route) => false);
+  // void delayFunction() async {
+  //   await Future.delayed(const Duration(milliseconds: 2000));
+  //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+  //     return const ChooseRegionPage();
+  //   }), (route) => false);
+  // }
+  //
+  void delayFunction(BuildContext context) async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (!context.mounted) return;
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const ChooseRegionPage()),
+        (route) => false);
   }
 
   @override

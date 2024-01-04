@@ -8,7 +8,7 @@ import 'package:movie_booking/utils/strings.dart';
 class PaymentMethodPage extends StatelessWidget {
   PaymentMethodPage({super.key});
 
-  FocusNode nameFocus = FocusNode();
+  final FocusNode nameFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,8 @@ class PaymentMethodPage extends StatelessWidget {
           child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
               height: 30,
@@ -59,6 +60,11 @@ class PaymentMethodPage extends StatelessWidget {
                       onTapOutside: (input) {
                         nameFocus.unfocus();
                       },
+                      style: const TextStyle(
+                        fontSize: kTextRegular,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -92,7 +98,7 @@ class PaymentMethodPage extends StatelessWidget {
                           ),
                           hintText: "Enter Your Name",
                           hintStyle: const TextStyle(
-                            color: Color(0xFF444444),
+                            color: kNowAndComingSelectedTextColor,
                             fontSize: kTextRegular,
                             fontFamily: kDmSan,
                             fontWeight: FontWeight.w700,
@@ -157,7 +163,7 @@ class PaymentMethodPage extends StatelessWidget {
               height: 38,
             ),
 
-            ///Choose your payment tpye
+            ///Choose your payment type
             const Padding(
               padding: EdgeInsets.only(left: 22.0),
               child: Text(
@@ -170,16 +176,17 @@ class PaymentMethodPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            PaymentListView(kImage: kUpi, kLabel: "UPI"),
-            PaymentListView(kImage: kGift, kLabel: "Gift Voucher"),
-            PaymentListView(kImage: kQuick, kLabel: "Quick Pay"),
-            PaymentListView(kImage: kCredit, kLabel: "Credit Card/ Debit Card"),
-            PaymentListView(kImage: kRedeem, kLabel: "Redeem Point"),
-            PaymentListView(kImage: kMobile, kLabel: "Mobile Wallet"),
-            PaymentListView(kImage: kBanking, kLabel: "Net Banking"),
+            const PaymentListView(kImage: kUpi, kLabel: "UPI"),
+            const PaymentListView(kImage: kGift, kLabel: "Gift Voucher"),
+            const PaymentListView(kImage: kQuick, kLabel: "Quick Pay"),
+            const PaymentListView(
+                kImage: kCredit, kLabel: "Credit Card/ Debit Card"),
+            const PaymentListView(kImage: kRedeem, kLabel: "Redeem Point"),
+            const PaymentListView(kImage: kMobile, kLabel: "Mobile Wallet"),
+            const PaymentListView(kImage: kBanking, kLabel: "Net Banking"),
           ],
         ),
       )),
@@ -200,12 +207,12 @@ class PaymentListView extends StatelessWidget {
       splashColor: kPrimaryColor,
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return TicketConfirmedPage();
+          return const TicketConfirmedPage();
         }));
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(

@@ -36,18 +36,22 @@ class TicketConfirmedWidgetView extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Image.network(
-                  "https://images.fandango.com/ImageRenderer/500/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/21463/shawshankonesheet.jpg",
-                  width: 96,
-                  height: 120,
-                  fit: BoxFit.cover,
+                child: ClipRRect(
+                  clipBehavior: Clip.antiAlias,
+                  borderRadius: BorderRadius.circular(4),
+                  child: Image.network(
+                    "https://images.fandango.com/ImageRenderer/500/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/21463/shawshankonesheet.jpg",
+                    width: 96,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(
                 width: 20,
               ),
               Expanded(
-                flex: 3,
+                flex: 5,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,

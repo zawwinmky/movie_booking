@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../pages/cinema_details_page.dart';
 import '../pages/cinema_seat_selection_page.dart';
-import '../pages/grab_a_bite_page.dart';
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 import '../utils/fonts.dart';
@@ -126,12 +124,12 @@ class CinemaOverViewWidget extends StatelessWidget {
           height: 275,
           child: GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            itemCount: 7,
+            itemCount: 5,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 130,
-                childAspectRatio: 1,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20),
+              maxCrossAxisExtent: 130,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 20,
+            ),
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
@@ -142,7 +140,7 @@ class CinemaOverViewWidget extends StatelessWidget {
                 },
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 7.5),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 7.5),
                   decoration: BoxDecoration(
                       color: kBackgroundColor,
                       borderRadius: BorderRadius.circular(8),

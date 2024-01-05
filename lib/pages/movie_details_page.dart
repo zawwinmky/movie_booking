@@ -49,7 +49,7 @@ class MovieDetailsPage extends StatelessWidget {
                 CastView(),
 
                 SizedBox(
-                  height: 1000,
+                  height: 30,
                 ),
               ],
             ),
@@ -75,10 +75,10 @@ class MovieDetailsPage extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
-                          return CinemaSelectionPage();
+                          return const CinemaSelectionPage();
                         }));
                       },
-                      child: BookingButton())),
+                      child: const BookingButton())),
             ),
           ),
         ],

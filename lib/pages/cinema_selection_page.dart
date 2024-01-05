@@ -4,7 +4,6 @@ import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
-import 'package:movie_booking/utils/text_style.dart';
 
 import '../widgets_view/cinmea_over_view_widget_expandable.dart';
 
@@ -235,7 +234,7 @@ class DateShower extends StatelessWidget {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       scrollDirection: Axis.horizontal,
-      itemBuilder: (context, int) {
+      itemBuilder: (context, index) {
         return Container(
           decoration: BoxDecoration(
             color: kPrimaryColor,
@@ -257,9 +256,13 @@ class DateShower extends StatelessWidget {
                 height: 9,
                 width: 70,
               ),
-              Text(
+              const Text(
                 "Today",
-                style: normalTextStyle,
+                style: TextStyle(
+                    fontSize: kTextRegular,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: kInter,
+                    color: Colors.black),
               ),
               const SizedBox(
                 height: 7,
@@ -290,14 +293,18 @@ class DateShower extends StatelessWidget {
                                                             : dateMonth == 12
                                                                 ? "Dec"
                                                                 : "N/A",
-                style: normalTextStyle,
+                style: const TextStyle(
+                    fontSize: kTextRegular,
+                    fontFamily: kInter,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black),
               ),
               const SizedBox(
                 height: 7,
               ),
               Text(
                 dateDay.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w600),

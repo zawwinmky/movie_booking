@@ -125,34 +125,7 @@ class ReleasingInComingDaysAndSetNotiButton extends StatelessWidget {
                   onTap: () {
                     ///DO Something
                   },
-                  child: Container(
-                    padding: const EdgeInsets.all(kMarginMedium),
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(kMarginMedium),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.notifications_active,
-                          size: kTextRegular2X,
-                          color: Colors.black,
-                        ),
-                        SizedBox(
-                          width: kTextSmall,
-                        ),
-                        Text(
-                          kSetNotiLabel,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: kTextRegular,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: const SetNotiButton(),
                 ),
               ],
             ),
@@ -165,6 +138,58 @@ class ReleasingInComingDaysAndSetNotiButton extends StatelessWidget {
             width: kNotiGirlWidth,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SetNotiButton extends StatefulWidget {
+  const SetNotiButton({
+    super.key,
+  });
+
+  @override
+  State<SetNotiButton> createState() => _SetNotiButtonState();
+}
+
+class _SetNotiButtonState extends State<SetNotiButton> {
+  bool isSetNotified = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          isSetNotified = !isSetNotified;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.all(kMarginMedium),
+        decoration: BoxDecoration(
+          color: kPrimaryColor,
+          borderRadius: BorderRadius.circular(kMarginMedium),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.notifications_active,
+              size: kTextRegular2X,
+              color: Colors.black,
+            ),
+            const SizedBox(
+              width: kTextSmall,
+            ),
+            Text(
+              isSetNotified ? kSetNotiLabel : "UNDO ",
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

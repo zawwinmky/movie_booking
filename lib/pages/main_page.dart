@@ -29,6 +29,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: kBackgroundColor,
         centerTitle: false,
@@ -88,6 +89,7 @@ class _MainPageState extends State<MainPage> {
       ),
       body: homeScreenWidgets[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
         items: _getBottomNavigationBarItems(),
         currentIndex: currentIndex,
         selectedFontSize: kTextSmall,

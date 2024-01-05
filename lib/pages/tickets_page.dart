@@ -1,28 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/main_page.dart';
+import 'package:movie_booking/pages/ticket_cancel_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/widgets_view/ticket_confirmed_widget_view.dart';
+import 'package:movie_booking/widgets_view/ticket_details_widget.dart';
 
-class TicketsPage extends StatefulWidget {
+class TicketsPage extends StatelessWidget {
   const TicketsPage({super.key});
 
   @override
-  State<TicketsPage> createState() => _TicketsPageState();
-}
-
-class _TicketsPageState extends State<TicketsPage> {
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         backgroundColor: kBackgroundColor,
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              TicketConfirmedWidgetView(),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return const TicketCancelPage();
+                  }));
+                },
+                child: const TicketConfirmedWidgetView(),
+              ),
               SizedBox(
                 height: 30,
               ),
-              TicketConfirmedWidgetView(),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return const TicketCancelPage();
+                  }));
+                },
+                child: const TicketConfirmedWidgetView(),
+              ),
             ],
           ),
         ));

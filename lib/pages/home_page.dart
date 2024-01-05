@@ -56,7 +56,7 @@ class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
         ///NowShowingAndComingSoonTabBar
         SliverToBoxAdapter(
           child: NowShowingAndComingSoonTabBar(
-            selectedText: this.selectedText,
+            selectedText: selectedText,
             onTapNowShowingAndComingSoon: (text) {
               setState(() {
                 selectedText = text;
@@ -155,8 +155,8 @@ class NowShowingAndComingSoonTabBar extends StatelessWidget {
   final String selectedText;
   final Function(String) onTapNowShowingAndComingSoon;
 
-  const NowShowingAndComingSoonTabBar({
-      super.key,
+  const NowShowingAndComingSoonTabBar(
+      {super.key,
       required this.selectedText,
       required this.onTapNowShowingAndComingSoon});
 

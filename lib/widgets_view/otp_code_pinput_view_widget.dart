@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_booking/pages/choose_region_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import 'package:pinput/pinput.dart';
-
 import '../pages/main_page.dart';
 
 class OTPCodePinPutView extends StatefulWidget {
@@ -62,16 +60,6 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
         ),
         Pinput(
           length: 6,
-          // onChanged: (input) {
-          //   if (input.length > 5) {
-          //     if (input == dummyCode) {
-          //       isValid = true;
-          //     } else {
-          //       isValid = false;
-          //     }
-          //   }
-          //   setState(() {});
-          // },
           controller: pinController,
           focusNode: focusNode,
           defaultPinTheme: defaultPinTheme,

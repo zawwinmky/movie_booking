@@ -180,9 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                               builder: (context) {
                                 return AlertDialog(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(2)),
+                                      borderRadius: BorderRadius.circular(4)),
                                   titlePadding: const EdgeInsets.all(10),
-                                  shadowColor: Colors.transparent,
                                   surfaceTintColor: kPrimaryColor,
                                   backgroundColor: Colors.transparent,
                                   title: const Center(

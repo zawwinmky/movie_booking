@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pages/cinema_details_page.dart';
+import '../pages/cinema_seat_selection_page.dart';
 import '../pages/grab_a_bite_page.dart';
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
@@ -18,21 +19,21 @@ class CinemaOverViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       collapsedShape: LinearBorder.bottom(
-          side: BorderSide(
+          side: const BorderSide(
         width: 1,
         color: kNowAndComingSelectedTextColor,
       )),
       backgroundColor: kBackgroundColor,
       initiallyExpanded: isExpanded,
       trailing: Padding(
-        padding: EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: 20.0),
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return CinemaDetailsPage();
+              return const CinemaDetailsPage();
             }));
           },
-          child: Text(
+          child: const Text(
             "See Details",
             style: TextStyle(
               fontSize: kTextRegular2X,
@@ -136,7 +137,7 @@ class CinemaOverViewWidget extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
-                    return const GrabABitePage();
+                    return const CinemaSeatSelection();
                   }));
                 },
                 child: Container(

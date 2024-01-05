@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/check_out_page.dart';
 import 'package:movie_booking/pages/ticket_booking_confirmation_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
@@ -84,7 +85,7 @@ class _GrabABitePageState extends State<GrabABitePage> {
                       ///To Navigate
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return const TicketBookingConfirm();
+                        return const CheckOutPage();
                       }));
                     },
                     child: Text(
@@ -444,7 +445,7 @@ class _GrabABitePageState extends State<GrabABitePage> {
                           onTap: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return const TicketBookingConfirm();
+                              return const CheckOutPage();
                             }));
                           },
                           child: const Row(
@@ -485,7 +486,7 @@ class FoodGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.only(
-          left: kMargin22, right: kMargin22, bottom: kMargin70),
+          top: 10, left: kMargin22, right: kMargin22, bottom: kMargin70),
       itemCount: foodList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisExtent: kFoodBoxHeight,

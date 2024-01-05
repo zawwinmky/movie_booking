@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/utils/colors.dart';
-import 'package:movie_booking/utils/text_style.dart';
+import 'package:movie_booking/utils/dimensions.dart';
+import 'package:movie_booking/utils/fonts.dart';
 
 class ShowCountryCodeDropdownWidget extends StatefulWidget {
   const ShowCountryCodeDropdownWidget({super.key});
@@ -38,7 +39,12 @@ class _ShowCountryCodeDropdownWidgetState
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: Text(
                       e,
-                      style: normalTextStyle,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: kInter,
+                        fontSize: kTextRegular2X,
+                      ),
                     ),
                   ),
                 )))

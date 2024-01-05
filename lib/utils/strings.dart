@@ -20,6 +20,7 @@ const String kPlayButton = 'assets/images/playbutton.png';
 const String kNotiGirl = 'assets/images/notificationgirl.png';
 const String kCartIcon = "assets/images/foodcart1.png";
 const String kCinemas = "assets/images/cinemas.png";
+const String kCancel = "assets/images/cancel.png";
 
 const String kParkingIcon = "assets/images/parking.png";
 const String kWheelChair = "assets/images/wheelChair.png";
@@ -78,3 +79,15 @@ const String kRedeem = "assets/images/redeem.png";
 const String kMobile = "assets/images/mobile.png";
 const String kBanking = "assets/images/banking.png";
 const String kSuccessful = "assets/images/successful.png";
+
+const String kQr = "assets/images/qr.png";
+const String kBackgroundPhoto = "assets/images/profileBackground.png";
+const String kProfileLogoIcon = "assets/images/profileLogoIcon.png";
+
+const String kOne = "assets/images/one.png";
+const String kTwo = "assets/images/two.png";
+const String kThree = "assets/images/three.png";
+const String kFour = "assets/images/four.png";
+const String kFive = "assets/images/five.png";
+const String kSix = "assets/images/six.png";
+const String kSeven = "assets/images/seven.png";

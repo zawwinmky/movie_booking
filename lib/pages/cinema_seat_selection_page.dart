@@ -363,7 +363,7 @@ class _CinemaSeatSelectionState extends State<CinemaSeatSelection> {
                   },
                   child: Image.asset(
                     kSingleSeat,
-                    color: seatList[index].isSelected ? Colors.green : null,
+                    color: seatList[index].isSelected ? kPrimaryColor : null,
                   ),
                 );
               } else if (seatList[index].seatType == "singleSeatTaken") {
@@ -379,7 +379,7 @@ class _CinemaSeatSelectionState extends State<CinemaSeatSelection> {
                   },
                   child: Image.asset(
                     kCoupleSeat,
-                    color: seatList[index].isSelected ? Colors.green : null,
+                    color: seatList[index].isSelected ? kPrimaryColor : null,
                   ),
                 );
               } else if (seatList[index].seatType == "coupleSeatTaken") {

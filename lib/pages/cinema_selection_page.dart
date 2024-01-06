@@ -74,13 +74,10 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                 height: 10,
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 115,
-                child: DateShower(
-                  dateDay: DateTime.now().day,
-                  dateMonth: DateTime.now().month,
-                ),
+                child: TwoWeeksDateViewWidget(),
               ),
             ),
             const SliverToBoxAdapter(
@@ -224,97 +221,293 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
   }
 }
 
-class DateShower extends StatelessWidget {
-  const DateShower({super.key, required this.dateDay, required this.dateMonth});
+class TwoWeeksDateViewWidget extends StatelessWidget {
+  const TwoWeeksDateViewWidget({
+    super.key,
+  });
 
-  final int dateDay;
-  final int dateMonth;
   @override
   Widget build(BuildContext context) {
+    List<DateTime> dateList = generateDateList();
+
     return ListView.builder(
+      itemCount: dateList.length,
       padding: const EdgeInsets.symmetric(horizontal: 0),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          padding: const EdgeInsets.only(top: 6),
-          margin: const EdgeInsets.only(left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: 22,
-                height: 5,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(5)),
-              ),
-              const SizedBox(
-                height: 9,
-                width: 70,
-              ),
-              const Text(
-                "Today",
-                style: TextStyle(
-                    fontSize: kTextRegular,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: kInter,
-                    color: Colors.black),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              Text(
-                dateMonth == 1
-                    ? "Jan"
-                    : dateMonth == 2
-                        ? "Feb"
-                        : dateMonth == 3
-                            ? "March"
-                            : dateMonth == 4
-                                ? "April"
-                                : dateMonth == 5
-                                    ? "May"
-                                    : dateMonth == 6
-                                        ? "June"
-                                        : dateMonth == 7
-                                            ? "July"
-                                            : dateMonth == 8
-                                                ? "Aug"
-                                                : dateMonth == 9
-                                                    ? "Sep"
-                                                    : dateMonth == 10
-                                                        ? "Oct"
-                                                        : dateMonth == 11
-                                                            ? "Nov"
-                                                            : dateMonth == 12
-                                                                ? "Dec"
-                                                                : "N/A",
-                style: const TextStyle(
-                    fontSize: kTextRegular,
-                    fontFamily: kInter,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              Text(
-                dateDay.toString(),
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-        );
+        if (index == 0) {
+          return Container(
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: kPrimaryColor,
+                  blurRadius: 5,
+                ),
+              ],
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding:
+                const EdgeInsets.only(top: 6, bottom: 10, left: 7, right: 7),
+            margin: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 22,
+                  height: 5,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+                const SizedBox(
+                  height: 9,
+                  width: 70,
+                ),
+                const Text(
+                  "Today",
+                  style: TextStyle(
+                      fontSize: kTextRegular,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: kInter,
+                      color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  dateList[index].month == 1
+                      ? "Jan"
+                      : dateList[index].month == 2
+                          ? "Feb"
+                          : dateList[index].month == 3
+                              ? "Mar"
+                              : dateList[index].month == 4
+                                  ? "Apr"
+                                  : dateList[index].month == 5
+                                      ? "May"
+                                      : dateList[index].month == 6
+                                          ? "Jun"
+                                          : dateList[index].month == 7
+                                              ? "Jul"
+                                              : dateList[index].month == 8
+                                                  ? "Aug"
+                                                  : dateList[index].month == 9
+                                                      ? "Sept"
+                                                      : dateList[index].month ==
+                                                              10
+                                                          ? "Oct"
+                                                          : dateList[index]
+                                                                      .month ==
+                                                                  11
+                                                              ? "Nov"
+                                                              : dateList[index]
+                                                                          .month ==
+                                                                      12
+                                                                  ? "Dec"
+                                                                  : "N/A",
+                  style: const TextStyle(
+                      fontSize: kTextRegular,
+                      fontFamily: kInter,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  dateList[index].day.toString(),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+          );
+        } else if (index == 1) {
+          return Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFFD7D7D7),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding:
+                const EdgeInsets.only(top: 6, bottom: 10, left: 7, right: 7),
+            margin: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 22,
+                  height: 5,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+                const SizedBox(
+                  height: 9,
+                  width: 70,
+                ),
+                const Text(
+                  "Tomorrow",
+                  style: TextStyle(
+                      fontSize: kTextRegular,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: kInter,
+                      color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  dateList[index].month == 1
+                      ? "Jan"
+                      : dateList[index].month == 2
+                          ? "Feb"
+                          : dateList[index].month == 3
+                              ? "Mar"
+                              : dateList[index].month == 4
+                                  ? "Apr"
+                                  : dateList[index].month == 5
+                                      ? "May"
+                                      : dateList[index].month == 6
+                                          ? "Jun"
+                                          : dateList[index].month == 7
+                                              ? "Jul"
+                                              : dateList[index].month == 8
+                                                  ? "Aug"
+                                                  : dateList[index].month == 9
+                                                      ? "Sept"
+                                                      : dateList[index].month ==
+                                                              10
+                                                          ? "Oct"
+                                                          : dateList[index]
+                                                                      .month ==
+                                                                  11
+                                                              ? "Nov"
+                                                              : dateList[index]
+                                                                          .month ==
+                                                                      12
+                                                                  ? "Dec"
+                                                                  : "N/A",
+                  style: const TextStyle(
+                      fontSize: kTextRegular,
+                      fontFamily: kInter,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  dateList[index].day.toString(),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFFD7D7D7),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding:
+                const EdgeInsets.only(top: 6, bottom: 10, left: 7, right: 7),
+            margin: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 22,
+                  height: 5,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5)),
+                ),
+                const SizedBox(
+                  height: 9,
+                  width: 70,
+                ),
+                const Text(
+                  "Next Days",
+                  style: TextStyle(
+                      fontSize: kTextRegular,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: kInter,
+                      color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  dateList[index].month == 1
+                      ? "Jan"
+                      : dateList[index].month == 2
+                          ? "Feb"
+                          : dateList[index].month == 3
+                              ? "Mar"
+                              : dateList[index].month == 4
+                                  ? "Apr"
+                                  : dateList[index].month == 5
+                                      ? "May"
+                                      : dateList[index].month == 6
+                                          ? "Jun"
+                                          : dateList[index].month == 7
+                                              ? "Jul"
+                                              : dateList[index].month == 8
+                                                  ? "Aug"
+                                                  : dateList[index].month == 9
+                                                      ? "Sept"
+                                                      : dateList[index].month ==
+                                                              10
+                                                          ? "Oct"
+                                                          : dateList[index]
+                                                                      .month ==
+                                                                  11
+                                                              ? "Nov"
+                                                              : dateList[index]
+                                                                          .month ==
+                                                                      12
+                                                                  ? "Dec"
+                                                                  : "N/A",
+                  style: const TextStyle(
+                      fontSize: kTextRegular,
+                      fontFamily: kInter,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  dateList[index].day.toString(),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontFamily: kInter,
+                      fontSize: kTextRegular2X,
+                      fontWeight: FontWeight.w700),
+                ),
+              ],
+            ),
+          );
+        }
       },
-      itemCount: 14,
     );
+  }
+
+  List<DateTime> generateDateList() {
+    DateTime today = DateTime.now();
+
+    List<DateTime> dateList = [];
+    for (int i = 0; i < 14; i++) {
+      dateList.add(today.add(Duration(days: i)));
+    }
+
+    return dateList;
   }
 }
 

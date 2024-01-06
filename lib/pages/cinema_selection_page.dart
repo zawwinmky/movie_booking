@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_booking/pages/grab_a_bite_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
-
-import '../widgets_view/cinmea_over_view_widget_expandable.dart';
+import 'package:intl/intl.dart';
+import '../widgets_view/choose_movie_time_grid_view_widget.dart';
 
 class CinemaSelectionPage extends StatefulWidget {
   const CinemaSelectionPage({super.key});
@@ -74,6 +73,8 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                 height: 10,
               ),
             ),
+
+            ///Two weeks days view
             const SliverToBoxAdapter(
               child: SizedBox(
                 height: 115,
@@ -185,31 +186,31 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
 
             ///Expandable cinema times overview
             const SliverToBoxAdapter(
-              child: CinemaOverViewWidget(
+              child: ChooseMovieTimesGridExpandView(
                 cinemaName: "JCGV: Junction City",
                 isExpanded: true,
               ),
             ),
             const SliverToBoxAdapter(
-              child: CinemaOverViewWidget(
+              child: ChooseMovieTimesGridExpandView(
                 cinemaName: "JCGV: Junction Square",
                 isExpanded: false,
               ),
             ),
             const SliverToBoxAdapter(
-              child: CinemaOverViewWidget(
+              child: ChooseMovieTimesGridExpandView(
                 cinemaName: "JCGV: Sein Gay Har",
                 isExpanded: false,
               ),
             ),
             const SliverToBoxAdapter(
-              child: CinemaOverViewWidget(
+              child: ChooseMovieTimesGridExpandView(
                 cinemaName: "Mingala Cineplex",
                 isExpanded: false,
               ),
             ),
             const SliverToBoxAdapter(
-              child: CinemaOverViewWidget(
+              child: ChooseMovieTimesGridExpandView(
                 cinemaName: "Mingala Diamond",
                 isExpanded: false,
               ),
@@ -432,9 +433,9 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
                   height: 9,
                   width: 70,
                 ),
-                const Text(
-                  "Next Days",
-                  style: TextStyle(
+                Text(
+                  " ${DateFormat.E().format(dateList[index]).toString()} ",
+                  style: const TextStyle(
                       fontSize: kTextRegular,
                       fontWeight: FontWeight.w700,
                       fontFamily: kInter,

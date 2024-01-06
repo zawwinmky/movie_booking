@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/utils/colors.dart';
 
-import '../widgets_view/cinmea_over_view_widget_expandable.dart';
+import '../widgets_view/choose_movie_time_grid_view_widget.dart';
 
 class CinemaPage extends StatefulWidget {
   const CinemaPage({super.key});
@@ -18,23 +18,23 @@ class _CinemaPageState extends State<CinemaPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CinemaOverViewWidget(
+            ChooseMovieTimesGridExpandView(
               cinemaName: "JCGV: Junction City",
               isExpanded: true,
             ),
-            CinemaOverViewWidget(
+            ChooseMovieTimesGridExpandView(
               cinemaName: "JCGV: Junction Square",
               isExpanded: false,
             ),
-            CinemaOverViewWidget(
+            ChooseMovieTimesGridExpandView(
               cinemaName: "Mingala Ocean",
               isExpanded: false,
             ),
-            CinemaOverViewWidget(
+            ChooseMovieTimesGridExpandView(
               cinemaName: "JCGV: Junction Mawtin",
               isExpanded: false,
             ),
-            CinemaOverViewWidget(
+            ChooseMovieTimesGridExpandView(
               cinemaName: "Mingala Cineplex",
               isExpanded: false,
             ),

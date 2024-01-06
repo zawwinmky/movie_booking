@@ -6,8 +6,8 @@ import '../utils/dimensions.dart';
 import '../utils/fonts.dart';
 import '../utils/strings.dart';
 
-class CinemaOverViewWidget extends StatelessWidget {
-  const CinemaOverViewWidget(
+class ChooseMovieTimesGridExpandView extends StatelessWidget {
+  const ChooseMovieTimesGridExpandView(
       {super.key, required this.isExpanded, required this.cinemaName});
 
   final bool isExpanded;
@@ -121,12 +121,12 @@ class CinemaOverViewWidget extends StatelessWidget {
       ),
       children: [
         SizedBox(
-          height: 275,
+          height: 300,
           child: GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: 5,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 130,
+              maxCrossAxisExtent: 150,
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
             ),
@@ -214,7 +214,7 @@ class CinemaOverViewWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: kMargin30,
+          height: 20,
         ),
       ],
     );

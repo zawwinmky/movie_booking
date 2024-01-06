@@ -277,36 +277,7 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
                   height: 7,
                 ),
                 Text(
-                  dateList[index].month == 1
-                      ? "Jan"
-                      : dateList[index].month == 2
-                          ? "Feb"
-                          : dateList[index].month == 3
-                              ? "Mar"
-                              : dateList[index].month == 4
-                                  ? "Apr"
-                                  : dateList[index].month == 5
-                                      ? "May"
-                                      : dateList[index].month == 6
-                                          ? "Jun"
-                                          : dateList[index].month == 7
-                                              ? "Jul"
-                                              : dateList[index].month == 8
-                                                  ? "Aug"
-                                                  : dateList[index].month == 9
-                                                      ? "Sept"
-                                                      : dateList[index].month ==
-                                                              10
-                                                          ? "Oct"
-                                                          : dateList[index]
-                                                                      .month ==
-                                                                  11
-                                                              ? "Nov"
-                                                              : dateList[index]
-                                                                          .month ==
-                                                                      12
-                                                                  ? "Dec"
-                                                                  : "N/A",
+                  DateFormat.MMM().format(dateList[index]),
                   style: const TextStyle(
                       fontSize: kTextRegular,
                       fontFamily: kInter,
@@ -361,36 +332,7 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
                   height: 7,
                 ),
                 Text(
-                  dateList[index].month == 1
-                      ? "Jan"
-                      : dateList[index].month == 2
-                          ? "Feb"
-                          : dateList[index].month == 3
-                              ? "Mar"
-                              : dateList[index].month == 4
-                                  ? "Apr"
-                                  : dateList[index].month == 5
-                                      ? "May"
-                                      : dateList[index].month == 6
-                                          ? "Jun"
-                                          : dateList[index].month == 7
-                                              ? "Jul"
-                                              : dateList[index].month == 8
-                                                  ? "Aug"
-                                                  : dateList[index].month == 9
-                                                      ? "Sept"
-                                                      : dateList[index].month ==
-                                                              10
-                                                          ? "Oct"
-                                                          : dateList[index]
-                                                                      .month ==
-                                                                  11
-                                                              ? "Nov"
-                                                              : dateList[index]
-                                                                          .month ==
-                                                                      12
-                                                                  ? "Dec"
-                                                                  : "N/A",
+                  DateFormat.MMM().format(dateList[index]),
                   style: const TextStyle(
                       fontSize: kTextRegular,
                       fontFamily: kInter,
@@ -445,36 +387,7 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
                   height: 7,
                 ),
                 Text(
-                  dateList[index].month == 1
-                      ? "Jan"
-                      : dateList[index].month == 2
-                          ? "Feb"
-                          : dateList[index].month == 3
-                              ? "Mar"
-                              : dateList[index].month == 4
-                                  ? "Apr"
-                                  : dateList[index].month == 5
-                                      ? "May"
-                                      : dateList[index].month == 6
-                                          ? "Jun"
-                                          : dateList[index].month == 7
-                                              ? "Jul"
-                                              : dateList[index].month == 8
-                                                  ? "Aug"
-                                                  : dateList[index].month == 9
-                                                      ? "Sept"
-                                                      : dateList[index].month ==
-                                                              10
-                                                          ? "Oct"
-                                                          : dateList[index]
-                                                                      .month ==
-                                                                  11
-                                                              ? "Nov"
-                                                              : dateList[index]
-                                                                          .month ==
-                                                                      12
-                                                                  ? "Dec"
-                                                                  : "N/A",
+                  DateFormat.MMM().format(dateList[index]),
                   style: const TextStyle(
                       fontSize: kTextRegular,
                       fontFamily: kInter,
@@ -502,8 +415,8 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
 
   List<DateTime> generateDateList() {
     DateTime today = DateTime.now();
-
     List<DateTime> dateList = [];
+
     for (int i = 0; i < 14; i++) {
       dateList.add(today.add(Duration(days: i)));
     }

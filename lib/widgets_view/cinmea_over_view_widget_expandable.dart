@@ -123,11 +123,11 @@ class CinemaOverViewWidget extends StatelessWidget {
         SizedBox(
           height: 275,
           child: GridView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: 5,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 130,
-              crossAxisSpacing: 10,
+              crossAxisSpacing: 20,
               mainAxisSpacing: 20,
             ),
             itemBuilder: (BuildContext context, int index) {
@@ -139,8 +139,7 @@ class CinemaOverViewWidget extends StatelessWidget {
                   }));
                 },
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 7.5),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: kBackgroundColor,
                       borderRadius: BorderRadius.circular(8),
@@ -149,8 +148,8 @@ class CinemaOverViewWidget extends StatelessWidget {
                         width: 2,
                       )),
                   child: const Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "9:30 AM",

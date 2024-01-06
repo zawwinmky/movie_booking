@@ -183,7 +183,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
               ),
             ),
 
-            ///Expandable cinema overview
+            ///Expandable cinema times overview
             const SliverToBoxAdapter(
               child: CinemaOverViewWidget(
                 cinemaName: "JCGV: Junction City",
@@ -506,7 +506,6 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
     for (int i = 0; i < 14; i++) {
       dateList.add(today.add(Duration(days: i)));
     }
-
     return dateList;
   }
 }

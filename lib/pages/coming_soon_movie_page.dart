@@ -13,7 +13,7 @@ class ComingSoonMoviePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
         child: Scaffold(
       backgroundColor: kBackgroundColor,
       body: Stack(
@@ -21,52 +21,45 @@ class ComingSoonMoviePage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                MovieLarImageSmallImageAndInfo(),
-                SizedBox(
+                const MovieLarImageSmallImageAndInfo(),
+                const SizedBox(
                   height: kMargin30,
                 ),
 
                 ///Censor , Rating, Release date and duration
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: kMarginMedium2),
                   child: CensorRatingReleaseDateAndDuration(),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: kMargin30,
                 ),
 
                 ///Releasing in coming Day and set notification button
-                ReleasingInComingDaysAndSetNotiButton(),
-                SizedBox(
+                releasingInComingDayWidget(),
+                const SizedBox(
                   height: kMargin30,
                 ),
 
                 ///Story Line
-                StoryLine(),
+                const StoryLine(),
 
-                SizedBox(
+                const SizedBox(
                   height: kMargin30,
                 ),
 
-                CastView(),
+                const CastView(),
               ],
             ),
           ),
-          BackButtonAndShareButtonWidget(),
+          const BackButtonAndShareButtonWidget(),
         ],
       ),
     ));
   }
-}
 
-class ReleasingInComingDaysAndSetNotiButton extends StatelessWidget {
-  const ReleasingInComingDaysAndSetNotiButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget releasingInComingDayWidget() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: kMarginMedium2),
       padding: const EdgeInsets.only(
@@ -92,43 +85,35 @@ class ReleasingInComingDaysAndSetNotiButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ///Text and noti button
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Releasing in 5 Days",
-                  style: TextStyle(
-                    fontSize: kTextRegular2X,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                kReleaseDays,
+                style: TextStyle(
+                  fontSize: kTextRegular2X,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
                 ),
-                const SizedBox(
-                  height: kTextSmall,
+              ),
+              SizedBox(
+                height: kTextSmall,
+              ),
+              Text(
+                kGetNotifyButtonLabel,
+                style: TextStyle(
+                  fontSize: kTextRegular,
+                  fontWeight: FontWeight.w600,
+                  color: kGetNotiTextColor,
                 ),
-                const Text(
-                  kGetNotifyButtonLabel,
-                  style: TextStyle(
-                    fontSize: kTextRegular,
-                    fontWeight: FontWeight.w600,
-                    color: kGetNotiTextColor,
-                  ),
-                ),
-                const SizedBox(
-                  height: kMarginMedium3,
-                ),
-                InkWell(
-                  splashColor: kPrimaryColor,
-                  onTap: () {
-                    ///DO Something
-                  },
-                  child: const SetNotiButton(),
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: kMarginMedium3,
+              ),
+              SetNotiButton(),
+            ],
           ),
 
           ///Girl Image
@@ -181,7 +166,7 @@ class _SetNotiButtonState extends State<SetNotiButton> {
               width: kTextSmall,
             ),
             Text(
-              isSetNotified ? kSetNotiLabel : "UNDO ",
+              isSetNotified ? kSetNotiLabel : kUndo,
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: kTextRegular,

@@ -46,7 +46,8 @@ class _GrabABitePageState extends State<GrabABitePage> {
             automaticallyImplyLeading: false,
             backgroundColor: kBackgroundColor,
             title: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kMargin5),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kMargin22, vertical: kMargin22),
               child: Row(
                 children: [
                   GestureDetector(
@@ -99,8 +100,9 @@ class _GrabABitePageState extends State<GrabABitePage> {
               ),
             ),
             bottom: const TabBar(
+                dividerColor: kBackgroundColor,
                 isScrollable: true,
-                dividerHeight: 0,
+                dividerHeight: 20,
                 indicator: UnderlineTabIndicator(
                   borderSide: BorderSide(
                     color: kPrimaryColor,
@@ -485,7 +487,7 @@ class FoodGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.only(
-          top: 10, left: kMargin22, right: kMargin22, bottom: kMargin70),
+          top: kMargin30, left: kMargin22, right: kMargin22, bottom: kMargin70),
       itemCount: foodList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisExtent: kFoodBoxHeight,

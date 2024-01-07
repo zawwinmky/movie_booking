@@ -91,3 +91,31 @@ const String kFour = "assets/images/four.png";
 const String kFive = "assets/images/five.png";
 const String kSix = "assets/images/six.png";
 const String kSeven = "assets/images/seven.png";
+const String kScanIconNew = "assets/images/scanIcon.png";
+
+const String kLabelOne = 'Purchase History';
+const String kLabelTwo = 'Offer';
+const String kLabelThree = 'Gift Card';
+const String kLabelFour = 'Location';
+const String kLabelFive = 'Payment';
+const String kLabelSix = 'Help and Support';
+const String kLabelSeven = 'Logout';
+
+const String kLoginOrSignup = "Login or Sign Up";
+const String kEnterYourPhoneNumber = "Enter your phone number to continue!";
+const String kOrLabel = "Or";
+const String kSentOtpCode = "We've sent OTP Code";
+const String kEnterOtpCode = "Enter OTP Code";
+const String kDontReceiveOTP = "Don't receive OTP?";
+const String kResendCode = "Resend Code";
+const String kConfirmOTP = "Confirm OTP";
+const String kUndo = "UNDO";
+const String kStoryLine = "Story Line";
+const String kReleaseDays = "Releasing in 5 Days";
+const String kToday = "Today";
+const String kTomorrow = "Tomorrow";
+
+const String k2D = "2D";
+const String k3D = "3D";
+const String k3DImax = "3D IMAX";
+const String k3Dox = "3D DBOX";

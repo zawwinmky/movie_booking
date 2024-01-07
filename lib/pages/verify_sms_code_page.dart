@@ -5,14 +5,14 @@ import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
 import 'package:movie_booking/widgets_view/otp_code_pinput_view_widget.dart';
 
-class VerifySmsCode extends StatefulWidget {
-  const VerifySmsCode({super.key});
+class VerifySmsCodePage extends StatefulWidget {
+  const VerifySmsCodePage({super.key});
 
   @override
-  State<VerifySmsCode> createState() => _VerifySmsCodeState();
+  State<VerifySmsCodePage> createState() => _VerifySmsCodePageState();
 }
 
-class _VerifySmsCodeState extends State<VerifySmsCode> {
+class _VerifySmsCodePageState extends State<VerifySmsCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,67 +23,87 @@ class _VerifySmsCodeState extends State<VerifySmsCode> {
           padding: const EdgeInsets.symmetric(horizontal: kMargin22),
           child: Column(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              backButtonWidget(),
               Image.asset(
                 kLoginLogo,
-                width: 124,
+                width: kLogoWidth,
                 fit: BoxFit.fitWidth,
               ),
+
+              ///Spacer
               const SizedBox(
-                height: 80,
+                height: kMargin80,
               ),
-              const Text(
-                "We've sent OTP Code",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontFamily: kDmSan,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+
+              sentOtpText(),
+
               const SizedBox(
-                height: 10,
+                height: kMargin10,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 80),
-                child: Text(
-                  kSentOTPCodeText,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: kDmSan,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: kNowAndComingSelectedTextColor),
-                ),
-              ),
-              const SizedBox(height: 60),
+              sentOtpCodeLongText(),
+              const SizedBox(height: kMargin60),
               const OTPCodePinPutView(),
               const SizedBox(
-                height: 150,
+                height: kMargin150,
               ),
-              const Text(
-                kTermsAndConditions,
-                style: TextStyle(
-                    fontFamily: kDmSan,
-                    fontWeight: FontWeight.w400,
-                    fontSize: kTextSmall,
-                    color: kNowAndComingSelectedTextColor),
-              )
+              termsAndConditions(),
             ],
           ),
         ),
       )),
+    );
+  }
+
+  Widget backButtonWidget() {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+        child: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget sentOtpText() {
+    return const Text(
+      kSentOtpCode,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: kText22,
+        fontFamily: kDmSan,
+        fontWeight: FontWeight.w500,
+      ),
+    );
+  }
+
+  Widget sentOtpCodeLongText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: kMargin80),
+      child: Text(
+        kSentOTPCodeText,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontFamily: kDmSan,
+            fontWeight: FontWeight.w400,
+            fontSize: kTextRegular,
+            color: kNowAndComingSelectedTextColor),
+      ),
+    );
+  }
+
+  Widget termsAndConditions() {
+    return const Text(
+      kTermsAndConditions,
+      style: TextStyle(
+          fontFamily: kDmSan,
+          fontWeight: FontWeight.w400,
+          fontSize: kTextSmall,
+          color: kNowAndComingSelectedTextColor),
     );
   }
 }

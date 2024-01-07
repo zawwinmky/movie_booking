@@ -5,6 +5,7 @@ import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
 import 'package:intl/intl.dart';
 import '../widgets_view/choose_movie_time_grid_view_widget.dart';
+import 'cinemas_page.dart';
 
 class CinemaSelectionPage extends StatefulWidget {
   const CinemaSelectionPage({super.key});
@@ -16,6 +17,8 @@ class CinemaSelectionPage extends StatefulWidget {
 class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
   @override
   Widget build(BuildContext context) {
+    List<DateTime> dateList = generateDateList();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -34,8 +37,8 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
             const Spacer(),
             Image.asset(
               kArrow,
-              width: 28,
-              height: 28,
+              width: kMargin28,
+              height: kMargin28,
             ),
             const Text(
               "Yangon",
@@ -47,19 +50,23 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
               ),
             ),
             const SizedBox(
-              width: 25,
+              width: kMargin25,
             ),
             const Icon(
               Icons.search_sharp,
               color: Colors.white,
-              size: 22,
+              size: kMargin22,
             ),
             const SizedBox(
               width: kMargin30,
             ),
             const Icon(
               Icons.filter_alt_rounded,
+              size: kMargin22,
               color: Colors.white,
+            ),
+            const SizedBox(
+              width: kMargin5,
             )
           ],
         ),
@@ -68,351 +75,68 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
+            ///Spacer
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 10,
+                height: kMargin20,
               ),
             ),
 
             ///Two weeks days view
+
+            SliverToBoxAdapter(
+              child: twoWeekDaysView(dateList),
+            ),
+
+            ///Spacer
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 115,
-                child: TwoWeeksDateViewWidget(),
+                height: kMargin30,
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 30,
-              ),
-            ),
+
+            ///Cinema Types 2D, 3D,
             const SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: kMargin22),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MovieTypeView(label: "2D"),
-                    MovieTypeView(label: "3D"),
-                    MovieTypeView(label: "3D IMAX"),
-                    MovieTypeView(label: "3D DBOX"),
+                    MovieTypeView(label: k2D),
+                    MovieTypeView(label: k3D),
+                    MovieTypeView(label: k3DImax),
+                    MovieTypeView(label: k3Dox),
                   ],
                 ),
               ),
             ),
+
+            ///Spacer
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 30,
+                height: kMargin30,
               ),
             ),
 
             ///Available, Filling fast and Almost Full
             SliverToBoxAdapter(
-              child: Container(
-                color: const Color(0xFF222222),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-                child: Row(
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                              color: kPrimaryColor, shape: BoxShape.circle),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Text(
-                          "Available",
-                          style: TextStyle(
-                            color: kPrimaryColor,
-                          ),
-                        )
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFFFF7A00), shape: BoxShape.circle),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Text(
-                          "Filling Fast",
-                          style: TextStyle(
-                            color: Color(0xFFFF7A00),
-                          ),
-                        )
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFFFF00B8), shape: BoxShape.circle),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Text(
-                          "Almost Full",
-                          style: TextStyle(
-                            color: Color(0xFFFF00B8),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              child: availableAndFillingFastView(),
             ),
 
             ///Expandable cinema times overview
-            const SliverToBoxAdapter(
-              child: ChooseMovieTimesGridExpandView(
-                cinemaName: "JCGV: Junction City",
-                isExpanded: true,
-              ),
-            ),
-            const SliverToBoxAdapter(
-              child: ChooseMovieTimesGridExpandView(
-                cinemaName: "JCGV: Junction Square",
-                isExpanded: false,
-              ),
-            ),
-            const SliverToBoxAdapter(
-              child: ChooseMovieTimesGridExpandView(
-                cinemaName: "JCGV: Sein Gay Har",
-                isExpanded: false,
-              ),
-            ),
-            const SliverToBoxAdapter(
-              child: ChooseMovieTimesGridExpandView(
-                cinemaName: "Mingala Cineplex",
-                isExpanded: false,
-              ),
-            ),
-            const SliverToBoxAdapter(
-              child: ChooseMovieTimesGridExpandView(
-                cinemaName: "Mingala Diamond",
-                isExpanded: false,
-              ),
-            ),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    childCount: cinemasList.length, (context, index) {
+              return ChooseMovieTimesGridExpandView(
+                  isExpanded: false, cinemaName: cinemasList[index]);
+            })),
           ],
         ),
       ),
     );
   }
-}
 
-class TwoWeeksDateViewWidget extends StatelessWidget {
-  const TwoWeeksDateViewWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    List<DateTime> dateList = generateDateList();
-
-    return ListView.builder(
-      itemCount: dateList.length,
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) {
-        if (index == 0) {
-          return Container(
-            decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: kPrimaryColor,
-                  blurRadius: 5,
-                ),
-              ],
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding:
-                const EdgeInsets.only(top: 6, bottom: 10, left: 7, right: 7),
-            margin: const EdgeInsets.only(left: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 22,
-                  height: 5,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(5)),
-                ),
-                const SizedBox(
-                  height: 9,
-                  width: 70,
-                ),
-                const Text(
-                  "Today",
-                  style: TextStyle(
-                      fontSize: kTextRegular,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: kInter,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  DateFormat.MMM().format(dateList[index]),
-                  style: const TextStyle(
-                      fontSize: kTextRegular,
-                      fontFamily: kInter,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  dateList[index].day.toString(),
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          );
-        } else if (index == 1) {
-          return Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFFD7D7D7),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding:
-                const EdgeInsets.only(top: 6, bottom: 10, left: 7, right: 7),
-            margin: const EdgeInsets.only(left: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 22,
-                  height: 5,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(5)),
-                ),
-                const SizedBox(
-                  height: 9,
-                  width: 70,
-                ),
-                const Text(
-                  "Tomorrow",
-                  style: TextStyle(
-                      fontSize: kTextRegular,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: kInter,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  DateFormat.MMM().format(dateList[index]),
-                  style: const TextStyle(
-                      fontSize: kTextRegular,
-                      fontFamily: kInter,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  dateList[index].day.toString(),
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFFD7D7D7),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding:
-                const EdgeInsets.only(top: 6, bottom: 10, left: 7, right: 7),
-            margin: const EdgeInsets.only(left: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 22,
-                  height: 5,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(5)),
-                ),
-                const SizedBox(
-                  height: 9,
-                  width: 70,
-                ),
-                Text(
-                  " ${DateFormat.E().format(dateList[index]).toString()} ",
-                  style: const TextStyle(
-                      fontSize: kTextRegular,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: kInter,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  DateFormat.MMM().format(dateList[index]),
-                  style: const TextStyle(
-                      fontSize: kTextRegular,
-                      fontFamily: kInter,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  dateList[index].day.toString(),
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontFamily: kInter,
-                      fontSize: kTextRegular2X,
-                      fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
-          );
-        }
-      },
-    );
-  }
-
+  ///Function to add 14 days to list
   List<DateTime> generateDateList() {
     DateTime today = DateTime.now();
     List<DateTime> dateList = [];
@@ -421,6 +145,175 @@ class TwoWeeksDateViewWidget extends StatelessWidget {
       dateList.add(today.add(Duration(days: i)));
     }
     return dateList;
+  }
+
+  Widget twoWeekDaysView(dateList) {
+    return SizedBox(
+      height: 110,
+      child: ListView.custom(
+          scrollDirection: Axis.horizontal,
+          childrenDelegate:
+              SliverChildBuilderDelegate(childCount: 14, (context, index) {
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              width: 100,
+              decoration: BoxDecoration(
+                  color: (index == 0) ? kPrimaryColor : Colors.grey,
+                  borderRadius: BorderRadius.circular(kMargin8)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Container(
+                    width: kMargin22,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 9,
+                  ),
+                  Text(
+                    (index == 0)
+                        ? kToday
+                        : (index == 1)
+                            ? kTomorrow
+                            : DateFormat.E().format(dateList[index]),
+                    style: const TextStyle(
+                      fontSize: kTextRegular,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  Text(
+                    DateFormat.MMM().format(dateList[index]),
+                    style: const TextStyle(
+                      fontSize: kTextRegular,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          width: kMargin10,
+                          height: kMargin20,
+                          decoration: const BoxDecoration(
+                              color: kBackgroundColor,
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              )),
+                        ),
+                      ),
+                      Expanded(
+                          child: Center(
+                              child: Text(dateList[index].day.toString()))),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          width: kMargin10,
+                          height: kMargin20,
+                          decoration: const BoxDecoration(
+                              color: kBackgroundColor,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(kMargin10),
+                                  bottomLeft: Radius.circular(kMargin10))),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          })),
+    );
+  }
+
+  Widget availableAndFillingFastView() {
+    return Container(
+      color: kColor222,
+      padding: const EdgeInsets.symmetric(
+          horizontal: kMargin22, vertical: kMargin10),
+      child: Row(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: kMargin8,
+                height: kMargin8,
+                decoration: const BoxDecoration(
+                    color: kPrimaryColor, shape: BoxShape.circle),
+              ),
+              const SizedBox(
+                width: kMargin5,
+              ),
+              const Text(
+                "Available",
+                style: TextStyle(
+                  color: kPrimaryColor,
+                ),
+              )
+            ],
+          ),
+          const Spacer(),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: kMargin8,
+                height: kMargin8,
+                decoration: const BoxDecoration(
+                    color: kColorFA0, shape: BoxShape.circle),
+              ),
+              const SizedBox(
+                width: kMargin5,
+              ),
+              const Text(
+                "Filling Fast",
+                style: TextStyle(
+                  color: kColorFA0,
+                ),
+              )
+            ],
+          ),
+          const Spacer(),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 8,
+                height: 8,
+                decoration: const BoxDecoration(
+                    color: Color(0xFFFF00B8), shape: BoxShape.circle),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              const Text(
+                "Almost Full",
+                style: TextStyle(
+                  color: Color(0xFFFF00B8),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -449,4 +342,79 @@ class MovieTypeView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget containerWidget() {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 10),
+    height: kMargin100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: kColorD7D7,
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(
+          height: kMargin5,
+        ),
+        Container(
+          width: kMargin22,
+          height: kMargin5,
+          decoration: BoxDecoration(
+              color: Colors.black, borderRadius: BorderRadius.circular(5)),
+        ),
+        const SizedBox(
+          height: 9,
+          width: kMargin70,
+        ),
+        const Text(
+          "Today",
+        ),
+        const SizedBox(
+          height: 7,
+        ),
+        const Text(
+          "Month",
+          style: TextStyle(
+              fontSize: kTextRegular,
+              fontFamily: kInter,
+              fontWeight: FontWeight.w700,
+              color: Colors.black),
+        ),
+        const SizedBox(
+          height: 7,
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: 10,
+                height: 10,
+                color: Colors.red,
+              ),
+            ),
+            const Text(
+              "Day",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: 10,
+                height: 10,
+                color: Colors.red,
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }

@@ -24,213 +24,47 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(
-                left: kMargin22, right: kMargin22, top: kMargin30),
+            padding: const EdgeInsets.symmetric(
+                horizontal: kMargin22, vertical: kMargin30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                ///Top Logo Image
                 Image.asset(
                   kLoginLogo,
-                  width: 124,
-                  height: 150,
+                  width: kEnterPhoneNoLogoW,
+                  height: kEnterPhoneNoLogoH,
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: kMargin80,
                 ),
-                const Text(
-                  kVerifyPhoneLabel,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: kInter,
-                    fontSize: kMargin22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                verifyPhoneNumberText(),
+
+                ///Spacer
                 const SizedBox(
-                  height: 10,
+                  height: kMargin10,
                 ),
 
-                ///
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 100),
-                  child: Text(
-                    kCodeSmsLabel,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: kDmSan,
-                      fontWeight: FontWeight.w400,
-                      fontSize: kTextSmall,
-                      color: kNowAndComingSelectedTextColor,
-                    ),
-                  ),
-                ),
+                ///We will send 6 digit text,
+                smsCodeText(),
+
+                ///Spacer
                 const SizedBox(
-                  height: 80,
+                  height: kMargin80,
                 ),
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Country Code",
-                      style: TextStyle(
-                        color: kNowAndComingSelectedTextColor,
-                        fontSize: kTextSmall,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                              color: Colors.grey,
-                              width: 1,
-                            ))),
-                            child: const ShowCountryCodeDropdownWidget()),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                            child: TextField(
-                          controller: phoneTEC,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          keyboardType: TextInputType.number,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: kTextRegular2X,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          textAlignVertical: TextAlignVertical.bottom,
-                          decoration: const InputDecoration(
-                            // contentPadding: EdgeInsets.only(left: ),
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                              color: kPrimaryColor,
-                            )),
-                            focusColor: kPrimaryColor,
-                            hintText: "Mobile Number",
-                            hintStyle: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                              color: kNowAndComingSelectedTextColor,
-                            ),
-                          ),
-                        )),
-                      ],
-                    ),
-                  ],
-                ),
+                ///Phone Number Input Field
+                phoneNumberInputView(),
 
+                ///Spacer
                 const SizedBox(
                   height: kMargin50,
                 ),
 
-                ///Verify Phone Number Button
-                InkWell(
-                  // onTap: phoneTEC.text.isEmpty
-                  //     ? () {
-                  //         showDialog(
-                  //             barrierDismissible: true,
-                  //             context: context,
-                  //             builder: (context) {
-                  //               return AlertDialog(
-                  //                 shape: RoundedRectangleBorder(
-                  //                     borderRadius: BorderRadius.circular(2)),
-                  //                 titlePadding: EdgeInsets.all(10),
-                  //                 shadowColor: Colors.transparent,
-                  //                 surfaceTintColor: kPrimaryColor,
-                  //                 backgroundColor: Colors.transparent,
-                  //                 title: Center(
-                  //                   child: Text(
-                  //                     "Enter your phone number to continue!",
-                  //                     style: TextStyle(
-                  //                       fontWeight: FontWeight.w600,
-                  //                       fontSize: 16,
-                  //                       color: Colors.red,
-                  //                     ),
-                  //                   ),
-                  //                 ),
-                  //               );
-                  //             });
-                  //       }
-                  //     : () {
-                  //         Navigator.of(context)
-                  //             .push(MaterialPageRoute(builder: (context) {
-                  //           return const VerifySmsCode();
-                  //         }));
-                  //       },
+                verifyPhoneButtonView(),
 
-                  onTap: () {
-                    setState(() {
-                      phoneTEC.text.isNotEmpty
-                          ? Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                              return const VerifySmsCode();
-                            }))
-                          : showDialog(
-                              barrierDismissible: true,
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4)),
-                                  titlePadding: const EdgeInsets.all(10),
-                                  surfaceTintColor: kPrimaryColor,
-                                  backgroundColor: Colors.transparent,
-                                  title: const Center(
-                                    child: Text(
-                                      "Enter your phone number to continue!",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16,
-                                        color: Colors.red,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              });
-                    });
-                  },
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: kPrimaryColor,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Verify Your Phone Number",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: kTextRegular,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: kMargin22),
-                  child: Center(
-                    child: Text(
-                      "Or",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: kTextRegular2X,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                orDividerView(),
 
                 ///Google Button
                 InkWell(
@@ -270,21 +104,174 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(
-                  height: 94,
+                  height: kMargin100,
                 ),
-                const Text(
-                  kTermsAndConditions,
-                  style: TextStyle(
-                      fontFamily: kDmSan,
-                      fontWeight: FontWeight.w400,
-                      fontSize: kTextSmall,
-                      color: kNowAndComingSelectedTextColor),
-                ),
+                termsAndConditionsWidget(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget termsAndConditionsWidget() {
+    return const Text(
+      kTermsAndConditions,
+      style: TextStyle(
+          fontFamily: kDmSan,
+          fontWeight: FontWeight.w400,
+          fontSize: kTextSmall,
+          color: kNowAndComingSelectedTextColor),
+    );
+  }
+
+  Widget verifyPhoneNumberText() {
+    return const Text(
+      kVerifyPhoneLabel,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: kInter,
+        fontSize: kMargin22,
+        color: Colors.white,
+        fontWeight: FontWeight.w500,
+      ),
+    );
+  }
+
+  Widget smsCodeText() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: kMargin100),
+      child: Text(
+        kCodeSmsLabel,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: kDmSan,
+          fontWeight: FontWeight.w400,
+          fontSize: kTextSmall,
+          color: kNowAndComingSelectedTextColor,
+        ),
+      ),
+    );
+  }
+
+  Widget phoneNumberInputView() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Country Code",
+          style: TextStyle(
+            color: kNowAndComingSelectedTextColor,
+            fontSize: kTextSmall,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+                decoration: const BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                  color: Colors.grey,
+                  width: 1,
+                ))),
+                child: const ShowCountryCodeDropdownWidget()),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: TextField(
+              controller: phoneTEC,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.number,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: kTextRegular2X,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlignVertical: TextAlignVertical.bottom,
+              decoration: const InputDecoration(
+                // contentPadding: EdgeInsets.only(left: ),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                  color: kPrimaryColor,
+                )),
+                focusColor: kPrimaryColor,
+                hintText: "Mobile Number",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
+                  color: kNowAndComingSelectedTextColor,
+                ),
+              ),
+            )),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget verifyPhoneButtonView() {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return const VerifySmsCodePage();
+        }));
+      },
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: kMargin15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(kMargin8),
+          color: kPrimaryColor,
+        ),
+        child: const Center(
+          child: Text(
+            kVerifyPhoneLabel,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w400,
+              fontFamily: kInter,
+              fontSize: kTextRegular2X,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget orDividerView() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            height: 1,
+            color: kColor444,
+          ),
+        ),
+        const Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: kMargin20, vertical: kMargin25),
+          child: Text(
+            kOrLabel,
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: kTextRegular2X,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            height: 1,
+            color: kColor444,
+          ),
+        ),
+      ],
     );
   }
 }

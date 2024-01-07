@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/list_items/movie_list_item_view.dart';
-import 'package:movie_booking/pages/movie_details_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
@@ -15,14 +14,152 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  FocusNode searchMovieFocus = FocusNode();
+  bool isSearching = false;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       ///App Bar View
+      appBar: AppBar(
+        titleSpacing: 0,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: kBackgroundColor,
+        centerTitle: false,
+        leading: Visibility(
+          visible: !isSearching,
+          child: Padding(
+            padding: const EdgeInsets.only(
+                top: kMargin10, bottom: kMargin10, left: kMargin22),
+            child: Image.asset(
+              kArrow,
+              width: kMargin28,
+              height: kMargin28,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        title: Visibility(
+          visible: !isSearching,
+          child: const Text(
+            "Yangon",
+            style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: kTextRegular2X,
+              fontFamily: kInter,
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        actions: [
+          const SizedBox(
+            width: kMargin22,
+          ),
+          Visibility(
+            visible: isSearching,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isSearching = false;
+                  searchMovieFocus.unfocus();
+                });
+                ;
+              },
+              child: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+                size: kMargin22,
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: kMargin20,
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isSearching = true;
+                searchMovieFocus.requestFocus();
+              });
+            },
+            child: const Icon(
+              Icons.search_sharp,
+              size: kMargin22,
+              color: Colors.white,
+            ),
+          ),
+          Visibility(
+              visible: isSearching,
+              child: Expanded(
+                  child: TextField(
+                focusNode: searchMovieFocus,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    hintText: "search the movie",
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                    )),
+              ))),
+          Visibility(
+              visible: !isSearching,
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: kMarginXLarge,
+                  ),
+                  const Icon(
+                    Icons.notifications,
+                    size: kMargin22,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    width: kMargin22,
+                  ),
+                  Image.asset(
+                    kScanIconNew,
+                    height: kMargin55,
+                    width: kMargin55,
+                    fit: BoxFit.cover,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(
+                    width: kMargin18,
+                  ),
+                ],
+              )),
+          Visibility(
+              visible: isSearching,
+              child: const Padding(
+                padding: EdgeInsets.only(right: kMargin25),
+                child: Icon(
+                  Icons.filter_alt_rounded,
+                  size: kMargin22,
+                  color: kPrimaryColor,
+                ),
+              )),
+        ],
+      ),
+
       backgroundColor: kBackgroundColor,
 
       ///Body View
-      body: HomePageScreenBodyView(),
+      body: SafeArea(
+        child: isSearching
+            ? GridView.builder(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: kMargin22, vertical: kMargin30),
+                itemCount: 4,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: kMarginMedium3,
+                    mainAxisSpacing: kMarginMedium3,
+                    crossAxisCount: 2,
+                    mainAxisExtent: kMovieListItemHeight),
+                itemBuilder: (context, index) {
+                  return const MovieListItemView(isComingSoonSelected: false);
+                })
+            : const HomePageScreenBodyView(),
+      ),
     );
   }
 }
@@ -109,7 +246,8 @@ class BannerSectionView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Container(
                 margin: const EdgeInsets.symmetric(
-                    horizontal: kMarginMedium, vertical: 0),
+                  horizontal: kMarginMedium,
+                ),
                 child: ClipRRect(
                   clipBehavior: Clip.antiAlias,
                   borderRadius: BorderRadius.circular(kMarginMedium),

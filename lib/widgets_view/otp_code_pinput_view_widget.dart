@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/choose_region_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import 'package:pinput/pinput.dart';
 import '../pages/main_page.dart';
+import '../utils/strings.dart';
 
 class OTPCodePinPutView extends StatefulWidget {
   const OTPCodePinPutView({Key? key}) : super(key: key);
@@ -25,14 +27,16 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
 
   @override
   Widget build(BuildContext context) {
-    const focusedBorderColor = Colors.green;
+    const focusedBorderColor = kPrimaryColor;
     const borderColor = Colors.white;
 
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
+      width: kMargin50,
+      height: kMargin50,
       textStyle: const TextStyle(
-        fontSize: 22,
+        fontSize: kTextRegular,
+        fontFamily: kDmSan,
+        fontWeight: FontWeight.w500,
         color: Colors.black,
       ),
       decoration: BoxDecoration(
@@ -41,73 +45,77 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
       ),
     );
 
-    /// Optionally you can use form to validate the pin put
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          "Enter OTP Code",
-          style: TextStyle(
-            color: kNowAndComingSelectedTextColor,
-            fontWeight: FontWeight.w400,
-            fontFamily: kDmSan,
-            fontSize: kTextRegular,
-          ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Pinput(
-          length: 6,
-          controller: pinController,
-          focusNode: focusNode,
-          defaultPinTheme: defaultPinTheme,
-          separatorBuilder: (index) => const SizedBox(width: 8),
-          hapticFeedbackType: HapticFeedbackType.lightImpact,
-          cursor: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 9),
-                width: 22,
-                height: 1,
-                color: focusedBorderColor,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              kEnterOtpCode,
+              style: TextStyle(
+                color: kNowAndComingSelectedTextColor,
+                fontWeight: FontWeight.w400,
+                fontFamily: kDmSan,
+                fontSize: kTextRegular,
               ),
-            ],
-          ),
-          useNativeKeyboard: true,
-          focusedPinTheme: defaultPinTheme.copyWith(
-            decoration: defaultPinTheme.decoration!.copyWith(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(width: 2, color: focusedBorderColor),
             ),
-          ),
-          followingPinTheme: defaultPinTheme.copyWith(
-              decoration: defaultPinTheme.decoration!.copyWith(
-            color: Colors.grey,
-          )),
-          submittedPinTheme: defaultPinTheme.copyWith(
-            decoration: defaultPinTheme.decoration!.copyWith(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: focusedBorderColor),
+            const SizedBox(
+              height: kMargin5,
             ),
-          ),
-          errorPinTheme: defaultPinTheme.copyBorderWith(
-            border: Border.all(color: Colors.redAccent),
-          ),
+            Pinput(
+              length: 6,
+              controller: pinController,
+              focusNode: focusNode,
+              defaultPinTheme: defaultPinTheme,
+              separatorBuilder: (index) => const SizedBox(width: kMargin8),
+              hapticFeedbackType: HapticFeedbackType.lightImpact,
+              cursor: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: kMargin8),
+                    width: kMargin22,
+                    height: 1,
+                    color: focusedBorderColor,
+                  ),
+                ],
+              ),
+              useNativeKeyboard: true,
+              focusedPinTheme: defaultPinTheme.copyWith(
+                decoration: defaultPinTheme.decoration!.copyWith(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(kMargin4),
+                  border: Border.all(width: 2, color: focusedBorderColor),
+                ),
+              ),
+              followingPinTheme: defaultPinTheme.copyWith(
+                  decoration: defaultPinTheme.decoration!.copyWith(
+                color: Colors.white,
+              )),
+              submittedPinTheme: defaultPinTheme.copyWith(
+                decoration: defaultPinTheme.decoration!.copyWith(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(kMargin4),
+                  border: Border.all(color: focusedBorderColor),
+                ),
+              ),
+              errorPinTheme: defaultPinTheme.copyBorderWith(
+                border: Border.all(color: Colors.red),
+              ),
+            ),
+          ],
         ),
         const SizedBox(
-          height: 40,
+          height: kMargin40,
         ),
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Don't receive OTP?",
+              kDontReceiveOTP,
               style: TextStyle(
                 fontSize: kTextRegular,
                 fontFamily: kInter,
@@ -118,7 +126,7 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
             TextButton(
                 onPressed: () {},
                 child: const Text(
-                  "Resend Code",
+                  kResendCode,
                   style: TextStyle(
                     fontSize: kTextRegular2X,
                     fontWeight: FontWeight.w400,
@@ -128,27 +136,28 @@ class _OTPCodePinPutViewState extends State<OTPCodePinPutView> {
           ],
         ),
         const SizedBox(
-          height: 40,
+          height: kMargin40,
         ),
         InkWell(
             onTap: () {
               focusNode.unfocus();
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return const MainPage();
+                return const ChooseRegionPage();
               }));
             },
             child: Container(
                 width: double.infinity,
-                height: 50,
+                margin: const EdgeInsets.symmetric(horizontal: kMargin10),
+                height: kMargin50,
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(kMargin8),
                 ),
                 child: const Center(
                     child: Text(
-                  "Confirm OTP",
+                  kConfirmOTP,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: kTextRegular2X,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),

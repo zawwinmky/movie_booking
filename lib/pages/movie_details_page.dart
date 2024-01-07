@@ -59,30 +59,33 @@ class MovieDetailsPage extends StatelessWidget {
           const BackButtonAndShareButtonWidget(),
 
           ///Bottom Gradient And Booking Button
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: double.infinity,
-              height: kMovieDetailsBottomContainerHeight,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Colors.transparent,
-                  kBackgroundColor,
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-              ),
-              child: Center(
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) {
-                          return const CinemaSelectionPage();
-                        }));
-                      },
-                      child: const BookingButton())),
-            ),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const CinemaSelectionPage();
+              }));
+            },
+            child: bookingButtonWidget(),
           ),
         ],
       )),
+    );
+  }
+
+  Widget bookingButtonWidget() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        width: double.infinity,
+        height: kMovieDetailsBottomContainerHeight,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Colors.transparent,
+            kBackgroundColor,
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        ),
+        child: Center(child: const BookingButton()),
+      ),
     );
   }
 }
@@ -100,7 +103,7 @@ class StoryLine extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Story Line",
+            kStoryLine,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,

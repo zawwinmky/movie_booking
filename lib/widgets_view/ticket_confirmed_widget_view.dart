@@ -28,7 +28,8 @@ class TicketConfirmedWidgetView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 16, left: 16),
+            padding: const EdgeInsets.only(
+                top: kTextRegular2X, left: kTextRegular2X),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,

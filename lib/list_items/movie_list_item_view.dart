@@ -14,15 +14,15 @@ class MovieListItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        if(isComingSoonSelected){
-          Navigator.of(context).push(MaterialPageRoute(builder:(context){
+      onTap: () {
+        if (isComingSoonSelected) {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
             return const ComingSoonMoviePage();
-          } ));
+          }));
         } else {
-          Navigator.of(context).push(MaterialPageRoute(builder:(context){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
             return const MovieDetailsPage();
-          } ));
+          }));
         }
       },
       child: Container(
@@ -31,6 +31,7 @@ class MovieListItemView extends StatelessWidget {
           borderRadius: BorderRadius.circular(kMarginMedium),
         ),
         child: Column(
+          // mainAxisSize: MainAxisSize.min,
           children: [
             ///MoviePoster and Gradient
             Stack(
@@ -39,8 +40,9 @@ class MovieListItemView extends StatelessWidget {
                 ClipRRect(
                   clipBehavior: Clip.antiAlias,
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(kMarginMedium),
-                      topRight: Radius.circular(kMarginMedium),),
+                    topLeft: Radius.circular(kMarginMedium),
+                    topRight: Radius.circular(kMarginMedium),
+                  ),
                   child: Image.network(
                     "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2fa44b15344917.5628fd261893b.jpg",
                     fit: BoxFit.cover,
@@ -68,7 +70,8 @@ class MovieListItemView extends StatelessWidget {
                   child: Visibility(
                     visible: isComingSoonSelected,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: kMarginMedium,right: kMarginMedium),
+                      padding: const EdgeInsets.only(
+                          top: kMarginMedium, right: kMarginMedium),
                       child: Container(
                         width: kMarginXLarge,
                         height: kMarginXLarge,
@@ -78,7 +81,8 @@ class MovieListItemView extends StatelessWidget {
                         ),
                         child: const Center(
                           child: Text(
-                            "8th\nAUG",textAlign: TextAlign.center,
+                            "8th\nAUG",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: kNowAndComingUnselectedTextColor,
                               fontSize: kTextSmall,

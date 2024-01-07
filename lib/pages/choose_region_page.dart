@@ -112,7 +112,7 @@ class CitiesListView extends StatelessWidget {
           return InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return const LoginPage();
+                return const MainPage();
               }));
             },
             child: Container(

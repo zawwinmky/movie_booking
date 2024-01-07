@@ -28,65 +28,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        backgroundColor: kBackgroundColor,
-        centerTitle: false,
-        title: Row(
-          children: [
-            const SizedBox(
-              width: 5,
-            ),
-            Image.asset(
-              kArrow,
-              width: 30,
-              height: 30,
-            ),
-            const SizedBox(
-              width: kMarginMedium,
-            ),
-            const Text(
-              "Yangon",
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontSize: kTextRegular2X,
-                fontFamily: kInter,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          const Icon(
-            Icons.search,
-            size: kMarginLarge,
-            color: Colors.white,
-          ),
-          const SizedBox(
-            width: kMarginXLarge,
-          ),
-          const Icon(
-            Icons.notifications,
-            size: kMarginLarge,
-            color: Colors.white,
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Image.asset(
-            kScanIcon,
-            height: 55,
-            width: 55,
-            fit: BoxFit.cover,
-            color: Colors.white,
-          ),
-          const SizedBox(
-            width: 7,
-          ),
-        ],
-      ),
       body: homeScreenWidgets[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,

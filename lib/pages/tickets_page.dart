@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_booking/pages/main_page.dart';
 import 'package:movie_booking/pages/ticket_cancel_page.dart';
 import 'package:movie_booking/utils/colors.dart';
+import 'package:movie_booking/utils/strings.dart';
 import 'package:movie_booking/widgets_view/ticket_confirmed_widget_view.dart';
-import 'package:movie_booking/widgets_view/ticket_details_widget.dart';
+
+import '../utils/dimensions.dart';
 
 class TicketsPage extends StatelessWidget {
   const TicketsPage({super.key});
@@ -11,9 +12,46 @@ class TicketsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+        ///App Bar View
+        appBar: AppBar(
+          titleSpacing: 0,
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: kBackgroundColor,
+          actions: [
+            const Icon(
+              Icons.search_sharp,
+              size: kMargin22,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: kMarginXLarge,
+            ),
+            const Icon(
+              Icons.notifications,
+              size: kMargin22,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: kMargin22,
+            ),
+            Image.asset(
+              kScanIconNew,
+              height: kMargin55,
+              width: kMargin55,
+              fit: BoxFit.cover,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: kMargin18,
+            ),
+          ],
+        ),
         backgroundColor: kBackgroundColor,
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: kMargin20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -26,7 +64,7 @@ class TicketsPage extends StatelessWidget {
                 },
                 child: const TicketConfirmedWidgetView(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               InkWell(

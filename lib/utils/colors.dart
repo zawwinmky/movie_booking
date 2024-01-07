@@ -41,3 +41,4 @@ const Color kColorD7D7 = Color(0xFFD7D7D7);
 
 const Color kColor222 = Color(0xFF222222);
 const Color kColorFA0 = Color(0xFFFF7A00);
+const Color kColorF0B8 = Color(0xFFFF00B8);

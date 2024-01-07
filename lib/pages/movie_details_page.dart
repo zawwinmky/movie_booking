@@ -84,7 +84,7 @@ class MovieDetailsPage extends StatelessWidget {
             kBackgroundColor,
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: Center(child: const BookingButton()),
+        child: const Center(child: BookingButton()),
       ),
     );
   }

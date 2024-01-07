@@ -29,7 +29,10 @@ const double kMargin60 = 60;
 const double kMargin64 = 64;
 const double kMargin70 = 70;
 const double kMargin80 = 80;
+const double kMargin90 = 90;
 const double kMargin100 = 100;
+const double kMargin110 = 110;
+const double kMargin120 = 120;
 const double kMargin150 = 150;
 const double kMargin300 = 300;
 

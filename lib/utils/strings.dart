@@ -119,3 +119,6 @@ const String k2D = "2D";
 const String k3D = "3D";
 const String k3DImax = "3D IMAX";
 const String k3Dox = "3D DBOX";
+const String kAvailable = "Available";
+const String kFillingFast = "Filling Fast";
+const String kAlmostFull = "Almost Full";

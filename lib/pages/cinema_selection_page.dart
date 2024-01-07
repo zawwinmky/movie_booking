@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
+import 'package:movie_booking/utils/font_styles.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
 import 'package:intl/intl.dart';
@@ -149,33 +150,37 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
 
   Widget twoWeekDaysView(dateList) {
     return SizedBox(
-      height: 110,
+      height: kMargin120,
       child: ListView.custom(
           scrollDirection: Axis.horizontal,
           childrenDelegate:
               SliverChildBuilderDelegate(childCount: 14, (context, index) {
             return Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              width: 100,
+              margin: const EdgeInsets.symmetric(horizontal: kMargin10),
+              width: kMargin90,
               decoration: BoxDecoration(
-                  color: (index == 0) ? kPrimaryColor : Colors.grey,
+                  border: Border.all(
+                    width: 0,
+                  ),
+                  color: (index == 0) ? kPrimaryColor : kColorD7D7,
                   borderRadius: BorderRadius.circular(kMargin8)),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(
-                    height: 6,
+                    height: kMargin5,
                   ),
                   Container(
                     width: kMargin22,
-                    height: 5,
+                    height: kMargin5,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(kMargin5),
                       color: Colors.black,
                     ),
                   ),
                   const SizedBox(
-                    height: 9,
+                    height: kMargin10,
                   ),
                   Text(
                     (index == 0)
@@ -183,21 +188,22 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                         : (index == 1)
                             ? kTomorrow
                             : DateFormat.E().format(dateList[index]),
-                    style: const TextStyle(
-                      fontSize: kTextRegular,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: kInter,
+                      fontSize: (index == 1) ? kTextSmall : kTextRegular,
                     ),
                   ),
                   const SizedBox(
-                    height: 7,
+                    height: kMargin5,
                   ),
                   Text(
                     DateFormat.MMM().format(dateList[index]),
-                    style: const TextStyle(
-                      fontSize: kTextRegular,
-                    ),
+                    style: kW700Inter14,
                   ),
                   const SizedBox(
-                    height: 6,
+                    height: kMargin5,
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -210,14 +216,17 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                           decoration: const BoxDecoration(
                               color: kBackgroundColor,
                               borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
+                                topRight: Radius.circular(kMargin10),
+                                bottomRight: Radius.circular(kMargin10),
                               )),
                         ),
                       ),
                       Expanded(
                           child: Center(
-                              child: Text(dateList[index].day.toString()))),
+                              child: Text(
+                        dateList[index].day.toString(),
+                        style: kW700Inter16,
+                      ))),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Container(
@@ -231,7 +240,10 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: kMargin10,
+                  ),
                 ],
               ),
             );
@@ -259,11 +271,10 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
               const SizedBox(
                 width: kMargin5,
               ),
-              const Text(
-                "Available",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                ),
+              Text(
+                kAvailable,
+                style: kInter16.copyWith(
+                    fontWeight: FontWeight.w500, color: kPrimaryColor),
               )
             ],
           ),
@@ -281,9 +292,10 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
               const SizedBox(
                 width: kMargin5,
               ),
-              const Text(
-                "Filling Fast",
-                style: TextStyle(
+              Text(
+                kFillingFast,
+                style: kInter16.copyWith(
+                  fontWeight: FontWeight.w500,
                   color: kColorFA0,
                 ),
               )
@@ -295,18 +307,19 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 8,
-                height: 8,
+                width: kMargin8,
+                height: kMargin8,
                 decoration: const BoxDecoration(
-                    color: Color(0xFFFF00B8), shape: BoxShape.circle),
+                    color: kColorF0B8, shape: BoxShape.circle),
               ),
               const SizedBox(
-                width: 5,
+                width: kMargin5,
               ),
-              const Text(
-                "Almost Full",
-                style: TextStyle(
-                  color: Color(0xFFFF00B8),
+              Text(
+                kAlmostFull,
+                style: kInter16.copyWith(
+                  color: kColorF0B8,
+                  fontWeight: FontWeight.w500,
                 ),
               )
             ],
@@ -324,14 +337,14 @@ class MovieTypeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: kMargin5),
       decoration: BoxDecoration(
           border: Border.all(
             color: Colors.white,
             width: 2,
           ),
           color: const Color(0xFF555555),
-          borderRadius: BorderRadius.circular(5)),
+          borderRadius: BorderRadius.circular(kMargin5)),
       child: Text(
         label,
         style: const TextStyle(
@@ -346,10 +359,10 @@ class MovieTypeView extends StatelessWidget {
 
 Widget containerWidget() {
   return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 10),
+    margin: const EdgeInsets.symmetric(horizontal: kMargin10),
     height: kMargin100,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(kMargin8),
       color: kColorD7D7,
     ),
     child: Column(
@@ -392,8 +405,8 @@ Widget containerWidget() {
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                width: 10,
-                height: 10,
+                width: kMargin10,
+                height: kMargin10,
                 color: Colors.red,
               ),
             ),
@@ -407,8 +420,8 @@ Widget containerWidget() {
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                width: 10,
-                height: 10,
+                width: kMargin10,
+                height: kMargin10,
                 color: Colors.red,
               ),
             ),

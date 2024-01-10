@@ -128,7 +128,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
             SliverList(
                 delegate: SliverChildBuilderDelegate(
                     childCount: cinemasList.length, (context, index) {
-              return ChooseMovieTimesGridExpandView(
+              return ChooseCinemaTimeGridView(
                   isExpanded: false, cinemaName: cinemasList[index]);
             })),
           ],

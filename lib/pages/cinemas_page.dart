@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/cinema_search_page.dart';
 import 'package:movie_booking/pages/cinema_selection_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 
@@ -48,10 +49,17 @@ class _CinemaPageState extends State<CinemaPage> {
           ),
         ),
         actions: [
-          const Icon(
-            Icons.search_sharp,
-            size: kMargin22,
-            color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const CinemaSearchPage();
+              }));
+            },
+            child: const Icon(
+              Icons.search_sharp,
+              size: kMargin22,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(
             width: kMarginXLarge,
@@ -85,7 +93,7 @@ class _CinemaPageState extends State<CinemaPage> {
               child: ListView.builder(
                   itemCount: cinemasList.length,
                   itemBuilder: (context, index) {
-                    return ChooseMovieTimesGridExpandView(
+                    return ChooseCinemaTimeGridView(
                         isExpanded: false, cinemaName: cinemasList[index]);
                   }),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/utils/colors.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -8,78 +9,25 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  int itemCount = 0;
-
+  RangeValues _selectedRangeValues = const RangeValues(10, 70);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: Center(
-          child: itemCount > 0
-              ? Container(
-                  width: 200,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: GestureDetector(
-                      onTap: () {
-                        itemCount--;
-                        setState(() {});
-                        debugPrint(itemCount.toString());
-                      },
-                      child: Container(
-                        color: Colors.green,
-                        width: 100,
-                        height: 50,
-                        child: const Center(
-                          child: Text(
-                            "Minus",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              : itemCount <= 0
-                  ? Container(
-                      width: 200,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: GestureDetector(
-                          onTap: () {
-                            itemCount++;
-                            setState(() {});
-                            debugPrint(itemCount.toString());
-                          },
-                          child: Container(
-                            color: Colors.green,
-                            width: 100,
-                            height: 50,
-                            child: const Center(
-                              child: Text(
-                                "Add",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(),
+          child: RangeSlider(
+              activeColor: kPrimaryColor,
+              inactiveColor: kNowAndComingSelectedTextColor,
+              min: 0,
+              max: 100,
+              labels: const RangeLabels("Hello", "There"),
+              values: _selectedRangeValues,
+              onChanged: (RangeValues values) {
+                setState(() {
+                  _selectedRangeValues = values;
+                });
+              }),
         ),
       ),
     );

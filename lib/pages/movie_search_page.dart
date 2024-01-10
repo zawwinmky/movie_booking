@@ -14,6 +14,15 @@ class MovieSearchPage extends StatefulWidget {
 }
 
 class _MovieSearchPageState extends State<MovieSearchPage> {
+  FocusNode searchMovieFocus = FocusNode();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    searchMovieFocus.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +93,10 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
         ),
         Expanded(
             child: TextField(
+          onTapOutside: (input) {
+            searchMovieFocus.unfocus();
+          },
+          focusNode: searchMovieFocus,
           cursorColor: Colors.white,
           style: kInter14.copyWith(
               color: Colors.white, fontWeight: FontWeight.w400),
@@ -158,6 +171,12 @@ class _DropDownMovieFilterListViewState
     selectedGenres = dropDownItemsForGenres.first;
     selectedFormat = dropDownItemsForFormat.first;
     selectedMonth = dropDownItemsForMonths.first;
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override

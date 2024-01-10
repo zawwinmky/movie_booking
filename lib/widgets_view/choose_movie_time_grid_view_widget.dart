@@ -6,8 +6,8 @@ import '../utils/dimensions.dart';
 import '../utils/fonts.dart';
 import '../utils/strings.dart';
 
-class ChooseMovieTimesGridExpandView extends StatelessWidget {
-  const ChooseMovieTimesGridExpandView(
+class ChooseCinemaTimeGridView extends StatelessWidget {
+  const ChooseCinemaTimeGridView(
       {super.key, required this.isExpanded, required this.cinemaName});
 
   final bool isExpanded;

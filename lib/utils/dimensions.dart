@@ -42,6 +42,7 @@ const double kMargin180 = 180;
 const double kMargin225 = 225;
 const double kMargin240 = 240;
 const double kMargin300 = 300;
+const double kMargin500 = 500;
 
 const double kTextXSmall = 10;
 const double kTextSmall = 12;

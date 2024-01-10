@@ -1,81 +1,85 @@
 import 'package:flutter/material.dart';
 
-class TestPage extends StatelessWidget {
+class TestPage extends StatefulWidget {
   const TestPage({super.key});
+
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  int itemCount = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          color: Colors.grey,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 6,
-              ),
-              Container(
-                width: 22,
-                height: 5,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.red,
-                ),
-              ),
-              const SizedBox(
-                height: 9,
-              ),
-              const Text(
-                "Today",
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              const Text(
-                "May",
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: 20,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          )),
+        child: Center(
+          child: itemCount > 0
+              ? Container(
+                  width: 200,
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: GestureDetector(
+                      onTap: () {
+                        itemCount--;
+                        setState(() {});
+                        debugPrint(itemCount.toString());
+                      },
+                      child: Container(
+                        color: Colors.green,
+                        width: 100,
+                        height: 50,
+                        child: const Center(
+                          child: Text(
+                            "Minus",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  Expanded(child: Center(child: const Text("Hello"))),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                      width: 20,
-                      height: 40,
-                      decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              bottomLeft: Radius.circular(20))),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
+                )
+              : itemCount <= 0
+                  ? Container(
+                      width: 200,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: GestureDetector(
+                          onTap: () {
+                            itemCount++;
+                            setState(() {});
+                            debugPrint(itemCount.toString());
+                          },
+                          child: Container(
+                            color: Colors.green,
+                            width: 100,
+                            height: 50,
+                            child: const Center(
+                              child: Text(
+                                "Add",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
         ),
       ),
     );

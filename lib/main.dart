@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:movie_booking/pages/cinema_selection_page.dart';
 import 'package:movie_booking/pages/splash_screen.dart';
-import 'package:movie_booking/testpage.dart';
 import 'package:movie_booking/utils/fonts.dart';
 
 void main() {

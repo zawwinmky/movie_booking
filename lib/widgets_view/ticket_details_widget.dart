@@ -36,10 +36,10 @@ class TicketDetailsWidgetView extends StatelessWidget {
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(
-                      text: "Black Widow",
+                      text: "Shawshank Redemption",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 18,
+                        fontSize: kText18,
                         fontFamily: kDmSan,
                         color: Colors.white,
                       )),
@@ -409,125 +409,128 @@ class _FoodAndBeverageExpandableWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      onExpansionChanged: (input) {
-        setState(() {
-          isExpanded = !isExpanded;
-        });
-      },
-      initiallyExpanded: isExpanded,
-      shape: const StadiumBorder(side: BorderSide.none),
-      tilePadding: EdgeInsets.zero,
-      trailing: GestureDetector(
-        onTap: () {},
-        child: const Text(
-          "2,000Ks",
-          style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: 18,
-              fontFamily: kDmSan),
-        ),
-      ),
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(
-            kCartIcon,
-            width: 20,
-            height: 20,
-            color: Colors.white,
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          const Text(
-            "Food and Beverage",
+    return ExpansionTileTheme(
+      data: const ExpansionTileThemeData(),
+      child: ExpansionTile(
+        onExpansionChanged: (input) {
+          setState(() {
+            isExpanded = !isExpanded;
+          });
+        },
+        initiallyExpanded: isExpanded,
+        shape: const StadiumBorder(side: BorderSide.none),
+        tilePadding: EdgeInsets.zero,
+        trailing: GestureDetector(
+          onTap: () {},
+          child: const Text(
+            "2,000Ks",
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
-                fontSize: 18,
+                fontSize: kText18,
                 fontFamily: kDmSan),
           ),
-          const SizedBox(
-            width: 10,
+        ),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              kCartIcon,
+              width: kMargin20,
+              height: kMargin20,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            const Text(
+              "Food and Beverage",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                  fontFamily: kDmSan),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Icon(
+              isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+              size: kMargin20,
+              color: Colors.white,
+            ),
+          ],
+        ),
+        children: const [
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(
+                Icons.cancel_presentation_rounded,
+                size: kMargin20,
+                color: kPrimaryColor,
+              ),
+              SizedBox(
+                width: 7,
+              ),
+              Text(
+                "Potato Chips (Qt. 1)",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: kTextRegular,
+                  fontFamily: kDmSan,
+                  color: Color(0xFF888888),
+                ),
+              ),
+              Spacer(),
+              Text(
+                "1,000Ks",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: kTextRegular,
+                  fontFamily: kDmSan,
+                  color: Color(0xFF888888),
+                ),
+              ),
+            ],
           ),
-          Icon(
-            isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-            size: 20,
-            color: Colors.white,
+          SizedBox(
+            height: 14,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(
+                Icons.cancel_presentation_rounded,
+                size: kMargin20,
+                color: kPrimaryColor,
+              ),
+              SizedBox(
+                width: 7,
+              ),
+              Text(
+                "CocaCola Large(Qt. 1)",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: kTextRegular,
+                  fontFamily: kDmSan,
+                  color: Color(0xFF888888),
+                ),
+              ),
+              Spacer(),
+              Text(
+                "1,000Ks",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: kTextRegular,
+                  fontFamily: kDmSan,
+                  color: Color(0xFF888888),
+                ),
+              ),
+            ],
           ),
         ],
       ),
-      children: const [
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.cancel_presentation_rounded,
-              size: 20,
-              color: kPrimaryColor,
-            ),
-            SizedBox(
-              width: 7,
-            ),
-            Text(
-              "Potato Chips (Qt. 1)",
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: kTextRegular,
-                fontFamily: kDmSan,
-                color: Color(0xFF888888),
-              ),
-            ),
-            Spacer(),
-            Text(
-              "1,000Ks",
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: kTextRegular,
-                fontFamily: kDmSan,
-                color: Color(0xFF888888),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 14,
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.cancel_presentation_rounded,
-              size: 20,
-              color: kPrimaryColor,
-            ),
-            SizedBox(
-              width: 7,
-            ),
-            Text(
-              "CocaCola Large(Qt. 1)",
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: kTextRegular,
-                fontFamily: kDmSan,
-                color: Color(0xFF888888),
-              ),
-            ),
-            Spacer(),
-            Text(
-              "1,000Ks",
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: kTextRegular,
-                fontFamily: kDmSan,
-                color: Color(0xFF888888),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
@@ -547,7 +550,8 @@ void showTicketCancellationPolicy(BuildContext context) {
                   width: 1,
                   color: kPrimaryColor,
                 )),
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 22, vertical: kMargin20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -560,6 +564,9 @@ void showTicketCancellationPolicy(BuildContext context) {
                     fontSize: kTextRegular,
                     fontWeight: FontWeight.w600,
                   ),
+                ),
+                const SizedBox(
+                  height: kTextRegular2X,
                 ),
                 Row(
                   children: [
@@ -584,7 +591,7 @@ void showTicketCancellationPolicy(BuildContext context) {
                   ],
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: kMargin20,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -614,7 +621,7 @@ void showTicketCancellationPolicy(BuildContext context) {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: kMargin20,
                           ),
                           Text(
                             "-75% refund until 2 hours before show start time",
@@ -654,10 +661,10 @@ void showTicketCancellationPolicy(BuildContext context) {
                       fontFamily: kInter),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: kMargin20,
                 ),
                 const Text(
-                  "2.  No cancellation within 20minute of show start time.",
+                  "2.  No cancellation within 20 minute of show start time.",
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,

@@ -6,33 +6,23 @@ import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
 import 'package:movie_booking/widgets_view/ticket_details_widget.dart';
 
-class CheckOutPage extends StatelessWidget {
+class CheckOutPage extends StatefulWidget {
   const CheckOutPage({super.key});
 
+  @override
+  State<CheckOutPage> createState() => _CheckOutPageState();
+}
+
+class _CheckOutPageState extends State<CheckOutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
-          ),
-        ),
+        leading: leadingWidget(),
         automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: kBackgroundColor,
-        title: const Text(
-          "Check Out",
-          style: TextStyle(
-            fontFamily: kDmSan,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
-        ),
+        title: titleWidget(),
       ),
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -41,69 +31,96 @@ class CheckOutPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 20),
-                child: TicketDetailsWidgetView(
-                  colorForPolicy: Color(0xFFFF6B00),
-                ),
-              ),
+              ticketWidget(),
               const SizedBox(
-                height: 30,
+                height: kMargin20,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return PaymentMethodPage();
-                  }));
-                },
-                child: SizedBox(
-                  width: 240,
-                  height: 49,
-                  child: Stack(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset(
-                            kBookingButton,
-                            height: 49,
-                            fit: BoxFit.fitHeight,
-                          )),
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Image.asset(
-                            kBookingButton,
-                            height: 49,
-                            fit: BoxFit.fitHeight,
-                          )),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          color: kPrimaryColor,
-                          width: 180,
-                          height: 49,
-                          child: const Center(
-                            child: Text(
-                              "Continue",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: kInter,
-                                fontSize: kTextRegular2X,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+              continueButton(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget ticketWidget() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: kMargin22, vertical: kMargin20),
+      child: TicketDetailsWidgetView(
+        colorForPolicy: kColorF60,
+      ),
+    );
+  }
+
+  Widget leadingWidget() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: const Icon(
+        Icons.arrow_back_ios_new_rounded,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget titleWidget() {
+    return const Text(
+      kCheckOut,
+      style: TextStyle(
+        fontFamily: kDmSan,
+        fontWeight: FontWeight.w700,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget continueButton() {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return PaymentMethodPage();
+        }));
+      },
+      child: SizedBox(
+        width: kMargin240,
+        height: kMargin50,
+        child: Stack(
+          children: [
+            Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  kBookingButton,
+                  height: kMargin50,
+                  fit: BoxFit.fitHeight,
+                )),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Image.asset(
+                  kBookingButton,
+                  height: kMargin50,
+                  fit: BoxFit.fitHeight,
+                )),
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                color: kPrimaryColor,
+                width: kMargin180,
+                height: kMargin50,
+                child: const Center(
+                  child: Text(
+                    kContinue,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: kInter,
+                      fontSize: kTextRegular2X,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

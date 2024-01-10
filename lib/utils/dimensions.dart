@@ -17,12 +17,15 @@ const double kMargin15 = 15;
 const double kMargin18 = 18;
 const double kMargin20 = 20;
 const double kMargin22 = 22;
-const double kMargin25 = 25;
+const double kMargin23 = 23;
 const double kMargin24 = 24;
+const double kMargin25 = 25;
+const double kMargin27 = 27;
 const double kMargin28 = 28;
 const double kMargin30 = 30;
 const double kMargin35 = 35;
 const double kMargin40 = 40;
+const double kMargin45 = 45;
 const double kMargin50 = 50;
 const double kMargin55 = 55;
 const double kMargin60 = 60;
@@ -33,7 +36,11 @@ const double kMargin90 = 90;
 const double kMargin100 = 100;
 const double kMargin110 = 110;
 const double kMargin120 = 120;
+const double kMargin140 = 140;
 const double kMargin150 = 150;
+const double kMargin180 = 180;
+const double kMargin225 = 225;
+const double kMargin240 = 240;
 const double kMargin300 = 300;
 
 const double kTextXSmall = 10;
@@ -42,7 +49,7 @@ const double kTextRegular = 14;
 const double kTextRegular2X = 16;
 const double kTextRegular3X = 20;
 const double kText22 = 22;
-
+const double kText18 = 18;
 //app specific
 
 const double kHomeScreenAppbarRMargin = 28;

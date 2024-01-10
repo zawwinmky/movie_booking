@@ -50,8 +50,8 @@ class TicketsPage extends StatelessWidget {
         ),
         backgroundColor: kBackgroundColor,
         body: SingleChildScrollView(
-          padding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: kMargin20),
+          padding: const EdgeInsets.symmetric(
+              horizontal: kMargin15, vertical: kMargin20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -65,7 +65,7 @@ class TicketsPage extends StatelessWidget {
                 child: const TicketConfirmedWidgetView(),
               ),
               const SizedBox(
-                height: 30,
+                height: kMargin30,
               ),
               InkWell(
                 onTap: () {

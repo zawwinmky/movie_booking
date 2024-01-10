@@ -24,7 +24,7 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       initiallyExpanded: isExpanded,
       trailing: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: kMargin20),
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
@@ -32,13 +32,12 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
             }));
           },
           child: const Text(
-            "See Details",
+            kSeeDetails,
             style: TextStyle(
               fontSize: kTextRegular2X,
               decoration: TextDecoration.underline,
               decorationColor: kPrimaryColor,
               color: kPrimaryColor,
-              decorationStyle: TextDecorationStyle.solid,
             ),
           ),
         ),
@@ -53,12 +52,12 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
         ),
       ),
       subtitle: Padding(
-        padding: const EdgeInsets.only(top: 5),
+        padding: const EdgeInsets.only(top: kMargin5),
         child: Row(
           children: [
             Image.asset(
               kParkingIcon,
-              color: const Color(0xFFAAAAAA),
+              color: kColorAAA,
               width: kTextRegular2X,
               height: kTextRegular2X,
               fit: BoxFit.cover,
@@ -67,11 +66,11 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
               width: kMargin5,
             ),
             const Text(
-              "Parking",
+              kParking,
               style: TextStyle(
                 fontSize: kTextRegular,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFFAAAAAA),
+                color: kColorAAA,
               ),
             ),
             const SizedBox(
@@ -79,7 +78,7 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
             ),
             Image.asset(
               kCartIcon,
-              color: const Color(0xFFAAAAAA),
+              color: kColorAAA,
               width: kTextRegular2X,
               height: kTextRegular2X,
               fit: BoxFit.cover,
@@ -88,11 +87,11 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
               width: kMargin5,
             ),
             const Text(
-              "Food",
+              kFoodLabel,
               style: TextStyle(
                 fontSize: kTextRegular,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFFAAAAAA),
+                color: kColorAAA,
               ),
             ),
             const SizedBox(
@@ -100,7 +99,7 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
             ),
             Image.asset(
               kWheelChair,
-              color: const Color(0xFFAAAAAA),
+              color: kColorAAA,
               width: kTextRegular2X,
               height: kTextRegular2X,
               fit: BoxFit.cover,
@@ -109,11 +108,11 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
               width: kMargin5,
             ),
             const Text(
-              "Wheel Chair",
+              kWheelChairLabel,
               style: TextStyle(
                 fontSize: kTextRegular,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFFAAAAAA),
+                color: kColorAAA,
               ),
             ),
           ],
@@ -121,14 +120,15 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
       ),
       children: [
         SizedBox(
-          height: 300,
+          height: kMargin300,
           child: GridView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(
+                horizontal: kMargin10, vertical: kMargin10),
             itemCount: 5,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 150,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
+              maxCrossAxisExtent: kMargin150,
+              crossAxisSpacing: kMargin20,
+              mainAxisSpacing: kMargin20,
             ),
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
@@ -139,10 +139,10 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
                   }));
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(kMargin10),
                   decoration: BoxDecoration(
                       color: kBackgroundColor,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(kMargin8),
                       border: Border.all(
                         color: kPrimaryColor,
                         width: 2,
@@ -199,7 +199,7 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
           children: [
             Icon(
               Icons.info_rounded,
-              color: Color(0xFFAAAAAA),
+              color: kColorAAA,
             ),
             SizedBox(
               width: kMargin5,
@@ -207,14 +207,14 @@ class ChooseMovieTimesGridExpandView extends StatelessWidget {
             Text(
               kLabelInfoCinemaSelection,
               style: TextStyle(
-                  color: Color(0xFFAAAAAA),
+                  color: kColorAAA,
                   fontSize: kTextRegular,
                   fontWeight: FontWeight.w600),
             ),
           ],
         ),
         const SizedBox(
-          height: 20,
+          height: kMargin20,
         ),
       ],
     );

@@ -26,10 +26,10 @@ class PaymentMethodPage extends StatelessWidget {
           ),
         ),
         title: const Text(
-          "Payment",
+          kPaymentTitle,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 18,
+            fontSize: kText18,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -44,152 +44,165 @@ class PaymentMethodPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 30,
+              height: kMargin30,
             ),
 
             ///Text Filed enter name
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0, right: 30),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: TextField(
-                      focusNode: nameFocus,
-                      onTapOutside: (input) {
-                        nameFocus.unfocus();
-                      },
-                      style: const TextStyle(
-                        fontSize: kTextRegular,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(
-                                color: kPrimaryColor,
-                                width: 2,
-                              )),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: kPrimaryColor,
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          label: const Text(
-                            "Your Name",
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: kTextRegular,
-                              fontFamily: kDmSan,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          hintText: "Enter Your Name",
-                          hintStyle: const TextStyle(
-                            color: kNowAndComingSelectedTextColor,
-                            fontSize: kTextRegular,
-                            fontFamily: kDmSan,
-                            fontWeight: FontWeight.w700,
-                          )),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Center(
-                    child: Text(
-                      "*",
-                      style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            nameInputFieldView(),
 
             const SizedBox(
-              height: 32,
+              height: kMargin30,
             ),
 
             ///Apply promo code button
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 40),
-              height: 40,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: kPrimaryColor,
-              ),
-              child: Center(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      kPromo,
-                      color: kBackgroundColor,
-                      height: 25,
-                      width: 25,
-                      fit: BoxFit.cover,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      "Unlock Offer or Apply Promocode",
-                      style: TextStyle(
-                        color: kBackgroundColor,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            applyPromoCodeButton(),
+
+            //Spacer
             const SizedBox(
-              height: 38,
+              height: kMargin35,
             ),
 
             ///Choose your payment type
-            const Padding(
-              padding: EdgeInsets.only(left: 22.0),
-              child: Text(
-                "Choose your payment type",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: kDmSan,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+            chooseYourPaymentTypeText(),
             const SizedBox(
-              height: 20,
+              height: kMargin20,
             ),
-            const PaymentListView(kImage: kUpi, kLabel: "UPI"),
-            const PaymentListView(kImage: kGift, kLabel: "Gift Voucher"),
-            const PaymentListView(kImage: kQuick, kLabel: "Quick Pay"),
-            const PaymentListView(
-                kImage: kCredit, kLabel: "Credit Card/ Debit Card"),
-            const PaymentListView(kImage: kRedeem, kLabel: "Redeem Point"),
-            const PaymentListView(kImage: kMobile, kLabel: "Mobile Wallet"),
-            const PaymentListView(kImage: kBanking, kLabel: "Net Banking"),
+            const PaymentListView(kImage: kUpi, kLabel: kUpiLabel),
+            const PaymentListView(kImage: kGift, kLabel: kGiftLabel),
+            const PaymentListView(kImage: kQuick, kLabel: kQuickLabel),
+            const PaymentListView(kImage: kCredit, kLabel: kCreditLabel),
+            const PaymentListView(kImage: kRedeem, kLabel: kRedeemLabel),
+            const PaymentListView(kImage: kMobile, kLabel: kMobileLabel),
+            const PaymentListView(kImage: kBanking, kLabel: kNetLabel),
           ],
         ),
       )),
+    );
+  }
+
+  Widget nameInputFieldView() {
+    return Padding(
+      padding: const EdgeInsets.only(left: kMargin40, right: kMargin30),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: TextField(
+              focusNode: nameFocus,
+              onTapOutside: (input) {
+                nameFocus.unfocus();
+              },
+              style: const TextStyle(
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(kMargin8),
+                      borderSide: const BorderSide(
+                        color: kPrimaryColor,
+                        width: 2,
+                      )),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: kPrimaryColor,
+                      width: 2,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(kMargin8),
+                    borderSide: const BorderSide(
+                      color: kPrimaryColor,
+                      width: 2,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                  label: const Text(
+                    kYourName,
+                    style: TextStyle(
+                      color: kPrimaryColor,
+                      fontSize: kTextRegular,
+                      fontFamily: kDmSan,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  hintText: kEnterYourName,
+                  hintStyle: const TextStyle(
+                    color: kNowAndComingSelectedTextColor,
+                    fontSize: kTextRegular,
+                    fontFamily: kDmSan,
+                    fontWeight: FontWeight.w700,
+                  )),
+            ),
+          ),
+          const SizedBox(
+            width: kMargin10,
+          ),
+          const Center(
+            child: Text(
+              "*",
+              style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.w700,
+                  fontSize: kTextRegular2X),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget chooseYourPaymentTypeText() {
+    return const Padding(
+      padding: EdgeInsets.only(left: kMargin22),
+      child: Text(
+        kChoosePaymentLabel,
+        style: TextStyle(
+          color: kPrimaryColor,
+          fontWeight: FontWeight.w700,
+          fontFamily: kDmSan,
+          fontSize: kText18,
+        ),
+      ),
+    );
+  }
+
+  Widget applyPromoCodeButton() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: kMargin40),
+      height: kMargin40,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kMargin8),
+        color: kPrimaryColor,
+      ),
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              kPromo,
+              color: kBackgroundColor,
+              height: kMargin25,
+              width: kMargin25,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: kMargin10,
+            ),
+            const Text(
+              kUnlockOffer,
+              style: TextStyle(
+                color: kBackgroundColor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -211,9 +224,11 @@ class PaymentListView extends StatelessWidget {
         }));
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-        height: 50,
+        padding: const EdgeInsets.symmetric(
+            horizontal: kMargin10, vertical: kMargin10),
+        margin: const EdgeInsets.symmetric(
+            vertical: kMargin8, horizontal: kMargin20),
+        height: kMargin50,
         width: double.infinity,
         decoration: BoxDecoration(
             color: kBackgroundColor,
@@ -221,11 +236,11 @@ class PaymentListView extends StatelessWidget {
               width: 1,
               color: kNowAndComingSelectedTextColor,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(kMargin8),
             boxShadow: const [
               BoxShadow(
-                color: Color.fromRGBO(255, 255, 255, 0.25),
-                blurRadius: 4,
+                color: kColor255,
+                blurRadius: kMargin4,
               ),
             ]),
         child: Row(
@@ -237,7 +252,7 @@ class PaymentListView extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SizedBox(
-              width: 10,
+              width: kMargin10,
             ),
             Text(
               kLabel,
@@ -250,7 +265,7 @@ class PaymentListView extends StatelessWidget {
             const Spacer(),
             const Icon(
               Icons.arrow_forward_ios_rounded,
-              size: 30,
+              size: kMargin20,
               color: Colors.white,
             ),
           ],

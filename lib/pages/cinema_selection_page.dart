@@ -337,97 +337,19 @@ class MovieTypeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: kMargin5),
+      padding: const EdgeInsets.symmetric(
+          horizontal: kMarginCardMedium2, vertical: kMargin5),
       decoration: BoxDecoration(
           border: Border.all(
             color: Colors.white,
-            width: 2,
+            width: 1,
           ),
-          color: const Color(0xFF555555),
+          color: kNowAndComingUnselectedTextColor,
           borderRadius: BorderRadius.circular(kMargin5)),
       child: Text(
         label,
-        style: const TextStyle(
-          fontSize: kTextRegular2X,
-          color: Colors.white,
-          fontWeight: FontWeight.w700,
-        ),
+        style: kW700Inter16.copyWith(color: Colors.white),
       ),
     );
   }
-}
-
-Widget containerWidget() {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: kMargin10),
-    height: kMargin100,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(kMargin8),
-      color: kColorD7D7,
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(
-          height: kMargin5,
-        ),
-        Container(
-          width: kMargin22,
-          height: kMargin5,
-          decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(5)),
-        ),
-        const SizedBox(
-          height: 9,
-          width: kMargin70,
-        ),
-        const Text(
-          "Today",
-        ),
-        const SizedBox(
-          height: 7,
-        ),
-        const Text(
-          "Month",
-          style: TextStyle(
-              fontSize: kTextRegular,
-              fontFamily: kInter,
-              fontWeight: FontWeight.w700,
-              color: Colors.black),
-        ),
-        const SizedBox(
-          height: 7,
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                width: kMargin10,
-                height: kMargin10,
-                color: Colors.red,
-              ),
-            ),
-            const Text(
-              "Day",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                width: kMargin10,
-                height: kMargin10,
-                color: Colors.red,
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
 }

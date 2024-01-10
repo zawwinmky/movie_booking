@@ -1,11 +1,10 @@
 const String kCinemasLabel = "Cinemas";
 const String kMovieLabel = "Movies";
 const String kTicketsLabel = "Tickets";
+const String kTicketLabel = "Ticket";
 const String kProfileLabel = "Profile";
-
 const String kNowShowingLabel = "Now Showing";
 const String kComingSoonLabel = "Coming Soon";
-
 const String kMovieBookingButtonLabel = "Booking";
 
 const String kMovieIcon = "assets/images/movie.png";
@@ -122,3 +121,25 @@ const String k3Dox = "3D DBOX";
 const String kAvailable = "Available";
 const String kFillingFast = "Filling Fast";
 const String kAlmostFull = "Almost Full";
+const String kSeeDetails = "See Details";
+const String kParking = "Parking";
+const String kWheelChairLabel = "Wheel Chair";
+const String kFoodLabel = "Food";
+const String kChoosePaymentLabel = "Choose your payment type";
+const String kUnlockOffer = "Unlock Offer or Apply Promocode";
+const String kPaymentTitle = "Payment";
+const String kYourName = "Your Name";
+const String kEnterYourName = "Enter Your Name";
+
+const String kUpiLabel = "UPI";
+const String kGiftLabel = "Gift Voucher";
+const String kQuickLabel = "Quick Pay";
+const String kCreditLabel = "Credit Card/ Debit Card";
+const String kRedeemLabel = "Redeem Point";
+const String kMobileLabel = "Mobile Wallet";
+const String kNetLabel = "Net Banking";
+const String kBuyTicket = "Buy Ticket";
+const String kSearchTheMovie = "search the movie";
+const String kNormalText = "Normal (4500 Ks)";
+const String kCheckOut = "Check Out";
+const String kContinue = "Continue";

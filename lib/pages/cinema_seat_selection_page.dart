@@ -52,86 +52,8 @@ class _CinemaSeatSelectionState extends State<CinemaSeatSelection> {
             ),
             seatGridView(),
 
-            ///three dots seat info bar
-            Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: kMargin24, vertical: kMargin10),
-              color: kColor222,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: kMargin10,
-                        width: kMargin10,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: kColor444),
-                            color: Colors.white,
-                            shape: BoxShape.circle),
-                      ),
-                      const SizedBox(
-                        width: kMargin10,
-                      ),
-                      const Text(
-                        "Available",
-                        style: TextStyle(
-                            fontFamily: kInter,
-                            fontSize: kTextRegular,
-                            color: kBottomUnselectedColor,
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        height: kMargin10,
-                        width: kMargin10,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: kColor444),
-                            color: kBottomUnselectedColor,
-                            shape: BoxShape.circle),
-                      ),
-                      const SizedBox(
-                        width: kMargin10,
-                      ),
-                      const Text(
-                        "Taken",
-                        style: TextStyle(
-                            fontFamily: kInter,
-                            color: kBottomUnselectedColor,
-                            fontSize: kTextRegular,
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        height: kMargin10,
-                        width: kMargin10,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1, color: kColor444),
-                            color: kPrimaryColor,
-                            shape: BoxShape.circle),
-                      ),
-                      const SizedBox(
-                        width: kMargin10,
-                      ),
-                      const Text(
-                        "Your Selection",
-                        style: TextStyle(
-                            fontFamily: kInter,
-                            color: kBottomUnselectedColor,
-                            fontSize: kTextRegular,
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            ///three dots seat info bar available,taken,selection
+            seatConditionBar(),
             const SizedBox(
               height: kMargin20,
             ),
@@ -149,6 +71,88 @@ class _CinemaSeatSelectionState extends State<CinemaSeatSelection> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget seatConditionBar() {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: kMargin24, vertical: kMargin10),
+      color: kColor222,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Container(
+                height: kMargin10,
+                width: kMargin10,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: kColor444),
+                    color: Colors.white,
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(
+                width: kMargin10,
+              ),
+              const Text(
+                "Available",
+                style: TextStyle(
+                    fontFamily: kInter,
+                    fontSize: kTextRegular,
+                    color: kBottomUnselectedColor,
+                    fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                height: kMargin10,
+                width: kMargin10,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: kColor444),
+                    color: kBottomUnselectedColor,
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(
+                width: kMargin10,
+              ),
+              const Text(
+                "Taken",
+                style: TextStyle(
+                    fontFamily: kInter,
+                    color: kBottomUnselectedColor,
+                    fontSize: kTextRegular,
+                    fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                height: kMargin10,
+                width: kMargin10,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: kColor444),
+                    color: kPrimaryColor,
+                    shape: BoxShape.circle),
+              ),
+              const SizedBox(
+                width: kMargin10,
+              ),
+              const Text(
+                "Your Selection",
+                style: TextStyle(
+                    fontFamily: kInter,
+                    color: kBottomUnselectedColor,
+                    fontSize: kTextRegular,
+                    fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

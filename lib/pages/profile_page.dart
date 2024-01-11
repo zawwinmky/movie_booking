@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/choose_region_page.dart';
 import 'package:movie_booking/pages/login_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
@@ -26,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             children: [
               profileWidget(),
-              bodyScreeListWidget(),
+              bodyListView(),
             ],
           ),
         ),
@@ -110,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget bodyScreeListWidget() {
+  Widget bodyListView() {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -127,9 +128,17 @@ class _ProfilePageState extends State<ProfilePage> {
             kImage: kThree,
             iconLabel: kLabelThree,
           ),
-          const ProfilePageWidgetListView(
-            kImage: kFour,
-            iconLabel: kLabelFour,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) {
+                return const ChooseRegionPage();
+              }), (route) => false);
+            },
+            child: const ProfilePageWidgetListView(
+              kImage: kFour,
+              iconLabel: kLabelFour,
+            ),
           ),
           const ProfilePageWidgetListView(
             kImage: kFive,

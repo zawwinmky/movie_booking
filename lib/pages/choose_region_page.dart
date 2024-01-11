@@ -20,19 +20,7 @@ class ChooseRegionPage extends StatelessWidget {
             const SizedBox(
               height: kMargin30,
             ),
-            const Text(
-              kPickRegion,
-              style: TextStyle(
-                  shadows: [
-                    Shadow(
-                      blurRadius: kMargin18,
-                      color: kPrimaryColor,
-                    ),
-                  ],
-                  fontSize: kTextRegular2X,
-                  fontWeight: FontWeight.w700,
-                  color: kPrimaryColor),
-            ),
+            textWidget(),
             const SizedBox(
               height: kMarginMedium3,
             ),
@@ -45,37 +33,10 @@ class ChooseRegionPage extends StatelessWidget {
             ),
 
             ///City Vector
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: kMargin22),
-                  child: Image.asset(
-                    kCity,
-                    width: kCityWidth,
-                    height: kCityHeight,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
-            ),
+            cityVector(),
 
             ///Cities Text
-            Container(
-              width: double.infinity,
-              height: kMargin40,
-              color: kCitiesTextBackgroundColor,
-              padding: const EdgeInsets.only(
-                  left: kMargin22, top: kTextXSmall, bottom: kTextXSmall),
-              child: const Text(
-                kCityText,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: kTextRegular2X,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            cityHeaderText(),
 
             ///City list
             CitiesListView(),
@@ -83,6 +44,57 @@ class ChooseRegionPage extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  Widget textWidget() {
+    return const Text(
+      kPickRegion,
+      style: TextStyle(
+          shadows: [
+            Shadow(
+              blurRadius: kMargin18,
+              color: kPrimaryColor,
+            ),
+          ],
+          fontSize: kTextRegular2X,
+          fontWeight: FontWeight.w700,
+          color: kPrimaryColor),
+    );
+  }
+
+  Widget cityHeaderText() {
+    return Container(
+      width: double.infinity,
+      height: kMargin40,
+      color: kCitiesTextBackgroundColor,
+      padding: const EdgeInsets.only(
+          left: kMargin22, top: kTextXSmall, bottom: kTextXSmall),
+      child: const Text(
+        kCityText,
+        style: TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: kTextRegular2X,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget cityVector() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: kMargin22),
+          child: Image.asset(
+            kCity,
+            width: kCityWidth,
+            height: kCityHeight,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ],
+    );
   }
 }
 

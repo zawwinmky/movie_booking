@@ -217,7 +217,6 @@ class PaymentListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: kPrimaryColor,
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
           return const TicketConfirmedPage();

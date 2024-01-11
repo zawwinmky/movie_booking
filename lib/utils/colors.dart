@@ -46,3 +46,4 @@ const Color kColorAAA = Color(0xFFAAAAAA);
 const Color kPlusMinusShadow = Color.fromRGBO(0, 0, 0, 0.25);
 const Color kColor255 = Color.fromRGBO(255, 255, 255, 0.25);
 const Color kColorF60 = Color(0xFFFF6B00);
+const Color kColorF20 = Color(0xFFFF2E00);

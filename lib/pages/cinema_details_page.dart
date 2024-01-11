@@ -24,23 +24,15 @@ class CinemaDetailsPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          "Cinemas Details",
-          style: TextStyle(
-            fontFamily: kDmSan,
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 22,
-          ),
-        ),
-        actions: [
-          const Icon(
+        title: titleWidget(),
+        actions: const [
+          Icon(
             Icons.star_outline_rounded,
             color: Colors.white,
-            size: 30,
+            size: kMargin30,
           ),
           SizedBox(
-            width: 22,
+            width: kMargin22,
           )
         ],
       ),
@@ -61,184 +53,49 @@ class CinemaDetailsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 26,
+                    height: kMargin25,
                   ),
-                  const Text(
-                    "JCGV : Junction City",
-                    style: TextStyle(
-                      fontSize: kTextRegular2X,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
+                  cinemaName(),
                   const SizedBox(
-                    height: 15,
+                    height: kMargin15,
                   ),
 
                   ///Address
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Expanded(
-                        child: Text(
-                          "Q5H3+JPP, Corner of, Bogyoke Lann, Yangon",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 71,
-                      ),
-                      Image.asset(
-                        kArrow,
-                        color: kPrimaryColor,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                    ],
-                  ),
+                  addressWidget(),
 
                   ///Spacer
                   const SizedBox(
-                    height: 40,
+                    height: kMargin40,
                   ),
-                  const Text(
-                    "Facilities",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
+                  facilityWidget(),
                   const SizedBox(
-                    height: 16,
+                    height: kTextRegular2X,
                   ),
 
                   ///Facilities
-                  Row(
-                    children: [
-                      Image.asset(
-                        kParkingIcon,
-                        width: 16,
-                        height: 16,
-                        color: kPrimaryColor,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      const Text(
-                        "Parking",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: kTextRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Image.asset(
-                        kCartIcon,
-                        width: 16,
-                        height: 16,
-                        color: kPrimaryColor,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      const Text(
-                        "Food",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: kTextRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Image.asset(
-                        kWheelChair,
-                        width: 16,
-                        height: 16,
-                        color: kPrimaryColor,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      const Text(
-                        "Wheel Chair",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: kTextRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-
-                  ///ticket cancellation
-                  Row(
-                    children: [
-                      Image.asset(
-                        kCancelTicket,
-                        width: 16,
-                        height: 16,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      const Text(
-                        "Ticket Cancellation",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: kTextRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
+                  facilityAndTicketCancellation(),
 
                   const SizedBox(
-                    height: 40,
+                    height: kMargin40,
                   ),
-                  const Text(
-                    "Safety",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
+                  safetyText(),
 
                   const SizedBox(
-                    height: 20,
+                    height: kMargin20,
                   ),
                   const Wrap(
                     alignment: WrapAlignment.start,
                     direction: Axis.horizontal,
-                    runSpacing: 12,
+                    runSpacing: kTextSmall,
                     spacing: 2,
                     children: [
-                      SafetyWidget(safetyLabel: "Thermanal Scannig"),
-                      SafetyWidget(safetyLabel: "Contactless Security Check"),
-                      SafetyWidget(
-                          safetyLabel: "Santization Before Every Show"),
-                      SafetyWidget(safetyLabel: "Disposable 3D glass"),
-                      SafetyWidget(safetyLabel: "Contactless Food Serviec"),
-                      SafetyWidget(safetyLabel: "Package Food "),
-                      SafetyWidget(safetyLabel: "Deep Cleaning of rest room"),
+                      SafetyWidget(safetyLabel: kThermal),
+                      SafetyWidget(safetyLabel: kContactless),
+                      SafetyWidget(safetyLabel: kSanitization),
+                      SafetyWidget(safetyLabel: kDisposable),
+                      SafetyWidget(safetyLabel: kService),
+                      SafetyWidget(safetyLabel: kPackage),
+                      SafetyWidget(safetyLabel: kDeep),
                     ],
                   ),
                 ],
@@ -249,6 +106,176 @@ class CinemaDetailsPage extends StatelessWidget {
       )),
     );
   }
+
+  Widget safetyText() {
+    return const Text(
+      kSafety,
+      style: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.w600,
+        fontSize: kText18,
+      ),
+    );
+  }
+
+  Widget facilityWidget() {
+    return const Text(
+      kFacilities,
+      style: TextStyle(
+        fontSize: kText18,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget facilityAndTicketCancellation() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Image.asset(
+              kParkingIcon,
+              width: kTextRegular2X,
+              height: kTextRegular2X,
+              color: kPrimaryColor,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: kMargin5,
+            ),
+            const Text(
+              kParking,
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Image.asset(
+              kCartIcon,
+              width: kTextRegular2X,
+              height: kTextRegular2X,
+              color: kPrimaryColor,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: kMargin5,
+            ),
+            const Text(
+              kFoodLabel,
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(
+              width: kMargin15,
+            ),
+            Image.asset(
+              kWheelChair,
+              width: kTextRegular2X,
+              height: kTextRegular2X,
+              color: kPrimaryColor,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: kMargin5,
+            ),
+            const Text(
+              kWheelChairLabel,
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.w500,
+              ),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: kTextSmall,
+        ),
+
+        ///ticket cancellation
+        Row(
+          children: [
+            Image.asset(
+              kCancelTicket,
+              width: kTextRegular,
+              height: kTextRegular,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: kMargin5,
+            ),
+            const Text(
+              "Ticket Cancellation",
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget addressWidget() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Expanded(
+          child: Text(
+            "Q5H3+JPP, Corner of, Bogyoke Lann, Yangon",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: kText18,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: kMargin70,
+        ),
+        Image.asset(
+          kArrow,
+          color: kPrimaryColor,
+          width: kMargin50,
+          height: kMargin50,
+          fit: BoxFit.cover,
+        ),
+      ],
+    );
+  }
+
+  Widget cinemaName() {
+    return const Text(
+      "JCGV : Junction City",
+      style: TextStyle(
+        fontSize: kTextRegular2X,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget titleWidget() {
+    return const Text(
+      kCinemaDetails,
+      style: TextStyle(
+        fontFamily: kDmSan,
+        color: Colors.white,
+        fontWeight: FontWeight.w700,
+        fontSize: kMargin22,
+      ),
+    );
+  }
 }
 
 class SafetyWidget extends StatelessWidget {
@@ -257,7 +284,7 @@ class SafetyWidget extends StatelessWidget {
   final String safetyLabel;
 
   @override
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       decoration: BoxDecoration(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_booking/pages/cinemas_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/widgets_view/choose_movie_time_grid_view_widget.dart';
-
 import '../utils/dimensions.dart';
 import '../utils/font_styles.dart';
 import '../utils/strings.dart';
@@ -183,14 +182,14 @@ class _CinemaSearchPageState extends State<CinemaSearchPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '3,500Ks',
+                kKs3500,
                 style: kInter14.copyWith(
                   fontWeight: FontWeight.w500,
                   color: kBottomUnselectedColor,
                 ),
               ),
               Text(
-                '29,500Ks',
+                kKs29500,
                 style: kInter14.copyWith(
                   fontWeight: FontWeight.w500,
                   color: kBottomUnselectedColor,
@@ -266,15 +265,9 @@ class CinemaSearchDropdownView extends StatefulWidget {
 }
 
 class _CinemaSearchDropdownViewState extends State<CinemaSearchDropdownView> {
-  List<String> dropDownItemsForFormat = [
-    "Format",
-    "2D",
-    "3D",
-    "3D IMAX",
-    "3D DBOX"
-  ];
+  List<String> dropDownItemsForFormat = [kFormat, k2D, k3D, k3DImax, k3Dox];
   List<String> dropDownItemsForFacilities = [
-    "Facilities",
+    kFacilities,
     kParking,
     kFoodLabel,
     kWheelChairLabel

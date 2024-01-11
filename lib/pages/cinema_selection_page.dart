@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/pages/cinema_search_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/font_styles.dart';
@@ -24,53 +25,7 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: kBackgroundColor,
-        title: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.white,
-              ),
-            ),
-            const Spacer(),
-            Image.asset(
-              kArrow,
-              width: kMargin28,
-              height: kMargin28,
-            ),
-            const Text(
-              "Yangon",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.italic,
-                fontSize: kTextRegular2X,
-              ),
-            ),
-            const SizedBox(
-              width: kMargin25,
-            ),
-            const Icon(
-              Icons.search_sharp,
-              color: Colors.white,
-              size: kMargin22,
-            ),
-            const SizedBox(
-              width: kMargin30,
-            ),
-            const Icon(
-              Icons.filter_alt_rounded,
-              size: kMargin22,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              width: kMargin5,
-            )
-          ],
-        ),
+        title: titleWidget(),
       ),
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -96,20 +51,9 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
               ),
             ),
 
-            ///Cinema Types 2D, 3D,
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: kMargin22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MovieTypeView(label: k2D),
-                    MovieTypeView(label: k3D),
-                    MovieTypeView(label: k3DImax),
-                    MovieTypeView(label: k3Dox),
-                  ],
-                ),
-              ),
+            ///Movie Types 2D, 3D,
+            SliverToBoxAdapter(
+              child: movieFormats(),
             ),
 
             ///Spacer
@@ -134,6 +78,78 @@ class _CinemaSelectionPageState extends State<CinemaSelectionPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget movieFormats() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: kMargin22),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          MovieTypeView(label: k2D),
+          MovieTypeView(label: k3D),
+          MovieTypeView(label: k3DImax),
+          MovieTypeView(label: k3Dox),
+        ],
+      ),
+    );
+  }
+
+  Widget titleWidget() {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.white,
+          ),
+        ),
+        const Spacer(),
+        Image.asset(
+          kArrow,
+          width: kMargin28,
+          height: kMargin28,
+        ),
+        const Text(
+          "Yangon",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.italic,
+            fontSize: kTextRegular2X,
+          ),
+        ),
+        const SizedBox(
+          width: kMargin25,
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const CinemaSearchPage();
+            }));
+          },
+          child: const Icon(
+            Icons.search_sharp,
+            color: Colors.white,
+            size: kMargin22,
+          ),
+        ),
+        const SizedBox(
+          width: kMargin30,
+        ),
+        const Icon(
+          Icons.filter_alt_rounded,
+          size: kMargin22,
+          color: Colors.white,
+        ),
+        const SizedBox(
+          width: kMargin5,
+        )
+      ],
     );
   }
 

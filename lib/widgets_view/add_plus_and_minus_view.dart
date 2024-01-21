@@ -88,7 +88,7 @@ class _AddPlusAndMinusViewState extends State<AddPlusAndMinusView> {
   Widget build(BuildContext context) {
     return (foodItemCount > 0)
         ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
                 onTap: () {

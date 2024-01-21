@@ -5,6 +5,7 @@ import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import '../utils/strings.dart';
 import '../widgets_view/ticket_confirmed_widget_view.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketConfirmedPage extends StatefulWidget {
   const TicketConfirmedPage({super.key});
@@ -74,12 +75,26 @@ class _TicketConfirmedPageState extends State<TicketConfirmedPage> {
           const SizedBox(
             height: kMargin75,
           ),
-          Image.asset(
-            kQr,
-            color: Colors.white,
-            width: kMargin94,
-            height: kMargin94,
-            fit: BoxFit.cover,
+          // Image.asset(
+          //   kQr,
+          //   color: Colors.white,
+          //   width: kMargin94,
+          //   height: kMargin94,
+          //   fit: BoxFit.cover,
+          // ),
+          QrImageView(
+            semanticsLabel: "Qr Code",
+            dataModuleStyle: const QrDataModuleStyle(
+              color: Colors.black,
+              dataModuleShape: QrDataModuleShape.square,
+            ),
+            eyeStyle: const QrEyeStyle(
+                color: Colors.black, eyeShape: QrEyeShape.square),
+            data: "WKC2L96",
+            size: kMargin94,
+            padding: const EdgeInsets.all(5),
+            backgroundColor: Colors.white,
+            gapless: true,
           ),
           const SizedBox(
             height: kMargin20,

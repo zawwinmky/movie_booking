@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_booking/pages/choose_region_page.dart';
 import 'package:movie_booking/pages/login_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
@@ -21,13 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
-  // void delayFunction() async {
-  //   await Future.delayed(const Duration(milliseconds: 2000));
-  //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-  //     return const ChooseRegionPage();
-  //   }), (route) => false);
-  // }
-  //
   void delayFunction(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 2));
     if (!context.mounted) return;

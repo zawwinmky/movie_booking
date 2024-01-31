@@ -3,6 +3,8 @@ import 'package:movie_booking/data/VOs/date_vo.dart';
 
 import '../../data/VOs/movie_vo.dart';
 
+part 'movie_list_response.g.part';
+
 @JsonSerializable()
 class GetNowPlayingMovieList {
   @JsonKey(name: "dates")

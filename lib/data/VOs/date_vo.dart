@@ -7,7 +7,7 @@ class DateVO {
   @JsonKey(name: "maximum")
   String? maximum;
 
-  @JsonKey(name: "maximum")
+  @JsonKey(name: "minimum")
   String? minimum;
 
   DateVO(this.maximum, this.minimum);

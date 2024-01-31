@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'credit_vo.g.part';
+part 'credit_vo.g.dart';
 
 @JsonSerializable()
 class CreditVO {

@@ -5,7 +5,7 @@ import 'package:movie_booking/data/VOs/spoken_languages_vo.dart';
 
 import 'collection_vo.dart';
 import 'genres_vo.dart';
-part 'movie_vo.g.part';
+part 'movie_vo.g.dart';
 
 @JsonSerializable()
 class MovieVO {
@@ -40,7 +40,7 @@ class MovieVO {
   String? overview;
 
   @JsonKey(name: "popularity")
-  String? popularity;
+  double? popularity;
 
   @JsonKey(name: "poster_path")
   String? posterPath;

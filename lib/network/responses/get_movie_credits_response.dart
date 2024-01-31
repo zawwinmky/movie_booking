@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../data/VOs/credit_vo.dart';
 
-part 'get_movie_credits_response.g.part';
+part 'get_movie_credits_response.g.dart';
 
 @JsonSerializable()
 class GetMovieCreditResponse {

@@ -3,12 +3,12 @@ import 'package:movie_booking/data/VOs/date_vo.dart';
 
 import '../../data/VOs/movie_vo.dart';
 
-part 'movie_list_response.g.part';
+part 'movie_list_response.g.dart';
 
 @JsonSerializable()
 class GetNowPlayingMovieList {
   @JsonKey(name: "dates")
-  List<DateVO>? dates;
+  DateVO? dates;
 
   @JsonKey(name: "page")
   int? page;

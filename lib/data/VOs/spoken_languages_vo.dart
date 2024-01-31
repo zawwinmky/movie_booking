@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'spoken_languages_vo.g.part';
+part 'spoken_languages_vo.g.dart';
 
 @JsonSerializable()
 class SpokenLanguageVO {

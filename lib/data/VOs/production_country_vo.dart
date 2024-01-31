@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'production_country_vo.g.part';
+part 'production_country_vo.g.dart';
 
 @JsonSerializable()
 class ProductionCountryVO {

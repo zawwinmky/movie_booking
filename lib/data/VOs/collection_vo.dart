@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'collection_vo.g.part';
+part 'collection_vo.g.dart';
 
 @JsonSerializable()
 class CollectionVO {

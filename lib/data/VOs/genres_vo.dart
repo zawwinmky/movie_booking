@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'genres_vo.g.part';
+part 'genres_vo.g.dart';
 
 @JsonSerializable()
 class GenresVO {

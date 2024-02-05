@@ -9,9 +9,10 @@ part of 'movie_vo.dart';
 MovieVO _$MovieVOFromJson(Map<String, dynamic> json) => MovieVO(
       json['adult'] as bool?,
       json['backdrop_path'] as String?,
-      (json['belongs_to_collection'] as List<dynamic>?)
-          ?.map((e) => CollectionVO.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      json['belongs_to_collection'] == null
+          ? null
+          : CollectionVO.fromJson(
+              json['belongs_to_collection'] as Map<String, dynamic>),
       (json['budget'] as num?)?.toDouble(),
       (json['genres'] as List<dynamic>?)
           ?.map((e) => GenresVO.fromJson(e as Map<String, dynamic>))

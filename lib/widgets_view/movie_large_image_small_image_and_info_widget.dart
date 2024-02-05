@@ -26,12 +26,6 @@ class MovieLarImageSmallImageAndInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ///Large top Image
-              // Image.network(
-              //   movie?.getBackdropPathWithBaseUrl() ?? "",
-              //   height: kMovieDetailsLargeImageHeight,
-              //   fit: BoxFit.fill,
-              //   width: double.infinity,
-              // ),
               CachedNetworkImage(
                 imageUrl: movie?.getPosterPathWithBaseUrl() ?? "",
                 errorWidget: (_, __, ___) {
@@ -167,14 +161,16 @@ class MovieNameAndRatingView extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          movie?.title ?? "",
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: kTextRegular2X,
-            fontWeight: FontWeight.w700,
+        Expanded(
+          child: Text(
+            movie?.title ?? "",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: kTextRegular,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         const SizedBox(
@@ -195,7 +191,10 @@ class MovieNameAndRatingView extends StatelessWidget {
             fontSize: kTextRegular2X,
             color: Colors.white,
           ),
-        )
+        ),
+        const SizedBox(
+          width: kMargin5,
+        ),
       ],
     );
   }

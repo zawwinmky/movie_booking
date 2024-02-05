@@ -14,7 +14,9 @@ import '../widgets_view/movie_large_image_small_image_and_info_widget.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   final String movieID;
-  const MovieDetailsPage({super.key, required this.movieID});
+  const MovieDetailsPage(
+      {super.key, required this.movieID, required this.isNowPlaying});
+  final bool isNowPlaying;
 
   @override
   State<MovieDetailsPage> createState() => _MovieDetailsPageState();
@@ -74,6 +76,9 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                 const SizedBox(
                   height: kMargin30,
                 ),
+                Visibility(
+                    visible: widget.isNowPlaying,
+                    child: releasingInComingDayWidget()),
 
                 ///Story Line
                 StoryLine(
@@ -102,16 +107,89 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           const BackButtonAndShareButtonWidget(),
 
           ///Bottom Gradient And Booking Button
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return const CinemaSelectionPage();
-              }));
-            },
-            child: bookingButtonWidget(),
+          Visibility(
+            visible: !widget.isNowPlaying,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const CinemaSelectionPage();
+                }));
+              },
+              child: bookingButtonWidget(),
+            ),
           ),
         ],
       )),
+    );
+  }
+
+  Widget releasingInComingDayWidget() {
+    return Container(
+      margin: const EdgeInsets.only(
+          left: kMarginMedium2, right: kMarginMedium2, bottom: kMargin30),
+      padding: const EdgeInsets.only(
+          top: kMarginCardMedium2,
+          bottom: kMarginCardMedium2,
+          left: kMarginCardMedium2,
+          right: kMargin5),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kTextSmall),
+        gradient: const LinearGradient(
+          colors: [
+            kComingDayBackgroundColorThree,
+            kComingDayBackgroundColorTwo,
+            kComingDayBackgroundColorOne,
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ///Text and noti button
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                kReleaseDays,
+                style: TextStyle(
+                  fontSize: kTextRegular2X,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: kTextSmall,
+              ),
+              Text(
+                kGetNotifyButtonLabel,
+                style: TextStyle(
+                  fontSize: kTextRegular,
+                  fontWeight: FontWeight.w600,
+                  color: kGetNotiTextColor,
+                ),
+              ),
+              SizedBox(
+                height: kMarginMedium3,
+              ),
+              SetNotiButton(),
+            ],
+          ),
+
+          ///Girl Image
+          Image.asset(
+            kNotiGirl,
+            height: kNotiGirlHeight,
+            width: kNotiGirlWidth,
+          ),
+        ],
+      ),
     );
   }
 
@@ -265,6 +343,58 @@ class BookingButton extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SetNotiButton extends StatefulWidget {
+  const SetNotiButton({
+    super.key,
+  });
+
+  @override
+  State<SetNotiButton> createState() => _SetNotiButtonState();
+}
+
+class _SetNotiButtonState extends State<SetNotiButton> {
+  bool isSetNotified = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          isSetNotified = !isSetNotified;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.all(kMarginMedium),
+        decoration: BoxDecoration(
+          color: kPrimaryColor,
+          borderRadius: BorderRadius.circular(kMarginMedium),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.notifications_active,
+              size: kTextRegular2X,
+              color: Colors.black,
+            ),
+            const SizedBox(
+              width: kTextSmall,
+            ),
+            Text(
+              isSetNotified ? kSetNotiLabel : kUndo,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: kTextRegular,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

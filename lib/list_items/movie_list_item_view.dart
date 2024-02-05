@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_booking/data/VOs/movie_vo.dart';
-import 'package:movie_booking/pages/coming_soon_movie_page.dart';
 import 'package:movie_booking/pages/movie_details_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
@@ -22,19 +21,12 @@ class MovieListItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (isComingSoonSelected) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return ComingSoonMoviePage(
-              movieID: movieID,
-            );
-          }));
-        } else {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return MovieDetailsPage(
-              movieID: movieID,
-            );
-          }));
-        }
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return MovieDetailsPage(
+            movieID: movieID,
+            isNowPlaying: isComingSoonSelected,
+          );
+        }));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -90,11 +82,12 @@ class MovieListItemView extends StatelessWidget {
                           color: kPrimaryColor,
                           borderRadius: BorderRadius.circular(kMarginMedium),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            "8th\nAUG",
+                            movie.getFormattedDateForHomeScreen(
+                                movie.releaseDate ?? ""),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: kNowAndComingUnselectedTextColor,
                               fontSize: kTextSmall,
                             ),

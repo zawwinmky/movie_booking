@@ -5,11 +5,43 @@ import 'package:movie_booking/utils/strings.dart';
 import 'package:movie_booking/widgets_view/back_button_and_share_button_widget.dart';
 import 'package:movie_booking/widgets_view/movie_large_image_small_image_and_info_widget.dart';
 
+import '../data/VOs/credit_vo.dart';
+import '../data/VOs/movie_vo.dart';
+import '../data/models/movie_booking_model.dart';
 import '../widgets_view/censor_rating_release_date_and_duration_widget.dart';
 import 'movie_details_page.dart';
 
-class ComingSoonMoviePage extends StatelessWidget {
-  const ComingSoonMoviePage({super.key});
+class ComingSoonMoviePage extends StatefulWidget {
+  const ComingSoonMoviePage({
+    super.key,
+    required this.movieID,
+  });
+  final String movieID;
+
+  @override
+  State<ComingSoonMoviePage> createState() => _ComingSoonMoviePageState();
+}
+
+class _ComingSoonMoviePageState extends State<ComingSoonMoviePage> {
+  final MovieBookingModel _model = MovieBookingModel();
+  MovieVO? movieDetails;
+  List<CreditVO> creditList = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _model.getMovieDetails(widget.movieID).then((value) {
+      setState(() {
+        movieDetails = value;
+      });
+    });
+    _model.getMovieCredits(widget.movieID).then((value) {
+      setState(() {
+        creditList = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +53,20 @@ class ComingSoonMoviePage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                const MovieLarImageSmallImageAndInfo(),
+                MovieLarImageSmallImageAndInfo(
+                  movie: movieDetails,
+                ),
                 const SizedBox(
                   height: kMargin30,
                 ),
 
                 ///Censor , Rating, Release date and duration
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kMarginMedium2),
-                  child: CensorRatingReleaseDateAndDuration(),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: kMarginMedium2),
+                  child: CensorRatingReleaseDateAndDuration(
+                    movie: movieDetails,
+                  ),
                 ),
 
                 const SizedBox(
@@ -43,13 +80,17 @@ class ComingSoonMoviePage extends StatelessWidget {
                 ),
 
                 ///Story Line
-                const StoryLine(),
+                StoryLine(
+                  movie: movieDetails,
+                ),
 
                 const SizedBox(
                   height: kMargin30,
                 ),
 
-                const CastView(),
+                CastView(
+                  creditList: creditList,
+                ),
               ],
             ),
           ),

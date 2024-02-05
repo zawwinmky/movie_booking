@@ -1,7 +1,9 @@
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_booking/data/VOs/production_company_vo.dart';
 import 'package:movie_booking/data/VOs/production_country_vo.dart';
 import 'package:movie_booking/data/VOs/spoken_languages_vo.dart';
+import 'package:movie_booking/network/api_constants.dart';
 
 import 'collection_vo.dart';
 import 'genres_vo.dart';
@@ -111,4 +113,42 @@ class MovieVO {
       _$MovieVOFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieVOToJson(this);
+
+  ///Poster path with base url
+  String getPosterPathWithBaseUrl() {
+    return kImageBaseUrl + (posterPath ?? "");
+  }
+
+  ///Backdrop path with base url
+  String getBackdropPathWithBaseUrl() {
+    return kImageBaseUrl + (backdropPath ?? "");
+  }
+
+  ///Get rating with 2 deci
+
+  String getRatingWithTwoDeci() {
+    return voteAverage?.toStringAsFixed(2) ?? "";
+  }
+
+  ///Get Run Time format
+  String getRunTimeFormat() {
+    if (runtime != null) {
+      int hours = runtime! ~/ 60;
+      int minutes = runtime! % 60;
+      return "$hours hr $minutes mins";
+    } else {
+      return "";
+    }
+  }
+
+  ///Get Release Date Format
+  String getReleaseDate() {
+    if (releaseDate != null) {
+      DateTime dateTime = DateTime.parse(releaseDate!);
+      String formattedDate = DateFormat('dd MMMM').format(dateTime);
+      return formattedDate;
+    } else {
+      return "";
+    }
+  }
 }

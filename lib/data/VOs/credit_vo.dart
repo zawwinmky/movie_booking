@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:movie_booking/network/api_constants.dart';
 
 part 'credit_vo.g.dart';
 
@@ -66,4 +67,9 @@ class CreditVO {
       _$CreditVOFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreditVOToJson(this);
+
+  ///Get cast image url
+  String getCastImageUrl() {
+    return kImageBaseUrl + (profilePath ?? "");
+  }
 }

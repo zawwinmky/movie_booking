@@ -1,19 +1,19 @@
-
-
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../data/VOs/movie_vo.dart';
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 import '../utils/images.dart';
 import '../utils/strings.dart';
 
-
-
-
-
 class MovieLarImageSmallImageAndInfo extends StatelessWidget {
-  const MovieLarImageSmallImageAndInfo({super.key});
+  final MovieVO? movie;
+
+  const MovieLarImageSmallImageAndInfo({
+    super.key,
+    required this.movie,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,20 @@ class MovieLarImageSmallImageAndInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ///Large top Image
-              Image.network(
-                "https://wallpapercosmos.com/w/full/7/4/0/37509-3000x1973-desktop-hd-the-shawshank-redemption-background-image.jpg",
+              // Image.network(
+              //   movie?.getBackdropPathWithBaseUrl() ?? "",
+              //   height: kMovieDetailsLargeImageHeight,
+              //   fit: BoxFit.fill,
+              //   width: double.infinity,
+              // ),
+              CachedNetworkImage(
+                imageUrl: movie?.getPosterPathWithBaseUrl() ?? "",
+                errorWidget: (_, __, ___) {
+                  return Image.network(
+                      "https://www.shutterstock.com/image-vector/caution-exclamation-mark-white-red-260nw-1055269061.jpg");
+                },
                 height: kMovieDetailsLargeImageHeight,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 width: double.infinity,
               ),
 
@@ -38,18 +48,19 @@ class MovieLarImageSmallImageAndInfo extends StatelessWidget {
               ),
 
               ///Movie info box
-              MovieInfoAndGenresView(),
+              MovieInfoAndGenresView(
+                movie: movie,
+              ),
             ],
           ),
           Positioned(
               top: 114,
               right: MediaQuery.of(context).size.width * 0.1,
               left: MediaQuery.of(context).size.width * 0.1,
-
               child: Image.asset(
                 kPlayButton,
                 width: kMargin50,
-                height:kMargin50,
+                height: kMargin50,
               )),
 
           ///Small Vertical Image
@@ -58,11 +69,15 @@ class MovieLarImageSmallImageAndInfo extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(
                   left: kMarginMedium2, bottom: kMarginMedium2),
-              child: Image.network(
-                'https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71nOXiTN5yL._AC_UF894,1000_QL80_.jpg',
+              child: CachedNetworkImage(
+                imageUrl: movie?.getPosterPathWithBaseUrl() ?? "",
                 width: kMovieDetailSmallImageWidth,
                 height: kMovieDetailSmallImageHeight,
                 fit: BoxFit.cover,
+                errorWidget: (_, __, ___) {
+                  return Image.network(
+                      "https://www.shutterstock.com/image-vector/caution-exclamation-mark-white-red-260nw-1055269061.jpg");
+                },
               ),
             ),
           ),
@@ -73,7 +88,8 @@ class MovieLarImageSmallImageAndInfo extends StatelessWidget {
 }
 
 class MovieInfoAndGenresView extends StatelessWidget {
-  MovieInfoAndGenresView({super.key});
+  final MovieVO? movie;
+  MovieInfoAndGenresView({super.key, required this.movie});
 
   final List<String> genresList = ['Action', 'Drama', 'Adventure', 'Animation'];
 
@@ -87,7 +103,9 @@ class MovieInfoAndGenresView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ///Movie Name and Rating
-            const MovieNameAndRatingView(),
+            MovieNameAndRatingView(
+              movie: movie,
+            ),
             const SizedBox(
               height: kMarginMedium2,
             ),
@@ -110,24 +128,28 @@ class MovieInfoAndGenresView extends StatelessWidget {
             Wrap(
               runSpacing: kMarginMedium,
               spacing: kMarginMedium,
-              children: genresList
-                  .map((e) => Container(
-                decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  borderRadius:
-                  BorderRadius.circular(kMarginCardMedium2),
-                ),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: kMarginMedium, vertical: kMarginSmall),
-                child: Text(
-                  e,
-                  style: const TextStyle(
-                    fontSize: kTextSmall,
-                    color: Colors.black,
-                  ),
-                ),
-              ))
-                  .toList(),
+              children: movie?.genres
+                      ?.take(5)
+                      .map((value) => value.name)
+                      .map((e) => Container(
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius:
+                                  BorderRadius.circular(kMarginCardMedium2),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: kMarginMedium,
+                                vertical: kMarginSmall),
+                            child: Text(
+                              e ?? "",
+                              style: const TextStyle(
+                                fontSize: kTextSmall,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ))
+                      .toList() ??
+                  [],
             ),
           ],
         ),
@@ -137,16 +159,19 @@ class MovieInfoAndGenresView extends StatelessWidget {
 }
 
 class MovieNameAndRatingView extends StatelessWidget {
-  const MovieNameAndRatingView({super.key});
+  final MovieVO? movie;
+  const MovieNameAndRatingView({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          "Shawshank",
-          style: TextStyle(
+        Text(
+          movie?.title ?? "",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: kTextRegular2X,
             fontWeight: FontWeight.w700,
@@ -162,9 +187,9 @@ class MovieNameAndRatingView extends StatelessWidget {
           width: kImdbWidth,
           height: kImdbHeight,
         ),
-        const Text(
-          "9.7",
-          style: TextStyle(
+        Text(
+          movie?.getRatingWithTwoDeci() ?? "",
+          style: const TextStyle(
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.bold,
             fontSize: kTextRegular2X,

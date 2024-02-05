@@ -6,9 +6,8 @@ part of 'movie_list_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetNowPlayingMovieList _$GetNowPlayingMovieListFromJson(
-        Map<String, dynamic> json) =>
-    GetNowPlayingMovieList(
+MovieListResponse _$MovieListResponseFromJson(Map<String, dynamic> json) =>
+    MovieListResponse(
       json['dates'] == null
           ? null
           : DateVO.fromJson(json['dates'] as Map<String, dynamic>),
@@ -18,8 +17,7 @@ GetNowPlayingMovieList _$GetNowPlayingMovieListFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$GetNowPlayingMovieListToJson(
-        GetNowPlayingMovieList instance) =>
+Map<String, dynamic> _$MovieListResponseToJson(MovieListResponse instance) =>
     <String, dynamic>{
       'dates': instance.dates,
       'page': instance.page,

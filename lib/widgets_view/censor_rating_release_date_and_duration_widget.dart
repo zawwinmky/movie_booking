@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/data/VOs/movie_vo.dart';
 
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
+
 class CensorRatingReleaseDateAndDuration extends StatelessWidget {
-  const CensorRatingReleaseDateAndDuration({super.key});
+  final MovieVO? movie;
+  const CensorRatingReleaseDateAndDuration({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CensorRatingAndDurationButtonView(
+        const CensorRatingAndDurationButtonView(
           label: "Censor Rating",
           value: "U/A",
         ),
         CensorRatingAndDurationButtonView(
           label: "Release Date",
-          value: "May 8, 2022",
+          value: movie?.getReleaseDate() ?? "",
         ),
         CensorRatingAndDurationButtonView(
           label: "Duration",
-          value: '2hr 18min',
+          value: movie?.getRunTimeFormat() ?? "",
         ),
       ],
     );

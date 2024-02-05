@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/data/VOs/movie_vo.dart';
 import 'package:movie_booking/pages/coming_soon_movie_page.dart';
 import 'package:movie_booking/pages/movie_details_page.dart';
 import 'package:movie_booking/utils/colors.dart';
@@ -7,9 +8,15 @@ import 'package:movie_booking/utils/dimensions.dart';
 import '../utils/images.dart';
 
 class MovieListItemView extends StatelessWidget {
-  const MovieListItemView({super.key, required this.isComingSoonSelected});
+  const MovieListItemView(
+      {super.key,
+      required this.isComingSoonSelected,
+      required this.movie,
+      required this.movieID});
 
   final bool isComingSoonSelected;
+  final MovieVO movie;
+  final String movieID;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +24,15 @@ class MovieListItemView extends StatelessWidget {
       onTap: () {
         if (isComingSoonSelected) {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const ComingSoonMoviePage();
+            return ComingSoonMoviePage(
+              movieID: movieID,
+            );
           }));
         } else {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const MovieDetailsPage();
+            return MovieDetailsPage(
+              movieID: movieID,
+            );
           }));
         }
       },
@@ -44,7 +55,7 @@ class MovieListItemView extends StatelessWidget {
                     topRight: Radius.circular(kMarginMedium),
                   ),
                   child: Image.network(
-                    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2fa44b15344917.5628fd261893b.jpg",
+                    movie.getPosterPathWithBaseUrl(),
                     fit: BoxFit.cover,
                     height: kMoviePosterHeight,
                     width: double.infinity,
@@ -97,7 +108,9 @@ class MovieListItemView extends StatelessWidget {
             ),
 
             ///Movie Name and ID
-            const MovieNameAndID(),
+            MovieNameAndID(
+              movie: movie,
+            ),
 
             ///Spacer
             const SizedBox(
@@ -114,7 +127,9 @@ class MovieListItemView extends StatelessWidget {
 }
 
 class MovieNameAndID extends StatelessWidget {
-  const MovieNameAndID({super.key});
+  const MovieNameAndID({super.key, required this.movie});
+
+  final MovieVO movie;
 
   @override
   Widget build(BuildContext context) {
@@ -123,11 +138,16 @@ class MovieNameAndID extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            "Shawshank",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: kTextSmall,
+          ///Movie Title
+          Expanded(
+            child: Text(
+              movie.title ?? "",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: kTextSmall,
+              ),
             ),
           ),
           const Spacer(),
@@ -141,9 +161,9 @@ class MovieNameAndID extends StatelessWidget {
           ),
 
           ///Rating
-          const Text(
-            "9.7",
-            style: TextStyle(
+          Text(
+            movie.getRatingWithTwoDeci(),
+            style: const TextStyle(
               color: Colors.white,
               fontStyle: FontStyle.italic,
               fontSize: kTextSmall,

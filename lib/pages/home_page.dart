@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/data/models/movie_booking_model.dart';
 import 'package:movie_booking/list_items/movie_list_item_view.dart';
 import 'package:movie_booking/pages/movie_search_page.dart';
 import 'package:movie_booking/utils/colors.dart';
@@ -6,6 +7,8 @@ import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/fonts.dart';
 import 'package:movie_booking/utils/strings.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../data/VOs/movie_vo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,7 +40,8 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return const MovieSearchPage();
+                // return const MovieSearchPage();
+                return Container();
               }));
             },
             child: const Icon(
@@ -114,7 +118,32 @@ class HomePageScreenBodyView extends StatefulWidget {
 }
 
 class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
+  ///Model
+  final MovieBookingModel _model = MovieBookingModel();
+
+  ///Now Playing or Coming Soon
   String selectedText = kNowShowingLabel;
+
+  List<MovieVO> nowPlayingMovieList = [];
+  List<MovieVO> comingSoonMovieList = [];
+  List<MovieVO> moviesToShow = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _model.getNowPlayingMovieList().then((value) {
+      setState(() {
+        nowPlayingMovieList = value;
+        moviesToShow = value;
+      });
+    });
+
+    _model.getComingSoonMovieList().then((value) {
+      comingSoonMovieList = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +168,13 @@ class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
             onTapNowShowingAndComingSoon: (text) {
               setState(() {
                 selectedText = text;
+
+                ///Set Movie to show list
+                if (selectedText == kNowShowingLabel) {
+                  moviesToShow = nowPlayingMovieList;
+                } else {
+                  moviesToShow = comingSoonMovieList;
+                }
               });
             },
           ),
@@ -152,20 +188,31 @@ class _HomePageScreenBodyViewState extends State<HomePageScreenBodyView> {
         ),
 
         ///Movie Grid View
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: kMarginLarge),
-          sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return MovieListItemView(
-                  isComingSoonSelected: selectedText == kComingSoonLabel,
-                );
-              }, childCount: 10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: kMarginMedium3,
-                  mainAxisSpacing: kMarginMedium3,
-                  crossAxisCount: 2,
-                  mainAxisExtent: kMovieListItemHeight)),
-        )
+        (moviesToShow.isEmpty)
+            ? const SliverToBoxAdapter(
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: kPrimaryColor,
+                  ),
+                ),
+              )
+            : SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: kMarginLarge),
+                sliver: SliverGrid(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      return MovieListItemView(
+                        isComingSoonSelected: selectedText == kComingSoonLabel,
+                        movie: moviesToShow[index],
+                        movieID: moviesToShow[index].id.toString(),
+                      );
+                    }, childCount: moviesToShow.length),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: kMarginMedium3,
+                            mainAxisSpacing: kMarginMedium3,
+                            crossAxisCount: 2,
+                            mainAxisExtent: kMovieListItemHeight)),
+              ),
       ],
     );
   }

@@ -1,6 +1,8 @@
 ///Base Url
 const String kHttpBaseUrl = 'api.themoviedb.org';
+const String kBaseUrl = 'https://api.themoviedb.org';
 const String kDioBaseUrl = 'https://api.themoviedb.org';
+const String kImageBaseUrl = "https://image.tmdb.org/t/p/w400";
 
 ///End Points
 const String kGetNowPlayingEndPoint = '/3/movie/now_playing';

@@ -1,16 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:movie_booking/data/models/movie_booking_model.dart';
 import 'package:movie_booking/list_items/cast_item_view.dart';
 import 'package:movie_booking/pages/cinema_selection_page.dart';
 import 'package:movie_booking/utils/colors.dart';
 import 'package:movie_booking/utils/dimensions.dart';
 import 'package:movie_booking/utils/strings.dart';
 
+import '../data/VOs/credit_vo.dart';
+import '../data/VOs/movie_vo.dart';
 import '../widgets_view/back_button_and_share_button_widget.dart';
 import '../widgets_view/censor_rating_release_date_and_duration_widget.dart';
 import '../widgets_view/movie_large_image_small_image_and_info_widget.dart';
 
-class MovieDetailsPage extends StatelessWidget {
-  const MovieDetailsPage({super.key});
+class MovieDetailsPage extends StatefulWidget {
+  final String movieID;
+  const MovieDetailsPage({super.key, required this.movieID});
+
+  @override
+  State<MovieDetailsPage> createState() => _MovieDetailsPageState();
+}
+
+class _MovieDetailsPageState extends State<MovieDetailsPage> {
+  ///Model
+  final MovieBookingModel _model = MovieBookingModel();
+
+  MovieVO? movieDetails;
+  List<CreditVO> creditList = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _model.getMovieDetails(widget.movieID).then((value) {
+      setState(() {
+        movieDetails = value;
+      });
+    });
+    _model.getMovieCredits(widget.movieID).then((value) {
+      setState(() {
+        creditList = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,36 +50,48 @@ class MovieDetailsPage extends StatelessWidget {
       body: SafeArea(
           child: Stack(
         children: [
-          const SingleChildScrollView(
+          SingleChildScrollView(
             child: Column(
               children: [
                 ///movie image and info
-                MovieLarImageSmallImageAndInfo(),
+                MovieLarImageSmallImageAndInfo(
+                  movie: movieDetails,
+                ),
 
-                SizedBox(
+                const SizedBox(
                   height: kMargin30,
                 ),
 
                 ///Censor , Rating, Release date and duration
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kMarginMedium2),
-                  child: CensorRatingReleaseDateAndDuration(),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: kMarginMedium2),
+                  child: CensorRatingReleaseDateAndDuration(
+                    movie: movieDetails,
+                  ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: kMargin30,
                 ),
 
                 ///Story Line
-                StoryLine(),
+                StoryLine(
+                  movie: movieDetails,
+                ),
 
-                SizedBox(
+                const SizedBox(
                   height: kMargin30,
                 ),
 
-                CastView(),
+                Visibility(
+                  visible: true,
+                  child: CastView(
+                    creditList: creditList,
+                  ),
+                ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
               ],
@@ -91,18 +134,20 @@ class MovieDetailsPage extends StatelessWidget {
 }
 
 class StoryLine extends StatelessWidget {
+  final MovieVO? movie;
   const StoryLine({
     super.key,
+    required this.movie,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: kMarginMedium2),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kMarginMedium2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             kStoryLine,
             style: TextStyle(
               color: Colors.white,
@@ -110,12 +155,12 @@ class StoryLine extends StatelessWidget {
               fontSize: kTextRegular,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: kMarginMedium,
           ),
           Text(
-            "Andy Dufresne (Tim Robbins) is sentenced to two consecutive life terms in prison for the murders of his wife and her lover and is sentenced to a tough prison. However, only Andy knows he didn't commit the crimes. While there, he forms a friendship with Red (Morgan Freeman), experiences brutality of prison life, adapts, helps the warden, etc., all in 19 years.",
-            style: TextStyle(
+            movie?.overview ?? "",
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
               fontSize: kTextSmall,
@@ -128,7 +173,11 @@ class StoryLine extends StatelessWidget {
 }
 
 class CastView extends StatelessWidget {
-  const CastView({super.key});
+  const CastView({
+    super.key,
+    required this.creditList,
+  });
+  final List<CreditVO> creditList;
 
   @override
   Widget build(BuildContext context) {
@@ -158,9 +207,11 @@ class CastView extends StatelessWidget {
           child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: kMarginMedium2),
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: creditList.length,
               itemBuilder: (context, index) {
-                return const CastItemView();
+                return CastItemView(
+                  creditVO: creditList[index],
+                );
               }),
         ),
 

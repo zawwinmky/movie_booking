@@ -39,9 +39,6 @@ void main() {
 
   example.draw();
 
-  MovieBookingDataAgent dataAgent = HttpDataAgentImpl();
-  dataAgent.getNowPlayingMovieList(1);
-
   circle.draw();
   rectangle.draw();
   circle.erase();

@@ -7,10 +7,6 @@ import 'package:movie_booking/pages/splash_screen.dart';
 import 'package:movie_booking/utils/fonts.dart';
 
 void main() {
-  MovieBookingDataAgent dataAgent = HttpDataAgentImpl();
-  dataAgent.getNowPlayingMovieList(1);
-  // HttpDataAgentImpl().getNowPlayingMovieList(1);
-  // DioDataAgentImpl().getNowPlayingMovieList(1);
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   FlutterNativeSplash.remove();
